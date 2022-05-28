@@ -20,8 +20,8 @@ class Home extends Component {
                 made by love just for you. Start your day with us for a bigger
                 smile!
               </p>
-              <button className="btn-hero" href="#">
-                <a href="#">Get Started</a>
+              <button className="btn-hero">
+                Get Started
               </button>
             </div>
           </div>
@@ -113,9 +113,9 @@ class Home extends Component {
             </ul>
             <div className="order-wrap">
               <p>IDR 25.000</p>
-              <a href="#">
+              
                 <button className="order-btn">Order Now</button>
-              </a>
+              
             </div>
           </div>
           <div className="col-lg-4 wrapper">
@@ -157,9 +157,9 @@ class Home extends Component {
             </ul>
             <div className="order-wrap">
               <p>IDR 25.000</p>
-              <a href="#">
+              
                 <button className="order-btn">Order Now</button>
-              </a>
+              
             </div>
           </div>
           <div className="col-lg-4 wrapper">
@@ -206,9 +206,9 @@ class Home extends Component {
             </ul>
             <div className="order-wrap">
               <p>IDR 25.000</p>
-              <a href="#">
+              
                 <button className="order-btn">Order Now</button>
-              </a>
+              
             </div>
           </div>
         </div>
