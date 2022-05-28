@@ -39,6 +39,10 @@ a:hover {
   padding-left: 10px;
 }
 
+.left-panel .subpromo{
+  margin-bottom: 70px;
+}
+
 .left-panel .coupon {
   display: flex;
   flex-direction: column;
@@ -57,10 +61,16 @@ a:hover {
   /* align-items: center; */
   /* text-align: center; */
 }
+.coupon-title{
+  font-weight: 700;
+}
 
 .coupon {
   display: inline;
   align-items: center;
+}
+.left-panel{
+  max-width: 390px;
 }
 
 .left-panel > h3 {
@@ -132,81 +142,30 @@ a:hover {
   border-left: #9f9f9f;
   border-left-style: solid;
 }
+
+.category-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 /* Show Product */
 
 .show-product {
   display: flex;
+  flex-direction: column;
+}
+
+.show-product .product-wrapper{
+  display: flex;
   flex-wrap: wrap;
 }
 
-.product-icon {
-  position: relative;
-  width: 156px;
-  height: 252.07px;
-  background: #ffffff;
-  box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
-  border-radius: 30px;
-  margin: 15px;
-  text-align: center;
-}
-.product-icon .disc {
-  position: absolute;
-  width: 64px;
-  height: 38px;
-  top: 30px;
-  right: 0px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 25px;
-  line-height: 38px;
-  /* identical to box height */
 
-  text-align: center;
-
-  color: #000000;
-
-  background: #ffffff;
-  border-radius: 20px;
-}
-.product-icon > div {
-  margin: auto;
-  width: 129px;
-  height: 129px;
-  border: none;
-  border-radius: 129px;
-  background-color: aqua;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.product-icon .product-name {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 22px;
-
-  color: #000;
-}
-
-.product-icon .-product-price {
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 17px;
-  margin-bottom: 30px;
-
-  color: #6a4029;
-}
-.show-product > p {
+.show-product .notes {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
-  text-align: center;
   color: #6a4029;
   padding-left: 25px;
 }
