@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;900&display=swap");
+
+.payment-container {
+  background-image: url(/src/assets/image/stock/paymentbg.png);
+  background-size: cover;
+  color: #fff;
+  height: 100%;
+  min-height: 900px;
+  padding: 60px;
+  font-family: "Poppins", sans-serif;
+}
+
+.payment-left {
+  text-align: center;
+  padding-left: 30px;
+  padding-right: 60px;
+
+}
+
+.payment-left > header {
+  color: #fff;
+  width: 316px;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.payment-left > header,
+.address-wrapper > header > h4,
+.payment-wrapper >h4 {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+
+.fee-wrapper {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #362115;
+}
+
+.fee-wrapper > div {
+  justify-content: space-between;
+}
+
+.fee-wrapper .total {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  color: #362115;
+}
+
+.order-wrapper {
+  background-color: #fff;
+  border-radius: 20px;
+  color: #362115;
+  padding: 15px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.order-wrapper .product-wrapper {
+  height: 90px;
+}
+
+.payment-right{
+    margin-top: 140px;
+}
+
+.address-wrapper > header {
+  color: #fff;
+  justify-content: space-between;
+}
+
+.address-wrapper {
+  color: black;
+}
+
+.address-section {
+  background-color: #fff;
+  border-radius: 20px;
+  height: 100%;
+  padding: 20px;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.address-section .delivery-address > span {
+  font-weight: 700;
+}
+
+.payment-wrapper {
+  flex-direction: column;
+}
+
+.payment-form {
+  height: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.confirmandpay {
+  color: #fff;
+  background-color: #6a4029;
+  width: 100%;
+  height: 84px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.input-form {
+  align-items: center;
+  gap: 15px;
+}
+
+.input form > label {
+  border-bottom: 1px #362115;
+}
+
+.label-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.creditcard {
+  background: #f47b0a;
+  background-image: url(/src/assets/image/vector/creditcard.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bank {
+  background: #895537;
+  background-image: url(/src/assets/image/vector/bank.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.cod {
+  background: #ffba33;
+  background-image: url(/src/assets/image/vector/cod.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
