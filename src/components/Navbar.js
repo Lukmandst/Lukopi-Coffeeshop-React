@@ -27,7 +27,7 @@ export class Navbar extends Component {
               <div className="menu-wrapper">
                 <ul className="menu mx-auto">
                   <li className="menu-item-home">
-                    <Link to="/signin">Home</Link>
+                    <Link to="/">Home</Link>
                   </li>
                   <li className="menu-item">
                     <Link to="/product">
@@ -49,10 +49,10 @@ export class Navbar extends Component {
             <div className="nav-member">
               
               <button className="button-login" >
-                Sign In
+                <Link to="/signin">Sign In</Link> 
               </button>
               <button className="button-signup" href="#">
-                <a href="/signUp">Sign Up</a>
+                <Link to="/signUp">Sign Up</Link>
               </button>
             </div>
           </div>
