@@ -8,6 +8,7 @@ import ForgotPass from "../pages/ForgotPass";
 import ProductDetails from "../pages/ProductDetails";
 import Payment from "../pages/Payment";
 import History from "../pages/History";
+import NotFound from "../pages/404";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/history" element={<History />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   );
