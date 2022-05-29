@@ -1,0 +1,23 @@
+.history-icon {
+    width: 394px;
+    height: 126px;
+    background-color: rgb(250, 9, 9);
+    border-radius: 20px;
+    border: none;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  .history-icon .product-icon {
+   max-width: 75px;
+    height: 75px;
+    border-radius: 75px;
+    border: none;
+    background-image: url(/src/assets/image/product/Veggie\ tomato\ mix.png);
+    background-size: cover;
+    background-position: center;
+  }
+  .history-icon .product-details{
+      margin: auto;
+  }
