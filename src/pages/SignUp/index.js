@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import Footer from "../../components/Footer";
-import "./signUp.css"
+import "./signUp.css";
+import axios from "axios";
 
 class SignUp extends Component {
+  state = {
+    email: "",
+    pass: "",
+    phone: "",
+  };
   render() {
     return (
       <div>
@@ -34,7 +40,7 @@ class SignUp extends Component {
                     <h2>Sign Up</h2>
                   </div>
                   <div className="login-form">
-                    <label for="Email" className="form-label">
+                    <label htmlFor="Email" className="form-label">
                       Email address :{" "}
                     </label>
                     <input
@@ -42,8 +48,13 @@ class SignUp extends Component {
                       className="form-control"
                       id="Email"
                       placeholder="Enter your email address"
+                      onChange={(e) => {
+                        this.setState({
+                          email: e.target.value,
+                        });
+                      }}
                     />
-                    <label for="password" className="form-label">
+                    <label htmlFor="password" className="form-label">
                       Password :{" "}
                     </label>
                     <input
@@ -51,8 +62,13 @@ class SignUp extends Component {
                       className="form-control"
                       id="password"
                       placeholder="Enter your password"
+                      onChange={(e) => {
+                        this.setState({
+                          pass: e.target.value,
+                        });
+                      }}
                     />
-                    <label for="pNumber" className="form-label">
+                    <label htmlFor="pNumber" className="form-label">
                       Phone Number :{" "}
                     </label>
                     <input
@@ -60,8 +76,34 @@ class SignUp extends Component {
                       className="form-control"
                       id="pNumber"
                       placeholder="Enter your phone number"
+                      onChange={(e) => {
+                        this.setState({
+                          phone: e.target.value,
+                        });
+                      }}
                     />
-                    <button className="signin">Sign Up</button>
+                    <button
+                      className="signin"
+                      onClick={() => {
+                        const { email, pass, phone } = this.state;
+                        const body = {
+                          email,
+                          pass,
+                          phone,
+                        };
+                        axios
+                          .post("http://localhost:8080/auth/signup", body)
+                          .then((result) => console.log(result.data))
+                          .catch((error) => {
+                            let dataError = error.response.data.error; //many errors in array
+                            dataError.forEach((item) => { // show every errors 
+                              console.log(item.msg);
+                            });
+                          });
+                      }}
+                    >
+                      Sign Up
+                    </button>
                     <button className="signin-google">
                       <img
                         src="/assets/image/stock/google-icon.png"
