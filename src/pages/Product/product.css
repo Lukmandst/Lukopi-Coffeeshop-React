@@ -198,20 +198,27 @@ a:hover {
   height: 129px;
   border: none;
   border-radius: 129px;
-  background-color: aqua;
+  background-color: #fff;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+.product-icon .product-image >img{
+  width: 129px;
+  height: 129px;
+  border-radius: 129px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
 
 .product-icon .product-name {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 22px;
-
+ margin-bottom: 0;
   color: #000;
 }
 
@@ -220,7 +227,7 @@ a:hover {
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
-  margin-bottom: 30px;
+  /* margin-bottom: 5px; */
 
   color: #6a4029;
 }

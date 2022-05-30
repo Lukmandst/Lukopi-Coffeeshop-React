@@ -29,15 +29,6 @@ class Product extends Component {
     } catch (error) {
       console.error(error);
     }
-
-    // .then((result) => {
-    //   const meta = result.data.meta;
-    //   const data = result.data.data;
-    //   const products = data.map((item) => {
-    //     return item;
-    //   });
-    //   console.log(products);
-    //   console.log(meta);
   }
 
   render() {
@@ -133,20 +124,21 @@ class Product extends Component {
                         this.state.products.map((product) => (
                           <button key={product.id} className="product-icon">
                             <div className="disc">10%</div>
-                            <div className="product-image"></div>
-                            <p className="product-name">{product.name} </p>
-                            <p className="-product-price">IDR {product.price}</p>
+                            <div className="product-image">
+                              <img
+                                src={`http://localhost:8080${product.image}`}
+                                alt={product.name}
+                              />
+                            </div>
+                            <p className="product-name">{product.name} </p> <br/>
+                            <p className="-product-price">
+                              IDR {product.price}
+                            </p>
                           </button>
                         ))
                       ) : (
                         <></>
                       )}
-                      <button className="product-icon">
-                        <div className="disc">10%</div>
-                        <div className="product-image"></div>
-                        <p className="product-name">Veggie tomato mix</p>
-                        <p className="-product-price">IDR 34.000</p>
-                      </button>
                     </div>
 
                     <p className="notes">
