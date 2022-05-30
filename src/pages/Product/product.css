@@ -139,6 +139,7 @@ a:hover {
 
 /* Right Panel */
 .right-panel {
+  position: relative;
   border-left: #9f9f9f;
   border-left-style: solid;
 }
@@ -158,19 +159,20 @@ a:hover {
 .show-product .product-wrapper{
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 
 .product-icon {
   position: relative;
-  width: 156px;
+  width: 150px;
   height: 252.07px;
   background: #ffffff;
   box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
   border: none;
   border-radius: 30px;
-  margin: 15px;
   text-align: center;
-  flex: 1 1;
+  flex: 0;
 }
 .product-icon .disc {
   position: absolute;
@@ -234,12 +236,14 @@ a:hover {
 
 
 
-.show-product .notes {
+.right-panel .notes {
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
   color: #6a4029;
   padding-left: 25px;
+  position: absolute;
+  bottom: 10px;
 }
 

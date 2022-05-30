@@ -5,6 +5,9 @@ import Navbar from "../../components/Navbar";
 import "./product.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Mom from "../../assets/image/stock/mom.png";
+import Dad from "../../assets/image/stock/dad.png";
+import Pirate from "../../assets/image/stock/pirate.png";
 
 class Product extends Component {
   constructor() {
@@ -45,14 +48,14 @@ class Product extends Component {
                 </p>
                 <div className="coupon">
                   <button className="coupon-btn mom">
-                    <img src="src/assets/image/stock/mom.png" alt="mom" />
+                    <img src={Mom} alt="mom" />
                     <ul>
                       <li className="coupon-title">HAPPY MOTHER'S DAY!</li>
                       <li>Get one of our favorite menu for free!</li>
                     </ul>
                   </button>
                   <button className="coupon-btn dad">
-                    <img src="/assets/image/stock/dad.png" alt="dad" />
+                    <img src={Dad} alt="dad" />
                     <ul>
                       <li className="coupon-title">
                         Get a cup of coffee for free on sunday morning
@@ -61,14 +64,14 @@ class Product extends Component {
                     </ul>
                   </button>
                   <button className="coupon-btn mom ">
-                    <img src="/assets/image/stock/mom.png" alt="mom" />
+                    <img src={Mom} alt="mom" />
                     <ul>
                       <li className="coupon-title">HAPPY MOTHER'S DAY!</li>
                       <li>Get one of our favorite menu for free!</li>
                     </ul>
                   </button>
                   <button className="coupon-btn pirate">
-                    <img src="/assets/image/stock/pirate.png" alt="pirate" />
+                    <img src={Pirate} alt="pirate" />
                     <ul>
                       <li className="coupon-title">HAPPY HALLOWEEN!</li>
                       <li>
@@ -130,7 +133,7 @@ class Product extends Component {
                                 alt={product.name}
                               />
                             </div>
-                            <p className="product-name">{product.name} </p> <br/>
+                            <p className="product-name">{product.name} </p>
                             <p className="-product-price">
                               IDR {product.price}
                             </p>
@@ -140,12 +143,11 @@ class Product extends Component {
                         <></>
                       )}
                     </div>
-
-                    <p className="notes">
-                      *the price has been cutted by discount appears
-                    </p>
                   </div>
                 </div>
+                <p className="notes">
+                  *the price has been cutted by discount appears
+                </p>
               </div>
             </div>
           </div>
