@@ -2,44 +2,76 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./profile.css";
 import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer"
+import Footer from "../../components/Footer";
+import axios from "axios";
 
 class Profile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userData: [],
+    };
+  }
+
+  async componentDidMount() {
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    console.log(userInfo.token);
+
+    const config = {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    };
+    const url = "http://localhost:8080/user/info/";
+
+    try {
+      const result = await axios.get(url, config);
+      const userArray = result.data.data[0];
+      console.log(userArray);
+      this.setState({
+        userData: userArray,
+      });
+    } catch (error) {
+      let dataError = error.response.data.err.msg; //many errors in array
+      console.log(dataError);
+    }
+  }
+
   render() {
     return (
       <div>
         <Navbar />
-
         <section className="profile-section">
           <h2>User Profile</h2>
 
           <div className="profile-box">
             <div className="row profile-wrapper">
               <aside className="col profile-menu">
-                <div className="profile-pict"></div>
-                <h4 className="display-name">Zulaikha</h4>
-                <p className="email-display">zulaikha17@gmail.com</p>
-                <button className="choose-pict" href="#">
+                <div className="profile-pict">
+                </div>
+                <h4 className="display-name">
+                  {this.state.userData.display_name}
+                </h4>
+                <p className="email-display">{this.state.userData.email}</p>
+                <button className="choose-pict" >
                   Choose photo
                 </button>
                 <br />
-                <button className="remove-pict" href="#">
+                <button className="remove-pict" >
                   Remove photo
                 </button>
                 <br />
-                <button className="edit-pass" href="#">
+                <button className="edit-pass" >
                   Edit Password
                 </button>
                 <p className="save-question">Do you want to save the change?</p>
-                <button className="save-chg" href="#">
+                <button className="save-chg" >
                   Save Change
                 </button>
                 <br />
-                <button className="cancel" href="#">
+                <button className="cancel" >
                   Cancel
                 </button>
                 <br />
-                <button className="log-out" href="#">
+                <button className="log-out" >
                   Log out
                 </button>
               </aside>
@@ -54,29 +86,33 @@ class Profile extends Component {
                 <div className="form-wrapper">
                   <div className="form-left">
                     <form className="contact-form">
-                      <label for="email">Email adress :</label>
+                      <label htmlFor="email">Email adress :</label>
                       <br />
                       <input
                         type="email"
                         id="email"
-                        value="zulaikha17@gmail.com"
+                        value={this.state.userData.email}
                       />
                       <br />
-                      <label for="d-address">Delivery Adress :</label>
+                      <label htmlFor="d-address">Delivery Adress :</label>
                       <br />
                       <input
                         type="text"
                         id="d-address"
-                        value="Iskandar Street no. 67 Block A Near Bus Stop"
+                        value={this.state.userData.delivery_address}
                       />
                       <br />
                     </form>
                   </div>
                   <div className="form-right">
                     <form className="contact-form">
-                      <label for="pNumber">Mobile Number:</label>
+                      <label htmlFor="pNumber">Mobile Number:</label>
                       <br />
-                      <input type="tel" id="pNumber" value="(+62)813456782" />
+                      <input
+                        type="tel"
+                        id="pNumber"
+                        value={this.state.userData.phone_number}
+                      />
                     </form>
                   </div>
                 </div>
@@ -85,26 +121,42 @@ class Profile extends Component {
                 <div className="form-wrapper">
                   <div className="form-left">
                     <form className="details-form">
-                      <label for="d-name">Display name:</label>
+                      <label htmlFor="d-name">Display name:</label>
                       <br />
-                      <input type="text" id="d-name" value="Zulaikha" />
+                      <input
+                        type="text"
+                        id="d-name"
+                        value={this.state.userData.display_name}
+                      />
                       <br />
-                      <label for="f-name">First name:</label>
+                      <label htmlFor="f-name">First name:</label>
                       <br />
-                      <input type="text" id="f-name" value="Zulaikha" />
+                      <input
+                        type="text"
+                        id="f-name"
+                        value={this.state.userData.first_name}
+                      />
                       <br />
 
-                      <label for="l-name">Last name:</label>
+                      <label htmlFor="l-name">Last name:</label>
                       <br />
-                      <input type="text" id="l-name" value="Nirmala" />
+                      <input
+                        type="text"
+                        id="l-name"
+                        value={this.state.userData.last_name}
+                      />
                       <br />
                     </form>
                   </div>
                   <div className="form-right">
                     <form className="details-form">
-                      <label for="b-day">DD/MM/YY</label>
+                      <label htmlFor="b-day">DD/MM/YY</label>
                       <br />
-                      <input type="text" id="b-day" value="03/04/90" />
+                      <input
+                        type="text"
+                        id="b-day"
+                        value={this.state.userData.birthdate}
+                      />
                       <br />
                     </form>
                   </div>
@@ -112,20 +164,20 @@ class Profile extends Component {
 
                 <form className="gender-form">
                   <input type="radio" id="male" name="gender" value="Male" />
-                  <label for="male">Male</label>
+                  <label htmlFor="male">Male</label>
                   <input
                     type="radio"
                     id="female"
                     name="gender"
                     value="Female"
                   />
-                  <label for="female">Female</label>
+                  <label htmlFor="female">Female</label>
                 </form>
               </article>
             </div>
           </div>
         </section>
-        <Footer/>
+        <Footer />
       </div>
     );
   }
