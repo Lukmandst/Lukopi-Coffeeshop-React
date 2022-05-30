@@ -34,14 +34,14 @@ export class Navbar extends Component {
                     Product</Link>
                   </li>
                   <li className="menu-item">
-                    <a href="/yourCart" className="menu-link">
+                    <Link to="/yourCart" className="menu-link">
                       Your Cart
-                    </a>
+                    </Link>
                   </li>
                   <li className="menu-item">
-                    <a href="history" className="menu-link">
+                    <Link to="history" className="menu-link">
                       History
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
