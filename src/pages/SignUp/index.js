@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Footer from "../../components/Footer";
 import "./signUp.css";
 import axios from "axios";
+import Googleimg from "../../assets/image/stock/google-icon.png"
+import CardMember from "../../components/CardMember";
 
 class SignUp extends Component {
   state = {
@@ -12,7 +14,7 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-        <section className="login container d-inline">
+        <section className="container-fluid">
           <div className="row">
             <div className="login-left col-md-6 col-lg-6 d-flex  justify-content-lg-end align-items-lg-end"></div>
             <div className="login-right col-md-6">
@@ -29,8 +31,8 @@ class SignUp extends Component {
                   <a href="/">Lukopi</a>
                 </div>
                 <div>
-                  <a href="/login">
-                    <button className="signup">Login</button>
+                  <a href="/signin">
+                    <button className="signup">Sign In</button>
                   </a>
                 </div>
               </div>
@@ -84,7 +86,8 @@ class SignUp extends Component {
                     />
                     <button
                       className="signin"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault()
                         const { email, pass, phone } = this.state;
                         const body = {
                           email,
@@ -106,7 +109,7 @@ class SignUp extends Component {
                     </button>
                     <button className="signin-google">
                       <img
-                        src="/assets/image/stock/google-icon.png"
+                        src={Googleimg}
                         alt="google"
                         className="google-btn"
                       />
@@ -118,25 +121,7 @@ class SignUp extends Component {
             </div>
           </div>
         </section>
-        <section className="card-wrapper d-none d-lg-block">
-          <div className="card justify-content-center align-items-center">
-            <div className="card-body d-flex list-style-none">
-              <ul>
-                <li>
-                  <h4 className="card-title">Get your member card now!</h4>
-                </li>
-                <li>
-                  <p className="card-text">
-                    Let's join with our member and enjoy the deals.
-                  </p>
-                </li>
-              </ul>
-              <a href="#" className="btn-create d-flex">
-                Create Now
-              </a>
-            </div>
-          </div>
-        </section>
+        <CardMember/>
         <Footer />
       </div>
     );
