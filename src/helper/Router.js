@@ -21,7 +21,7 @@ function Router() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgot-pass" element={<ForgotPass />} />
         <Route path="/product-details" element={<ProductDetails />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/yourcart" element={<Payment />} />
         <Route path="/history" element={<History />} />
         <Route path="*" element={<NotFound/>}/>
       </Routes>
