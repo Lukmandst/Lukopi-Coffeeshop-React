@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Footer from "../../components/Footer";
 import "./signUp.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Googleimg from "../../assets/image/stock/google-icon.png"
 import CardMember from "../../components/CardMember";
 
@@ -21,19 +22,19 @@ class SignUp extends Component {
               <div className="container home">
                 <div className="brand d-flex align-items-center">
                   <div>
-                    <a href="/" className="brand-logo">
+                    <Link to="/" className="brand-logo">
                       <img
                         src="/assets/image/stock/coffee 1.png"
                         alt="LukopiLogo"
                       />
-                    </a>
+                    </Link>
                   </div>
-                  <a href="/">Lukopi</a>
+                  <Link to="/">Lukopi</Link>
                 </div>
                 <div>
-                  <a href="/signin">
+                  <Link to="/signin">
                     <button className="signup">Sign In</button>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col login-form-wrapper">

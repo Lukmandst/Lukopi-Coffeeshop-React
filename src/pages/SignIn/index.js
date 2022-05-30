@@ -23,19 +23,19 @@ class SignIn extends Component {
               <div className="container home">
                 <div className="brand d-flex align-items-center">
                   <div>
-                    <a href="/" className="brand-logo">
+                    <Link to="/" className="brand-logo">
                       <img
                         src="/assets/image/stock/coffee 1.png"
                         alt="LukopiLogo"
                       />
-                    </a>
+                    </Link>
                   </div>
-                  <a href="/">Lukopi</a>
+                  <Link to="/">Lukopi</Link>
                 </div>
                 <div>
-                  <a href="/signUp">
+                  <Link to="/signUp">
                     <button className="signup">Sign Up</button>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col login-form-wrapper">
