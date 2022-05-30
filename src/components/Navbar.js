@@ -39,7 +39,7 @@ export class Navbar extends Component {
                     </Link>
                   </li>
                   <li className="menu-item">
-                    <Link to="history" className="menu-link">
+                    <Link to="/history" className="menu-link">
                       History
                     </Link>
                   </li>
@@ -52,7 +52,7 @@ export class Navbar extends Component {
                 <Link to="/signin">Sign In</Link> 
               </button>
               <button className="button-signup" href="#">
-                <Link to="/signUp">Sign Up</Link>
+                <Link to="/signup">Sign Up</Link>
               </button>
             </div>
           </div>
