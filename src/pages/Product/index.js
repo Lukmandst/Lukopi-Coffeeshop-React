@@ -1,10 +1,45 @@
 import React, { Component } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
-import ProductIcon from "../../components/ProductIcon";
+// import ProductIcon from "../../components/ProductIcon";
 import "./product.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Product extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+      productName: "",
+    };
+  }
+
+  async componentDidMount() {
+    const url = "http://localhost:8080/product/all";
+    try {
+      const result = await axios.get(url);
+      const productsArray = result.data.data;
+      const productsMeta = result.data.meta;
+      console.log(productsArray);
+      console.log(productsMeta);
+      this.setState({
+        products: productsArray,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    // .then((result) => {
+    //   const meta = result.data.meta;
+    //   const data = result.data.data;
+    //   const products = data.map((item) => {
+    //     return item;
+    //   });
+    //   console.log(products);
+    //   console.log(meta);
+  }
+
   render() {
     return (
       <div>
@@ -66,44 +101,52 @@ class Product extends Component {
                   <div className="category-wrapper">
                     <ul className="category-menu mx-auto">
                       <li className="menu-item-home">
-                        <a className="active" href="/">
+                        <Link className="active" to="/">
                           Favorite & Promo
-                        </a>
+                        </Link>
                       </li>
                       <li className="menu-item">
-                        <a href="#" className="menu-link">
+                        <Link to="#" className="menu-link">
                           Coffee
-                        </a>
+                        </Link>
                       </li>
                       <li className="menu-item">
-                        <a href="#" className="menu-link">
+                        <Link to="#" className="menu-link">
                           Non Coffee
-                        </a>
+                        </Link>
                       </li>
                       <li className="menu-item">
-                        <a href="#" className="menu-link">
+                        <Link to="#" className="menu-link">
                           Foods
-                        </a>
+                        </Link>
                       </li>
                       <li className="menu-item">
-                        <a href="#" className="menu-link">
+                        <Link to="#" className="menu-link">
                           Add-on
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>
                   <div className="show-product">
                     <div className=" product-wrapper d-flex">
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
-                      <ProductIcon />
+                      {Array.isArray(this.state.products) ? (
+                        this.state.products.map((product) => (
+                          <button key={product.id} className="product-icon">
+                            <div className="disc">10%</div>
+                            <div className="product-image"></div>
+                            <p className="product-name">{product.name} </p>
+                            <p className="-product-price">IDR {product.price}</p>
+                          </button>
+                        ))
+                      ) : (
+                        <></>
+                      )}
+                      <button className="product-icon">
+                        <div className="disc">10%</div>
+                        <div className="product-image"></div>
+                        <p className="product-name">Veggie tomato mix</p>
+                        <p className="-product-price">IDR 34.000</p>
+                      </button>
                     </div>
 
                     <p className="notes">
