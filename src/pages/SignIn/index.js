@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import "./signIn.css";
 import Googleimg from "../../assets/image/stock/google-icon.png";
 import CardMember from "../../components/CardMember";
+import Logo from "../../assets/image/stock/coffee 1.png"
 
 class SignIn extends Component {
   state = {
@@ -25,7 +26,7 @@ class SignIn extends Component {
                   <div>
                     <Link to="/" className="brand-logo">
                       <img
-                        src="/assets/image/stock/coffee 1.png"
+                        src={Logo}
                         alt="LukopiLogo"
                       />
                     </Link>

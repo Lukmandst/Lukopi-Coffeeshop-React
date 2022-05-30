@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Googleimg from "../../assets/image/stock/google-icon.png"
 import CardMember from "../../components/CardMember";
+import Logo from "../../assets/image/stock/coffee 1.png"
+
 
 class SignUp extends Component {
   state = {
@@ -24,7 +26,7 @@ class SignUp extends Component {
                   <div>
                     <Link to="/" className="brand-logo">
                       <img
-                        src="/assets/image/stock/coffee 1.png"
+                        src={Logo}
                         alt="LukopiLogo"
                       />
                     </Link>
