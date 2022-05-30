@@ -7,7 +7,7 @@ This project was bootstrapped with React App
 ![html](https://img.shields.io/badge/html-5-blue)
 ![css](https://img.shields.io/badge/css-3-yellow)
 ![bootstrap](https://img.shields.io/badge/bootstrap-5.2-blueviolet)
-![React](https://img.shields.io/badge/-ReactJs-blue).
+![React](https://img.shields.io/badge/-ReactJs-blue)
 
 ## How To Install
 
@@ -23,9 +23,9 @@ This project was bootstrapped with React App
 ## Preview
 
 <div style='display:flex;flex-direction:column;row-gap:10px;align-items:center'>
-<img src="assets/screenshot/Homepage.png"  alt="home" />
-<img src="assets/screenshot/Login-page.png"  alt="login" />
-<img src="assets/screenshot/Product-page.png"  alt="product" />
+<img src="/src/assets/screenshot/Homepage.png"  alt="home" />
+<img src="/src/assets/screenshot/Login-page.png"  alt="login" />
+<img src="/src/assets/screenshot/Product-page.png"  alt="product" />
 </div>
 
 ## Related Project
