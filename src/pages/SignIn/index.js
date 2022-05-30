@@ -86,6 +86,10 @@ class SignIn extends Component {
                           .post("http://localhost:8080/auth/", body)
                           .then((result) => {
                             console.log(result.data.data); //show email, name, token
+                            localStorage.setItem(
+                              "userinfo",
+                              JSON.stringify(result.data.data)
+                            );
                           })
                           .catch((error) => {
                             console.log(error.response.data.err.msg); //show error msg
@@ -108,7 +112,7 @@ class SignIn extends Component {
             </div>
           </div>
         </section>
-        <CardMember/>
+        <CardMember />
         <Footer />
       </div>
     );
