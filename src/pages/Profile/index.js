@@ -83,7 +83,12 @@ class Profile extends Component {
                       <input
                         type="email"
                         id="email"
-                        value={this.state.userData.email}
+                        defaultValue={this.state.userData.email}
+                        onChange={(e) =>
+                          this.setState({
+                            email: e.target.defaultValue,
+                          })
+                        }
                       />
                       <br />
                       <label htmlFor="d-address">Delivery Adress :</label>
@@ -93,7 +98,7 @@ class Profile extends Component {
                         id="d-address"
                         rows="2"
                         cols="auto"
-                        value={this.state.userData.delivery_address}
+                        defaultValue={this.state.userData.delivery_address}
                       />
                       <br />
                     </form>
@@ -105,7 +110,7 @@ class Profile extends Component {
                       <input
                         type="tel"
                         id="pNumber"
-                        value={this.state.userData.phone_number}
+                        defaultValue={this.state.userData.phone_number}
                       />
                     </form>
                   </div>
@@ -120,7 +125,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="d-name"
-                        value={this.state.userData.display_name}
+                        defaultValue={this.state.userData.display_name}
                       />
                       <br />
                       <label htmlFor="f-name">First name:</label>
@@ -128,7 +133,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="f-name"
-                        value={this.state.userData.first_name}
+                        defaultValue={this.state.userData.first_name}
                       />
                       <br />
 
@@ -137,7 +142,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="l-name"
-                        value={this.state.userData.last_name}
+                        defaultValue={this.state.userData.last_name}
                       />
                       <br />
                     </form>
@@ -149,7 +154,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="b-day"
-                        value={this.state.userData.birthdate}
+                        defaultValue={this.state.userData.birthdate}
                       />
                       <br />
                     </form>
@@ -157,13 +162,13 @@ class Profile extends Component {
                 </div>
 
                 <form className="gender-form">
-                  <input type="radio" id="male" name="gender" value="Male" />
+                  <input type="radio" id="male" name="gender" defaultValue="Male" />
                   <label htmlFor="male">Male</label>
                   <input
                     type="radio"
                     id="female"
                     name="gender"
-                    value="Female"
+                    defaultValue="Female"
                   />
                   <label htmlFor="female">Female</label>
                 </form>

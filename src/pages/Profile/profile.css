@@ -148,7 +148,8 @@
   width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  /* gap: 20px; */
+  justify-content: space-between;
 }
 
 .profile-details .head {
