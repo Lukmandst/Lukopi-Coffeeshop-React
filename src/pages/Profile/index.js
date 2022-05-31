@@ -46,6 +46,7 @@ class Profile extends Component {
             <div className="row profile-wrapper">
               <aside className="col profile-menu">
                 <div className="profile-pict">
+                  <img src={`http://localhost:8080${this.state.userData.picture}`} alt="profile"/>
                 </div>
                 <h4 className="display-name">
                   {this.state.userData.display_name}

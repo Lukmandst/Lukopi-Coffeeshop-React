@@ -32,10 +32,17 @@
 .profile-pict {
   width: 185px;
   height: 185px;
-  border-radius: 100px;
-  background: url(/src/assets/image/stock/profile-img.png);
+  border-radius: 185px;
+  background:#9f9f9f;
   background-size: 185px;
   margin: auto;
+}
+.profile-pict > img{
+  width: 185px;
+  height: 185px;
+  border-radius: 185px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .profile-menu .display-name {
