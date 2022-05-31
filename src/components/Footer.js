@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./footer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LukopiLogo from "../assets/image/stock/coffee 1.png";
+import { Link } from "react-router-dom";
 
 class Footer extends Component {
   render() {
@@ -10,24 +11,24 @@ class Footer extends Component {
       <div className="row f-wrapper justify-content-center">
         <div className="col-sm-6 col-md-4 item main">
           <div className="logo d-flex text-center">
-            <a href="/">
+            <Link to="/">
               <div className="brand-logo">
                 <img
                   src={LukopiLogo}
                   alt="LukopiLogo"
                 />
               </div>
-            </a>
-            <a href="/" className="brand-name">Lukopi</a>
+            </Link>
+            <Link to="/" className="brand-name">Lukopi</Link>
           </div>
           <p className="desc-footer">
             Coffee Shop is a store that sells some good meals, and especially
             coffee. We provide high quality beans
           </p>
           <div className="socmed-wrap d-flex">
-            <a href="/"><div className="circle fb"></div></a>
-            <a href="/"><div className="circle twt"></div></a>
-            <a href="/"><div className="circle ig"></div></a>
+            <Link to="/"><div className="circle fb"></div></Link>
+            <Link to="/"><div className="circle twt"></div></Link>
+            <Link to="/"><div className="circle ig"></div></Link>
           </div>
           <p
             className="copyright"
@@ -40,19 +41,19 @@ class Footer extends Component {
             <h4>Product</h4>
             <ul>
               <li className="item-download">
-                <a href="/">Download</a>
+                <Link to="/">Download</Link>
               </li>
               <li className="item-pricing">
-                <a href="/">Pricing</a>
+                <Link to="/">Pricing</Link>
               </li>
               <li className="item-locations">
-                <a href="/">Locations</a>
+                <Link to="/">Locations</Link>
               </li>
               <li className="item-countries">
-                <a href="/">Countries</a>
+                <Link to="/">Countries</Link>
               </li>
               <li className="item-blog">
-                <a href="/">Blog</a>
+                <Link to="/">Blog</Link>
               </li>
             </ul>
           </div>
@@ -62,19 +63,19 @@ class Footer extends Component {
             <h4>Engage</h4>
             <ul>
               <li className="item-coffeshop">
-                <a href="/">Coffe Shop ?</a>
+                <Link to="/">Coffe Shop ?</Link>
               </li>
               <li className="item-faq">
-                <a href="/">FAQ</a>
+                <Link to="/">FAQ</Link>
               </li>
               <li className="item-aboutus">
-                <a href="/">About Us</a>
+                <Link to="/">About Us</Link>
               </li>
               <li className="item-privacypolicy">
-                <a href="/">Privacy Policy</a>
+                <Link to="/">Privacy Policy</Link>
               </li>
               <li className="item-tos">
-                <a href="/">Terms of Service</a>
+                <Link to="/">Terms of Service</Link>
               </li>
             </ul>
           </div>

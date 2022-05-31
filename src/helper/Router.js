@@ -19,7 +19,7 @@ function Router() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/product" element={<Product />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/forgot-pass" element={<ForgotPass />} />
+        <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/yourcart" element={<Payment />} />
         <Route path="/history" element={<History />} />

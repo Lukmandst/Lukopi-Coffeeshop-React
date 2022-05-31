@@ -39,44 +39,35 @@ class Profile extends Component {
     return (
       <div>
         <Navbar />
-        <section className="profile-section">
+        <section className="container-fluid profile-section">
           <h2>User Profile</h2>
 
           <div className="profile-box">
             <div className="row profile-wrapper">
               <aside className="col profile-menu">
                 <div className="profile-pict">
-                  <img src={`http://localhost:8080${this.state.userData.picture}`} alt="profile"/>
+                  <img
+                    src={`http://localhost:8080${this.state.userData.picture}`}
+                    alt="profile"
+                  />
                 </div>
                 <h4 className="display-name">
                   {this.state.userData.display_name}
                 </h4>
                 <p className="email-display">{this.state.userData.email}</p>
-                <button className="choose-pict" >
-                  Choose photo
-                </button>
+                <button className="choose-pict">Choose photo</button>
                 <br />
-                <button className="remove-pict" >
-                  Remove photo
-                </button>
+                <button className="remove-pict">Remove photo</button>
                 <br />
-                <button className="edit-pass" >
-                  Edit Password
-                </button>
+                <button className="edit-pass">Edit Password</button>
                 <p className="save-question">Do you want to save the change?</p>
-                <button className="save-chg" >
-                  Save Change
-                </button>
+                <button className="save-chg">Save Change</button>
                 <br />
-                <button className="cancel" >
-                  Cancel
-                </button>
+                <button className="cancel">Cancel</button>
                 <br />
-                <button className="log-out" >
-                  Log out
-                </button>
+                <button className="log-out">Log out</button>
               </aside>
-              <article className="col profile-details">
+              <article className="col profile-details d-flex">
                 <header className="head">
                   <h3>Contacts</h3>
                   <button className="edit-btn">
@@ -97,9 +88,11 @@ class Profile extends Component {
                       <br />
                       <label htmlFor="d-address">Delivery Adress :</label>
                       <br />
-                      <input
+                      <textarea
                         type="text"
                         id="d-address"
+                        rows="2"
+                        cols="auto"
                         value={this.state.userData.delivery_address}
                       />
                       <br />
@@ -151,7 +144,7 @@ class Profile extends Component {
                   </div>
                   <div className="form-right">
                     <form className="details-form">
-                      <label htmlFor="b-day">DD/MM/YY</label>
+                      <label htmlFor="b-day">DD/MM/YYYY</label>
                       <br />
                       <input
                         type="text"
