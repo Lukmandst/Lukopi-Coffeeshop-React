@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Mom from "../../assets/image/stock/mom.png";
 import Dad from "../../assets/image/stock/dad.png";
 import Pirate from "../../assets/image/stock/pirate.png";
+import ProductIcon from "../../components/ProductIcon";
 
 class Product extends Component {
   constructor() {
@@ -125,19 +126,13 @@ class Product extends Component {
                     <div className=" product-wrapper d-flex">
                       {Array.isArray(this.state.products) ? (
                         this.state.products.map((product) => (
-                          <button key={product.id} className="product-icon">
-                            <div className="disc">10%</div>
-                            <div className="product-image">
-                              <img
-                                src={`http://localhost:8080${product.image}`}
-                                alt={product.name}
-                              />
-                            </div>
-                            <p className="product-name">{product.name} </p>
-                            <p className="-product-price">
-                              IDR {product.price}
-                            </p>
-                          </button>
+                          <ProductIcon
+                            key={product.id}
+                            imgsource={`http://localhost:8080${product.image}`}
+                            altimg={product.name}
+                            name={product.name}
+                            price={product.price}
+                          />
                         ))
                       ) : (
                         <></>

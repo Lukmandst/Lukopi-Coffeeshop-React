@@ -8,7 +8,7 @@
     border-radius: 30px;
     margin: 15px;
     text-align: center;
-    flex: 1 1;
+    flex: 0 ;
   }
   .product-icon .disc {
     position: absolute;
@@ -43,14 +43,21 @@
     justify-content: center;
     text-align: center;
   }
+  .product-icon .product-image >img{
+    width: 129px;
+    height: 129px;
+    border-radius: 129px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
   
   .product-icon .product-name {
     font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 22px;
-  
-    color: #000;
+  font-style: normal;
+  font-weight: 900;
+ margin-bottom: 0;
+  color: #000;
   }
   
   .product-icon .-product-price {
@@ -58,7 +65,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 17px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   
     color: #6a4029;
   }
