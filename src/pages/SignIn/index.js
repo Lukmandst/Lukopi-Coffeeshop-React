@@ -80,8 +80,7 @@ class SignIn extends Component {
                     
                     {this.state.isSuccess ? (
                       <div className="alert alert-success" role="alert">
-                        Login Success
-                        {/* <Navigate to="/" /> */}
+                        Login Success <Link to="/">click to redirect</Link>
                       </div>
                     ) : (
                       <></>
