@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 // import ProductIcon from "../../components/ProductIcon";
 import "./product.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import Mom from "../../assets/image/stock/mom.png";
 import Dad from "../../assets/image/stock/dad.png";
 import Pirate from "../../assets/image/stock/pirate.png";
@@ -15,7 +15,6 @@ class Product extends Component {
     super();
     this.state = {
       products: [],
-      productName: "",
     };
   }
 
@@ -126,13 +125,7 @@ class Product extends Component {
                     <div className=" product-wrapper d-flex">
                       {Array.isArray(this.state.products) ? (
                         this.state.products.map((product) => (
-                          <ProductIcon
-                            key={product.id}
-                            imgsource={`http://localhost:8080${product.image}`}
-                            altimg={product.name}
-                            name={product.name}
-                            price={product.price}
-                          />
+                          <ProductIcon data={product} />
                         ))
                       ) : (
                         <></>

@@ -1,20 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./CSS/productIcon.css";
 
-class ProductIcon extends Component {
-  render() {
-    const { keyId, imgsource, altimg, name, price } = this.props;
-    return (
-      <button key={keyId} className="product-icon">
-        <div className="disc">10%</div>
-        <div className="product-image">
-          <img src={imgsource} alt={`${altimg}-img`}/>
-        </div>
-        <p className="product-name">{name}</p>
-        <p className="-product-price">IDR {price}</p>
-      </button>
-    );
-  }
+function ProductIcon({ data}) {
+  const navigate = useNavigate();
+
+  const handleGoToDetail = (id) => {
+    navigate(`${id}`);
+  };
+
+  return (
+    <button
+      key={data.id}
+      className="product-icon"
+      onClick={() => {
+        handleGoToDetail(data.id);
+      }}
+    >
+      <div className="disc">10%</div>
+      <div className="product-image">
+        <img src={`http://localhost:8080${data.image}`} alt='product-img' />
+      </div>
+      <p className="product-name">{data.name}</p>
+      <p className="-product-price">IDR {data.price}</p>
+    </button>
+  );
 }
 
 export default ProductIcon;
