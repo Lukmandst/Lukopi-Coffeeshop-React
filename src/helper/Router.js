@@ -17,13 +17,13 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/products" element={<Product />}/>
+        <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgot" element={<ForgotPass />} />
-        <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/yourcart" element={<Payment />} />
         <Route path="/history" element={<History />} />
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
