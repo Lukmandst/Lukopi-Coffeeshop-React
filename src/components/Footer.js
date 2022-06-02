@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./footer.css";
+import "./CSS/footer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LukopiLogo from "../assets/image/stock/coffee 1.png";
 import { Link } from "react-router-dom";

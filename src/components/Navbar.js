@@ -1,4 +1,4 @@
-import "../../src/components/navbar.css";
+import "./CSS/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from 'react'
 import LukopiBrand from "./LukopiBrand";

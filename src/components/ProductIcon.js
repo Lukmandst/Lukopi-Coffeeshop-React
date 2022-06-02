@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./productIcon.css"
+import "./CSS/productIcon.css"
 
 class ProductIcon extends Component {
   render() {
