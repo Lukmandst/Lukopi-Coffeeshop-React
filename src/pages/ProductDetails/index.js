@@ -3,20 +3,66 @@ import "./product-details.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import axios from "axios";
+import withParams from "../../helper/WithParams";
+import { Link } from "react-router-dom";
 
-export class ProductDetails extends Component {
+class ProductDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      quantity: 1,
+      size: "Regular",
+    };
+  }
+  handlePlus = () => {
+    this.setState({
+      quantity: this.state.quantity + 1,
+    });
+  };
+  handleMinus = () => {
+    if (this.state.quantity > 1) {
+      this.setState({
+        quantity: this.state.quantity - 1,
+      });
+    }
+  };
+
+  async componentDidMount() {
+    const { params } = this.props;
+    const url = `http://localhost:8080/product?id=${params.id}`;
+    try {
+      const result = await axios.get(url);
+      const productsArray = result.data.data;
+      console.log(productsArray[0]);
+      this.setState({
+        products: productsArray[0],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   render() {
+    const { products } = this.state;
+    const { params } = this.props;
     return (
       <div>
         <Navbar />
         <div className="container details-container">
           <div className="row p-details-row">
             <header>
-              <span>Favorite & Promo</span>
-              <span> Cold Brew</span>
+              <Link to="/products">Product</Link>
+              <Link to={`/products/${params.id}`}> / {products.name}</Link>
             </header>
             <div className="col left-col-details d-flex">
-              <div className="details-product-image"></div>
+              <div className="details-product-image">
+                <img
+                  src={`http://localhost:8080${products.image}`}
+                  alt="product-img"
+                />
+              </div>
               <div className="delivery-time-section d-flex">
                 <header>Delivery and Time</header>
                 <div className="delivery-category d-flex">
@@ -40,31 +86,24 @@ export class ProductDetails extends Component {
               </div>
             </div>
             <div className="col right-col-details d-flex">
-              <header className="product-title">cold brew</header>
-              <p className="product-details">
-                Cold brewing is a method of brewing that combines ground coffee
-                and cool water and uses time instead of heat to extract the
-                flavor. It is brewed in small batches and steeped for as long as
-                48 hours.
-              </p>
+              <header className="product-title">{products.name}</header>
+              <p className="product-details">{products.details}</p>
               <div className="delivery-time-product">Delivery only on</div>
-              <div className="amount-price-wrapper">
-                <div class="def-number-input number-input safari_only">
-                  <button
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                    class="minus"
-                  ></button>
-                  <input class="quantity"
-                    min="0"
-                    name="quantity"
-                    value="1"
-                    type="number"></input>
-                  <button
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                    class="plus"
-                  ></button>
+              <div className="amount-price-wrapper d-flex">
+                <div className="counter">
+                  <button className="minus-btn" onClick={this.handleMinus}>
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    value={this.state.quantity}
+                    onChange={() => {}}
+                  />
+                  <button className="plus-btn" onClick={this.handlePlus}>
+                    +
+                  </button>
                 </div>
-                <div className="product-price">IDR</div>
+                <div className="product-price">IDR {products.price}</div>
               </div>
               <button className="add-to-cart-btn">Add to Cart</button>
               <button className="ask-a-staff-btn">Ask a Staff</button>
@@ -80,12 +119,19 @@ export class ProductDetails extends Component {
               </div>
             </div>
             <div className="col col-checkout d-flex">
-              <div className="product-img-checkout"></div>
+              <div className="product-img-checkout">
+                <img
+                  src={`http://localhost:8080${products.image}`}
+                  alt="product-icon"
+                />
+              </div>
               <div className="product-details-checkout">
-                <header>cold brew</header>
+                <header>{products.name}</header>
                 <p className="size-item-details">
-                  <span className="amount-item-details">x1</span>
-                  (large)
+                  <span className="amount-item-details">
+                    x{this.state.quantity}
+                  </span>
+                  ({this.state.size})
                 </p>
               </div>
               <div className="checkout-section d-flex">
@@ -102,4 +148,4 @@ export class ProductDetails extends Component {
   }
 }
 
-export default ProductDetails;
+export default withParams(ProductDetails);
