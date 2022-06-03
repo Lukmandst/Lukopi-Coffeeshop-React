@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar";
 // import ProductIcon from "../../components/ProductIcon";
 import "./product.css";
 import axios from "axios";
-import { Link  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Mom from "../../assets/image/stock/mom.png";
 import Dad from "../../assets/image/stock/dad.png";
 import Pirate from "../../assets/image/stock/pirate.png";
@@ -24,7 +24,7 @@ class Product extends Component {
       const result = await axios.get(url);
       const productsArray = result.data.data;
       const productsMeta = result.data.meta;
-      console.log(productsArray);
+      // console.log(productsArray);
       console.log(productsMeta);
       this.setState({
         products: productsArray,
@@ -125,7 +125,7 @@ class Product extends Component {
                     <div className=" product-wrapper d-flex">
                       {Array.isArray(this.state.products) ? (
                         this.state.products.map((product) => (
-                          <ProductIcon data={product} />
+                          <ProductIcon key={product.id} data={product} />
                         ))
                       ) : (
                         <></>
