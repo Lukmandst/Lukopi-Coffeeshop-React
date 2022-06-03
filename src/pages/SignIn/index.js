@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
-
+import { Modal, Button } from "react-bootstrap";
 import "../../pages/SignIn/signIn.css";
 import Footer from "../../components/Footer";
 import "./signIn.css";
@@ -16,11 +16,22 @@ class SignIn extends Component {
     isSuccess: false,
     isError: false,
     errormsg: "",
+    showModal: false,
   };
+
+  handleClose = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
   render() {
-    // if (this.state.isSuccess === true) {
-    //   return <Navigate to="/" />;
-    // }
+    const { isSuccess, isError, errormsg, showModal } = this.state;
+
+    if ((isSuccess === true) & (showModal === false)) {
+      return <Navigate to="/" />;
+    }
+
     return (
       <div>
         <section className="container-fluid">
@@ -77,21 +88,6 @@ class SignIn extends Component {
                       }}
                     />
                     <Link to="/forgot">Forgot password?</Link> <br />
-                    
-                    {this.state.isSuccess ? (
-                      <div className="alert alert-success" role="alert">
-                        Login Success <Link to="/">click to redirect</Link>
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                    {this.state.isError ? (
-                      <div className="alert alert-danger" role="alert">
-                        {this.state.errormsg}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
                     <button
                       className="signin"
                       onClick={(e) => {
@@ -110,12 +106,15 @@ class SignIn extends Component {
                               JSON.stringify(result.data.data)
                             );
                             this.setState({
+                              showModal: true,
                               isSuccess: true,
+                              isError: false,
                             });
                           })
                           .catch((error) => {
                             console.log(error.response.data.err.msg); //show error msg
                             this.setState({
+                              showModal: true,
                               isError: true,
                               errormsg: `${error.response.data.err.msg}`,
                             });
@@ -140,6 +139,36 @@ class SignIn extends Component {
         </section>
         <CardMember />
         <Footer />
+
+        <Modal show={showModal} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Lukopi</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {isSuccess ? (
+              <div className="alert alert-success" role="alert">
+                Login Success close to redirect
+              </div>
+            ) : (
+              <></>
+            )}
+            {isError ? (
+              <div className="alert alert-danger" role="alert">
+                {errormsg}
+              </div>
+            ) : (
+              <></>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={this.handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
