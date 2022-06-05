@@ -4,8 +4,8 @@ import "./profile.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
-import { Modal } from "bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 class Profile extends Component {
   constructor() {
@@ -21,19 +21,39 @@ class Profile extends Component {
       birthdate: "",
       gender: "",
       isUpdated: false,
+      isloggedIn: true,
+      showModalLogOut: false,
+      showModalEdit: false,
     };
   }
 
-  async componentDidMount() {
-    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-    console.log(userInfo.token);
+  handleCloseLogOut = () => {
+    this.setState({
+      showModalLogOut: false,
+    });
+  };
 
-    const config = {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    };
-    const url = "http://localhost:8080/user/info/";
+  handleCloseEdit = () => {
+    this.setState({
+      showModalEdit: false,
+    });
+  };
+
+  async componentDidMount() {
+    const userInfo = await JSON.parse(localStorage.getItem("userinfo"));
+
+    // console.log(userInfo.token);
+
+    // if (userInfo != null) {
+    //   const { token } = userInfo;
+    //   return token;
+    // }
 
     try {
+      const config = {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      };
+      const url = "http://localhost:8080/user/info/";
       const result = await axios.get(url, config);
       const userArray = result.data.data[0];
       console.log(userArray);
@@ -49,15 +69,19 @@ class Profile extends Component {
         gender: userArray.gender,
       });
     } catch (error) {
-      let dataError = error.response.data.err.msg; //many errors in array
-      console.log(dataError);
+      console.error(error);
     }
   }
 
   render() {
+    const { showModalLogOut, showModalEdit, isloggedIn } = this.state;
+
+    if (isloggedIn === false) {
+      return <Navigate to="/signin" />;
+    }
     return (
       <div>
-        <Navbar />
+        <Navbar login={true} />
         <section className="container-fluid profile-section">
           <h2>User Profile</h2>
 
@@ -70,9 +94,7 @@ class Profile extends Component {
                     alt="profile"
                   />
                 </div>
-                <h4 className="display-name">
-                  {this.state.display_name}
-                </h4>
+                <h4 className="display-name">{this.state.display_name}</h4>
                 <p className="email-display">{this.state.email}</p>
                 <button className="choose-pict">Choose photo</button>
                 <br />
@@ -117,6 +139,7 @@ class Profile extends Component {
                         console.log(result.data.msg);
                         this.setState({
                           isUpdated: true,
+                          showModalEdit: true,
                         });
                       })
                       .catch((error) => {
@@ -126,16 +149,58 @@ class Profile extends Component {
                 >
                   Save Change
                 </button>
+
+                <Modal show={showModalEdit} onHide={this.handleCloseEdit}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Lukopi-Edit</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Your data has been updated!</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={this.handleCloseEdit}>
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+
                 <br />
                 <button className="cancel">Cancel</button>
                 <br />
-                <button className="log-out"
-                
-                onClick={()=>{
-                  localStorage.removeItem("userinfo")
-
-                }}
-                >Log out</button>
+                <button
+                  className="log-out"
+                  onClick={() => {
+                    this.setState({
+                      showModalLogOut: true,
+                    });
+                  }}
+                >
+                  Log out
+                </button>
+                <Modal show={showModalLogOut} onHide={this.handleCloseLogOut}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Logout</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Are you sure you want to logout?</Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={this.handleCloseLogOut}
+                    >
+                      No
+                    </Button>
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        localStorage.removeItem("userinfo");
+                        this.setState({
+                          isloggedIn: false,
+                          showModalLogOut: false,
+                        });
+                      }}
+                    >
+                      Yes
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </aside>
               <article className="col profile-details d-flex">
                 <header className="head">
@@ -266,14 +331,26 @@ class Profile extends Component {
                     type="radio"
                     id="male"
                     name="gender"
-                    defaultValue="Male"
+                    // defaultValue={this.state.gender}
+                    value="Male"
+                    onClick={(e) => {
+                      this.setState({
+                        gender: e.target.value,
+                      });
+                    }}
                   />
                   <label htmlFor="male">Male</label>
                   <input
                     type="radio"
                     id="female"
                     name="gender"
-                    defaultValue="Female"
+                    // defaultValue={this.state.gender}
+                    value="Female"
+                    onClick={(e) => {
+                      this.setState({
+                        gender: e.target.value,
+                      });
+                    }}
                   />
                   <label htmlFor="female">Female</label>
                 </form>

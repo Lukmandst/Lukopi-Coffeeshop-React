@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Footer from "../../components/Footer";
 import "./signUp.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
 import Googleimg from "../../assets/image/stock/google-icon.png";
 import CardMember from "../../components/CardMember";
 import Logo from "../../assets/image/stock/coffee 1.png";
@@ -14,11 +15,26 @@ class SignUp extends Component {
     phone: "",
     isSuccess: false,
     isError: false,
+    isDuplicate: false,
     succesmsg: "",
     errormsg: [],
     errormsgone: "",
+    showModal: false,
   };
+
+  handleClose = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
   render() {
+    const { isSuccess, isError, succesmsg, errormsg, showModal } = this.state;
+
+    if ((isSuccess === true) & (showModal === false)) {
+      return <Navigate to="/signin" />;
+    }
+
     return (
       <div>
         <section className="container-fluid">
@@ -60,6 +76,20 @@ class SignUp extends Component {
                         });
                       }}
                     />
+                    {this.state.errormsgone.length > 1 ? (
+                      this.setState({
+                        isDuplicate: true,
+                      })
+                    ) : (
+                      <></>
+                    )}
+                    {this.state.isDuplicate ? (
+                      <div className="alert alert-danger mt-3" role="alert">
+                        {this.state.errormsgone}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                     <label htmlFor="password" className="form-label">
                       Password :{" "}
                     </label>
@@ -89,19 +119,11 @@ class SignUp extends Component {
                       }}
                     />{" "}
                     <br />
-                    {this.state.isSuccess ? (
-                      <div className="alert alert-success" role="alert">
-                        {this.state.succesmsg}
-                        {/* <Navigate to="/" /> */}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
                     {this.state.isError &&
                     Array.isArray(this.state.errormsg) ? (
                       this.state.errormsg.map((erroritem) => (
                         <div
-                          key={erroritem.param}
+                          key={erroritem.msg}
                           className="alert alert-danger"
                           role="alert"
                         >
@@ -111,14 +133,9 @@ class SignUp extends Component {
                     ) : (
                       <></>
                     )}
-                    {this.state.isError ? (
-                      <div className="alert alert-danger" role="alert">
-                        {this.state.errormsgone}
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                    <button
+                    <input
+                      type="submit"
+                      value="Sign Up"
                       className="signin"
                       onClick={(e) => {
                         e.preventDefault();
@@ -136,25 +153,34 @@ class SignUp extends Component {
                               succesmsg: result.data.msg,
                               isSuccess: true,
                               isError: false,
+                              showModal: true,
                             });
                           })
                           .catch((error) => {
                             let dataError = error.response.data.error;
-                            console.log(dataError); //many errors in array
+                            // let oneError = error.response.data;
+                            // console.log(oneError)
+                            // console.log(dataError); //many errors in array
+                            if (dataError === undefined) {
+                              console.log("validator kosong");
+                              let oneError = error.response.data.err.msg;
+                              console.log(oneError);
+                              this.setState({
+                                isError: true,
+                                isSuccess: false,
+                                isDuplicate: true,
+                                errormsgone: oneError,
+                              });
+                            }
                             this.setState({
                               isError: true,
+                              isSuccess: false,
+                              isEmail: true,
                               errormsg: dataError,
-                              // errormsgone: oneError,
                             });
-                          })
-                          // .catch((error) => {
-                          //   let oneError = error;
-                          //   console.log(oneError);
-                          // });
+                          });
                       }}
-                    >
-                      Sign Up
-                    </button>
+                    />
                     <button className="signin-google">
                       <img
                         src={Googleimg}
@@ -171,6 +197,32 @@ class SignUp extends Component {
         </section>
         <CardMember />
         <Footer />
+        <Modal show={showModal} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Lukopi</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {isSuccess ? (
+              <div className="alert alert-success" role="alert">
+                {succesmsg}
+              </div>
+            ) : (
+              <></>
+            )}
+            {isError ? (
+              <div className="alert alert-danger" role="alert">
+                {errormsg}
+              </div>
+            ) : (
+              <></>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
