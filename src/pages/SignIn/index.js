@@ -58,7 +58,7 @@ class SignIn extends Component {
                   <div className="header text-center">
                     <h2>Login</h2>
                   </div>
-                  <div className="login-form">
+                  <form className="login-form">
                     <label htmlFor="Email" className="form-label">
                       Email address :{" "}
                     </label>
@@ -88,7 +88,9 @@ class SignIn extends Component {
                       }}
                     />
                     <Link to="/forgot">Forgot password?</Link> <br />
-                    <button
+                    <input
+                    type='submit'
+                    value='Sign In'
                       className="signin"
                       onClick={(e) => {
                         e.preventDefault();
@@ -120,9 +122,7 @@ class SignIn extends Component {
                             });
                           });
                       }}
-                    >
-                      Login
-                    </button>
+                    />
                     <button className="signin-google">
                       <img
                         src={Googleimg}
@@ -131,7 +131,7 @@ class SignIn extends Component {
                       />
                       Login with Google
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -163,9 +163,6 @@ class SignIn extends Component {
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
               Close
-            </Button>
-            <Button variant="primary" onClick={this.handleClose}>
-              Save Changes
             </Button>
           </Modal.Footer>
         </Modal>
