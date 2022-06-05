@@ -4,12 +4,34 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import HistoryIcon from "../../components/HistoryIcon";
+import axios from "axios";
 
 class History extends Component {
+  state = {
+    historyData: [],
+  };
+
+  async componentDidMount() {
+    
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      };
+      const url = "http://localhost:8080/transaction/history/";
+      const result = await axios.get(url, config);
+      this.setState({
+        historyData: result.data.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar login={true}/>
         <section className="container-fluid history-wrapper">
           <div className="row">
             <div className="col history-col">
@@ -20,10 +42,13 @@ class History extends Component {
                 <p className="history-subtitle">Long press to delete item</p>
               </header>
               <section className="history-section d-flex">
-                <HistoryIcon />
-                <HistoryIcon />
-                <HistoryIcon />
-                <HistoryIcon />
+                {Array.isArray(this.state.historyData) ? (
+                  this.state.historyData.map((result) => (
+                    <HistoryIcon key={result.id} data={result} />
+                  ))
+                ) : (
+                  <></>
+                )}
               </section>
             </div>
           </div>
