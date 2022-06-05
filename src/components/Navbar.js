@@ -1,17 +1,28 @@
 import "./CSS/navbar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import LukopiBrand from "./LukopiBrand";
 import { Link } from "react-router-dom";
+import NavMember from "./NavMember";
+import NavMemberLogin from "./NavMemberLogin";
 
+class Navbar extends Component {
+  state = {
+    isLoggedin: false,
+  };
+  
+  componentDidMount(){
+    this.setState({
+      isLoggedin: this.props.login
+    })
+  }
 
-export class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-sm">
         <div className="container-fluid nav-wrapper">
           <Link to="/">
-          <LukopiBrand/>
+            <LukopiBrand />
           </Link>
 
           <button
@@ -30,8 +41,7 @@ export class Navbar extends Component {
                     <Link to="/">Home</Link>
                   </li>
                   <li className="menu-item">
-                    <Link to="/products">
-                    Product</Link>
+                    <Link to="/products">Product</Link>
                   </li>
                   <li className="menu-item">
                     <Link to="/yourCart" className="menu-link">
@@ -47,18 +57,13 @@ export class Navbar extends Component {
               </div>
             </ul>
             <div className="nav-member">
-              
-              <button className="button-login" >
-                <Link to="/signin">Sign In</Link> 
-              </button>
-              <button className="button-signup" href="#">
-                <Link to="/signup">Sign Up</Link>
-              </button>
+              {this.state.isLoggedin && <NavMemberLogin />}
+              {!this.state.isLoggedin ? <NavMember /> : <></>}
             </div>
           </div>
         </div>
       </nav>
-    )
+    );
   }
 }
 
