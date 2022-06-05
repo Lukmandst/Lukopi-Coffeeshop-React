@@ -1,28 +1,37 @@
 .p-details-row {
-  border-top: 2px solid grey;
+  /* border-top: 2px solid grey; */
   padding: 10px 40px;
 }
 
 .left-col-details,
 .right-col-details {
+  display: flex;
   text-align: center;
   padding: 30px;
-  height: 100%;
-  min-height: 600px;
+  /* height: 100%;
+  min-height: 600px; */
 }
 
-.left-col-details {
+.product-desc {
   width: 100%;
-  max-width: 500px;
-  flex-direction: column;
-  gap: 15px;
+  max-width: 700px;
+  padding: 5px 25px;
+}
+.product-price {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
+
+  color: #000000;
 }
 
 .details-product-image {
   background-color: #fff;
-  /* width: 100%;
-  height: 100%; */
-  width: 300px;
+  width: 100%;
+  height: 100%;
+  /* max-width: 300px; */
   height: 300px;
   border-radius: 300px;
   margin: auto;
@@ -31,16 +40,19 @@
   display: block;
   object-fit: cover;
   object-position: center;
-  width: 100%;
+  width: 300px;
   height: 100%;
   border: 1px solid rgba(186, 186, 186, 0.35);
   border-radius: 300px;
   margin: auto;
 }
 
-.delivery-time-section {
+.delivery-wrapper {
+  display: flex;
+  margin: auto;
   text-align: left;
   width: 100%;
+  max-width: 500px;
   height: 300px;
   background-color: #fff;
   filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.35));
@@ -48,6 +60,10 @@
   padding: 20px;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.delivery-time-section {
+  width: 100%;
 }
 
 .delivery-time-section > header {
@@ -95,18 +111,17 @@
 }
 
 .right-col-details {
-  flex-direction: column;
   gap: 15px;
 }
 
-.right-col-details > header {
+.product-title {
   font-family: "Poppins";
   font-weight: 900;
   font-size: 65px;
   text-transform: uppercase;
 }
 
-.right-col-details > p {
+.product-details {
   font-family: "Poppins";
   font-weight: 400;
   /* font-size: 25px; */
@@ -126,88 +141,25 @@
   text-transform: capitalize;
 }
 
-.right-col-details > button {
+.input-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
+}
+.counter-and-price {
+  justify-content: space-between;
+}
+
+.add-to-cart-btn,
+.ask-a-staff-btn {
   font-family: "Poppins";
   font-weight: 700;
   font-size: 25px;
   border-radius: 20px;
+  width: 100%;
   height: 85px;
   border: none;
-}
-.number-input input[type="number"] {
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-.number-input input[type="number"]::-webkit-inner-spin-button,
-.number-input input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-}
-
-.number-input {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.number-input button {
-  -webkit-appearance: none;
-  background-color: transparent;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin: 0;
-  position: relative;
-}
-
-.number-input button:before,
-.number-input button:after {
-  display: inline-block;
-  position: absolute;
-  content: "";
-  height: 2px;
-  transform: translate(-50%, -50%);
-}
-
-.number-input button.plus:after {
-  transform: translate(-50%, -50%) rotate(90deg);
-}
-
-.number-input input[type="number"] {
-  text-align: center;
-}
-
-.number-input.number-input {
-  border: 1px solid #ced4da;
-  width: 10rem;
-  border-radius: 0.25rem;
-}
-
-.number-input.number-input button {
-  width: 2.6rem;
-  height: 0.7rem;
-}
-
-.number-input.number-input button.minus {
-  padding-left: 10px;
-}
-
-.number-input.number-input button:before,
-.number-input.number-input button:after {
-  width: 0.7rem;
-  background-color: #495057;
-}
-
-.number-input.number-input input[type="number"] {
-  max-width: 4rem;
-  padding: 0.5rem;
-  border: 1px solid #ced4da;
-  border-width: 0 1px;
-  font-size: 1rem;
-  height: 2rem;
-  color: #495057;
 }
 
 .add-to-cart-btn {
@@ -246,15 +198,15 @@
   font-size: 25px;
 }
 
-.amount-price-wrapper {
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+.input-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: inherit;
 }
 
-.amount-price-wrapper .counter {
+.input-menu .counter {
   display: flex;
-  width: 181px;
   height: 63px;
   /* border: 1px solid #495057; */
   border-radius: 10px;
@@ -343,4 +295,19 @@
   background-image: url(/src/assets/image/vector/eva_arrow-forward-fill.png);
   background-repeat: no-repeat;
   background-position: center;
+}
+
+@media screen and (max-width: 600px) {
+  .left-col-details,
+  .right-col-details {
+    flex-direction: column;
+  }
+
+  .delivery-time-section {
+    width: 100%;
+  }
+  .counter-and-price {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
