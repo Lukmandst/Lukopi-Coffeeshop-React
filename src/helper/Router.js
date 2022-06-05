@@ -9,6 +9,7 @@ import ProductDetails from "../pages/ProductDetails";
 import Payment from "../pages/Payment";
 import History from "../pages/History";
 import NotFound from "../pages/404";
+import HistoryDetails from "../pages/HistoryDetails";
 
 function Router() {
   return (
@@ -17,12 +18,13 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/products" element={<Product />}/>
+        <Route path="/products" element={<Product />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/yourcart" element={<Payment />} />
         <Route path="/history" element={<History />} />
+        <Route path="/history/:id" element={<HistoryDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
