@@ -3,12 +3,43 @@ import "./payment.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import axios from "axios";
 
 class Payment extends Component {
+  state = {
+    cartProduct: JSON.parse(localStorage.getItem("usercart")),
+    isSuccess: false,
+  };
+
+
+  handlerCreateTransaction = (e) => {
+    e.preventDefault();
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    const { cartProduct } = this.state;
+
+    let product_id = cartProduct.id;
+    let quantity = cartProduct.quantity;
+    let product_size = cartProduct.size;
+
+    let body = { product_id, quantity, product_size };
+    const config = {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    };
+    const url = "http://localhost:8080/transaction";
+    axios
+      .post(url, body, config)
+      .then((result) => {
+        console.log(result);
+        this.setState({
+          isSuccess: true,
+        });
+      })
+      .catch((error) => console.error(error));
+  };
   render() {
     return (
       <div>
-        <Navbar login={true}/>
+        <Navbar login={true} />
         <section className="container-fluid payment-container">
           <div className="row">
             <div className="col payment-left">
@@ -79,7 +110,12 @@ class Payment extends Component {
                 </form>
               </div>{" "}
               <br />
-              <button className="confirmandpay">Confirm and Pay</button>
+              <button
+                className="confirmandpay"
+                onClick={this.handlerCreateTransaction}
+              >
+                Confirm and Pay
+              </button>
             </div>
           </div>
         </section>
