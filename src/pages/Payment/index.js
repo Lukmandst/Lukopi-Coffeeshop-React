@@ -8,7 +8,7 @@ class Payment extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar login={true}/>
         <section className="container-fluid payment-container">
           <div className="row">
             <div className="col payment-left">
@@ -62,19 +62,19 @@ class Payment extends Component {
                   <div className="input-form d-flex">
                     <input type="radio" id="creditcard"></input>
                     <div className="label-icon creditcard"></div>
-                    <label for="creditcard">Card</label>
+                    <label htmlFor="creditcard">Card</label>
                   </div>
                   <br />
                   <div className="input-form d-flex">
                     <input type="radio" id="bank-acc"></input>
                     <div className="label-icon bank"></div>
-                    <label for="bank-acc">Bank Account</label>
+                    <label htmlFor="bank-acc">Bank Account</label>
                   </div>
                   <br />
                   <div className="input-form d-flex">
                     <input type="radio" id="cod"></input>
                     <div className="label-icon cod"></div>
-                    <label for="cod">Cash On Delivery</label>
+                    <label htmlFor="cod">Cash On Delivery</label>
                   </div>
                 </form>
               </div>{" "}
