@@ -1,36 +1,39 @@
-import React, { Component } from "react";
+import React, {useState,useEffect } from "react";
 import "./history.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import HistoryIcon from "../../components/HistoryIcon";
 import axios from "axios";
+import Pagination from "../../components/Pagination";
 
-class History extends Component {
-  state = {
-    historyData: [],
-  };
 
-  async componentDidMount() {
-    
+ function History() {
+  const [historyData, setHistoryData]=useState([])
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(4);
+  // Get current history
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = historyData.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      };
-      const url = "http://localhost:8080/transaction/history/";
+    const config = {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    };
+    const url = "http://localhost:8080/transaction/history/";
+    const axiosGet = async () => {
       const result = await axios.get(url, config);
-      this.setState({
-        historyData: result.data.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
+      setHistoryData(result.data.data);
+    };
+    axiosGet().catch(console.error);
+  }, []);
 
-  render() {
-    return (
-      <div>
+  return (
+    <div>
         <Navbar login={true}/>
         <section className="container-fluid history-wrapper">
           <div className="row">
@@ -42,21 +45,27 @@ class History extends Component {
                 <p className="history-subtitle">Long press to delete item</p>
               </header>
               <section className="history-section d-flex">
-                {Array.isArray(this.state.historyData) ? (
-                  this.state.historyData.map((result) => (
+                {Array.isArray(currentPosts) ? (
+                 currentPosts.map((result) => (
                     <HistoryIcon key={result.id} data={result} />
                   ))
                 ) : (
                   <></>
                 )}
               </section>
+              <br/>
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={historyData.length}
+                  paginate={paginate}
+                />
             </div>
           </div>
         </section>
         <Footer />
       </div>
-    );
-  }
+  )
 }
+
 
 export default History;

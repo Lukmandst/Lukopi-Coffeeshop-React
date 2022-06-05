@@ -23,15 +23,15 @@ function NavMemberLogin() {
 
   return (
     <>
-      <div class="searchbar">
+      <div className="searchbar">
         <input
-          class="search_input"
+          className="search_input"
           type="text"
           name=""
           placeholder="Search..."
         />
-        <Link to="#" class="search_icon">
-          <i class="fas fa-search"></i>
+        <Link to="#" className="search_icon">
+          <i className="fas fa-search"></i>
         </Link>
       </div>
       <Link to="#">

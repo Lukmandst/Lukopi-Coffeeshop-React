@@ -1,11 +1,8 @@
 .history-wrapper{
     background-image: url(/src/assets/image/stock/historybg.png);
     background-size: cover;
-    height: 1000px;
-}
-
-.history-col{
-    margin-top: 50px;
+    height: 100%;
+    padding: 50px;
 }
 
 .history-title,
