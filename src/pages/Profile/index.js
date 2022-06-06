@@ -20,6 +20,7 @@ class Profile extends Component {
       delivery_address: "",
       birthdate: "",
       gender: "",
+      photo: "",
       isUpdated: false,
       isloggedIn: true,
       showModalLogOut: false,
@@ -36,7 +37,63 @@ class Profile extends Component {
   handleCloseEdit = () => {
     this.setState({
       showModalEdit: false,
+      refresh: true,
     });
+  };
+
+  handleImage = (e) => {
+    e.preventDefault();
+    console.log(e.target.files);
+    this.setState({
+      photo: e.target.files[0],
+    });
+  };
+
+  handleUpdate = () => {
+    const {
+      email,
+      phone_number,
+      display_name,
+      first_name,
+      last_name,
+      delivery_address,
+      birthday,
+      gender,
+      photo,
+    } = this.state;
+    const body = {
+      email,
+      phone_number,
+      display_name,
+      first_name,
+      last_name,
+      delivery_address,
+      birthday,
+      gender,
+      photo,
+    };
+    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    const url = "http://localhost:8080/user/edit";
+    axios
+      .patch(url, body, config)
+      .then((result) => {
+        console.log(result.data);
+        console.log(result.data.msg);
+        this.setState({
+          isUpdated: true,
+          showModalEdit: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   async componentDidMount() {
@@ -67,6 +124,7 @@ class Profile extends Component {
         delivery_address: userArray.delivery_address,
         birthdate: userArray.birthdate,
         gender: userArray.gender,
+        photo: "",
       });
     } catch (error) {
       console.error(error);
@@ -96,57 +154,23 @@ class Profile extends Component {
                 </div>
                 <h4 className="display-name">{this.state.display_name}</h4>
                 <p className="email-display">{this.state.email}</p>
-                <button className="choose-pict">Choose photo</button>
-                <br />
+                <input
+                  className="d-none"
+                  type="file"
+                  id="upload-button"
+                  accept="image/*"
+                  onChange={this.handleImage}
+                />
+                <label className="upload-button" htmlFor="upload-button">
+                  Choose photo
+                </label>
+                {/* <button className="choose-pict">Choose photo</button> */}
+
                 <button className="remove-pict">Remove photo</button>
                 <br />
                 <button className="edit-pass">Edit Password</button>
                 <p className="save-question">Do you want to save the change?</p>
-                <button
-                  className="save-chg"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const {
-                      email,
-                      phone_number,
-                      display_name,
-                      first_name,
-                      last_name,
-                      delivery_address,
-                      birthday,
-                      gender,
-                    } = this.state;
-                    const body = {
-                      email,
-                      phone_number,
-                      display_name,
-                      first_name,
-                      last_name,
-                      delivery_address,
-                      birthday,
-                      gender,
-                    };
-                    const userInfo = JSON.parse(
-                      localStorage.getItem("userinfo")
-                    );
-                    const config = {
-                      headers: { Authorization: `Bearer ${userInfo.token}` },
-                    };
-                    const url = "http://localhost:8080/user/edit";
-                    axios
-                      .patch(url, body, config)
-                      .then((result) => {
-                        console.log(result.data.msg);
-                        this.setState({
-                          isUpdated: true,
-                          showModalEdit: true,
-                        });
-                      })
-                      .catch((error) => {
-                        console.log(error);
-                      });
-                  }}
-                >
+                <button className="save-chg" onClick={this.handleUpdate}>
                   Save Change
                 </button>
 
