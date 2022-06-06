@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 // import ProductIcon from "../../components/ProductIcon";
@@ -9,7 +9,7 @@ import Mom from "../../assets/image/stock/mom.png";
 import Dad from "../../assets/image/stock/dad.png";
 import Pirate from "../../assets/image/stock/pirate.png";
 import ProductIcon from "../../components/ProductIcon";
-import withParams from "../../helper/WithParams";
+// import withParams from "../../helper/WithParams";
 import Pagination from "../../components/Pagination";
 
 export default function Product() {
