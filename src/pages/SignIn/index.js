@@ -106,7 +106,8 @@ class SignIn extends Component {
                             localStorage.setItem(
                               "userinfo",
                               JSON.stringify(result.data.data)
-                            );
+                            )
+                            localStorage.removeItem('tokenExp')
                             this.setState({
                               showModal: true,
                               isSuccess: true,
