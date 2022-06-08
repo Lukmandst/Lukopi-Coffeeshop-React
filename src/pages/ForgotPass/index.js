@@ -3,7 +3,7 @@ import "./forgotpass.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../../components/Footer";
 
-export class ForgotPass extends Component {
+class ForgotPass extends Component {
   render() {
     return (
       <div>

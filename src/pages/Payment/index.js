@@ -34,6 +34,7 @@ class Payment extends Component {
       .post(url, body, config)
       .then((result) => {
         console.log(result);
+        localStorage.removeItem("usercart");
         this.setState({
           isSuccess: true,
         });
@@ -42,22 +43,25 @@ class Payment extends Component {
   };
 
   async componentDidMount() {
-    let product_id = this.state.cartProduct.id;
-    const url = `http://localhost:8080/product?id=${product_id}`;
-    try {
-      const result = await axios.get(url);
-      const productsArray = result.data.data;
-      console.log(productsArray[0]);
+    console.log(JSON.parse(localStorage.getItem("usercart")));
 
+    try {
       const { token } = JSON.parse(localStorage.getItem("userinfo"));
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
-
       const userResult = await axios.get(
         "http://localhost:8080/user/info",
         config
       );
+      let product_id = this.state.cartProduct.id
+        ? this.state.cartProduct.id
+        : 0;
+      const url = `http://localhost:8080/product?id=${product_id}`;
+      const result = await axios.get(url);
+      const productsArray = result.data.data;
+      console.log(productsArray[0]);
+
       console.log(userResult.data.data[0]);
       this.setState({
         products: productsArray[0],
@@ -80,7 +84,7 @@ class Payment extends Component {
     const { products, Bill, tax, userAddress, userphone } = this.state;
     return (
       <div>
-        <Navbar login={true} />
+        <Navbar />
         <section className="container-fluid payment-container">
           <div className="row">
             <div className="col payment-left">
@@ -89,37 +93,43 @@ class Payment extends Component {
               </header>
               <div className="order-wrapper">
                 <h3>Order Summary</h3>
-                <br/>
-                <div className="product-wrapper d-flex">
-                  <div className="img-prdct">
-                    <img
-                      src={`http://localhost:8080${products.image}`}
-                      alt="product-icon"
-                    />
+                <br />
+                {this.state.cartProduct && (
+                  <div className="product-wrapper d-flex">
+                    <div className="img-prdct">
+                      <img
+                        src={`http://localhost:8080${products.image}`}
+                        alt="product-icon"
+                      />
+                    </div>
+                    <div className="product-details-payment">
+                      <header>{products.name}</header>
+                      <p className="size-item-payment">
+                        <span className="amount-item-payment">
+                          x
+                          {this.state.cartProduct.quantity
+                            ? this.state.cartProduct.quantity
+                            : 0}
+                          <br />
+                        </span>
+                        ({this.state.cartProduct.size})
+                      </p>
+                    </div>
+                    <div className="payment-prdct-price">
+                      IDR {products.price}
+                    </div>
                   </div>
-                  <div className="product-details-payment">
-                    <header>{products.name}</header>
-                    <p className="size-item-payment">
-                      <span className="amount-item-payment">
-                        x{this.state.cartProduct.quantity}
-                        <br />
-                      </span>
-                      ({this.state.cartProduct.size})
-                    </p>
-                  </div>
-                  <div className="payment-prdct-price">
-                    IDR {products.price}
-                  </div>
-                </div>
-                <br/>
+                )}
+
+                <br />
                 <div className="fee-wrapper">
                   <div className="subtotal d-flex">
                     <p>SUBTOTAL</p>
-                    <p className="fee">IDR {products.price}</p>
+                    <p className="fee">IDR {products.price?products.price:0}</p>
                   </div>
                   <div className="taxandfee d-flex">
                     <p>TAX & FEE</p>
-                    <p className="fee">IDR {tax}</p>
+                    <p className="fee">IDR {tax?tax:0}</p>
                   </div>
                   <div className="shipping d-flex">
                     <p>SHIPPING</p>

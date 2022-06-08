@@ -98,14 +98,6 @@ class Profile extends Component {
 
   async componentDidMount() {
     const userInfo = await JSON.parse(localStorage.getItem("userinfo"));
-
-    // console.log(userInfo.token);
-
-    // if (userInfo != null) {
-    //   const { token } = userInfo;
-    //   return token;
-    // }
-
     try {
       const config = {
         headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -127,7 +119,10 @@ class Profile extends Component {
         photo: "",
       });
     } catch (error) {
-      console.error(error);
+      const errorMsg = error.response.data.err.msg;
+      console.log(error.response.data.err.msg); // console error token expired
+      localStorage.setItem("tokenExp", errorMsg);
+      localStorage.removeItem("userinfo");
     }
   }
 
@@ -139,7 +134,7 @@ class Profile extends Component {
     }
     return (
       <div>
-        <Navbar login={true} />
+        <Navbar />
         <section className="container-fluid profile-section">
           <h2>User Profile</h2>
 
