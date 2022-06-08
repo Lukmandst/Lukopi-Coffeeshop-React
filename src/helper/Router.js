@@ -10,21 +10,66 @@ import Payment from "../pages/Payment";
 import History from "../pages/History";
 import NotFound from "../pages/404";
 import HistoryDetails from "../pages/HistoryDetails";
+import PrivateElement from "../components/PrivateElement";
+import PrivateElementAfterLogin from "../components/PrivateElementAfterLogin";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/signin"
+          element={
+            <PrivateElementAfterLogin>
+              <SignIn />
+            </PrivateElementAfterLogin>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PrivateElementAfterLogin>
+              <SignUp />
+            </PrivateElementAfterLogin>
+          }
+        />
         <Route path="/products" element={<Product />} />
+        <Route path="/products?" element={<Product />} />
         <Route path="/products/:id" element={<ProductDetails />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateElement>
+              <Profile />
+            </PrivateElement>
+          }
+        />
         <Route path="/forgot" element={<ForgotPass />} />
-        <Route path="/yourcart" element={<Payment />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/history/:id" element={<HistoryDetails />} />
+        <Route
+          path="/yourcart"
+          element={
+            <PrivateElement>
+              <Payment />
+            </PrivateElement>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <PrivateElement>
+              <History />
+            </PrivateElement>
+          }
+        />
+        <Route
+          path="/history/:id"
+          element={
+            <PrivateElement>
+              <HistoryDetails />
+            </PrivateElement>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

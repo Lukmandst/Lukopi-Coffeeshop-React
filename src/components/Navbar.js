@@ -8,14 +8,14 @@ import NavMemberLogin from "./NavMemberLogin";
 
 class Navbar extends Component {
   state = {
-    isLoggedin: false,
+    token: localStorage.getItem("userinfo"),
   };
-  
-  componentDidMount(){
-    this.setState({
-      isLoggedin: this.props.login
-    })
-  }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     isLoggedin: this.props.login,
+  //   });
+  // }
 
   render() {
     return (
@@ -57,8 +57,8 @@ class Navbar extends Component {
               </div>
             </ul>
             <div className="nav-member">
-              {this.state.isLoggedin && <NavMemberLogin />}
-              {!this.state.isLoggedin ? <NavMember /> : <></>}
+              {this.state.token && <NavMemberLogin />}
+              {!this.state.token ? <NavMember /> : <></>}
             </div>
           </div>
         </div>
@@ -66,6 +66,5 @@ class Navbar extends Component {
     );
   }
 }
-
 
 export default Navbar;
