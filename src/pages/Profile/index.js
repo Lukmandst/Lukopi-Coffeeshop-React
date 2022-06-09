@@ -224,9 +224,6 @@ class Profile extends Component {
               <article className="col profile-details d-flex">
                 <header className="head">
                   <h3>Contacts</h3>
-                  <button className="edit-btn">
-                    <img src="/assets/image/Vector.svg" alt="" />
-                  </button>
                 </header>
 
                 <div className="form-wrapper">
