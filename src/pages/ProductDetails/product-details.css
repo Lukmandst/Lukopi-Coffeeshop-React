@@ -81,8 +81,8 @@
   align-items: center;
 }
 
-.delivery-category > button,
-.now-wrapper > button {
+.delivery-category > label,
+.now-wrapper > label {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
@@ -92,10 +92,17 @@
   border-radius: 10px;
   background: #f4f4f8;
   border: 1px solid rgba(186, 186, 186, 0.35);
+  cursor: pointer;
 }
 
-.delivery-category > button:hover,
-.now-wrapper > button:hover {
+.delivery-category > label:hover,
+.now-wrapper > label:hover {
+  background: #6a4029;
+  color: #fff;
+  font-weight: 700;
+}
+
+.radio_input:checked +.radio_label{
   background: #6a4029;
   color: #fff;
   font-weight: 700;
@@ -230,7 +237,7 @@
 .size-btn {
   justify-content: space-around;
 }
-.size-btn > button {
+.size-btn > label {
   font-weight: 700;
   font-size: 30px;
   width: 70px;
@@ -238,9 +245,18 @@
   background: #ffba33;
   border: none;
   border-radius: 70px;
+  color: black;
+  padding: 13px;
+  cursor: pointer;
 }
-.size-btn > button:hover {
+.size-btn > label:hover {
   color: #fff;
+}
+
+.radio_input:checked +.r-btn{
+  background: #6a4029;
+  color: #fff;
+  font-weight: 700;
 }
 
 .col-checkout {
@@ -297,7 +313,7 @@
   background-position: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .left-col-details,
   .right-col-details {
     flex-direction: column;
@@ -309,5 +325,15 @@
   .counter-and-price {
     flex-direction: column;
     justify-content: space-between;
+  }
+  .product-title{
+    font-size: 35px;
+  }
+  .details-product-image{
+    height:unset;
+  }
+  .details-product-image >img{
+    height: 240px;
+    width: 240px;
   }
 }

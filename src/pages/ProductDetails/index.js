@@ -14,6 +14,7 @@ class ProductDetails extends Component {
       products: [],
       quantity: 1,
       cart: [],
+      delivery: "Dine In",
       size: "Regular",
       productid: this.props.params.id,
       showMiniCart: false,
@@ -33,11 +34,16 @@ class ProductDetails extends Component {
   };
 
   handleAddtoCart = (e) => {
-    const { size, quantity, productid } = this.state;
+    const { delivery, size, quantity, productid } = this.state;
     e.preventDefault();
     localStorage.setItem(
       "usercart",
-      JSON.stringify({ id: productid, quantity: quantity, size: size })
+      JSON.stringify({
+        id: productid,
+        quantity: quantity,
+        size: size,
+        delivery: delivery,
+      })
     );
     this.setState({
       showMiniCart: true,
@@ -94,14 +100,83 @@ class ProductDetails extends Component {
                 <div className="delivery-wrapper">
                   <header>Delivery and Time</header>
                   <div className="delivery-category d-flex">
-                    <button className="dine-in-btn">Dine in</button>
-                    <button className="door-deliv-btn">Door Delivery</button>
-                    <button className="pick-up-btn">Pick Up</button>
+                    <input
+                      className="radio_input d-none"
+                      type="radio"
+                      name="delivery"
+                      id="Dine-In"
+                      value="Dine In"
+                      onClick={(e) => {
+                        this.setState({
+                          delivery: e.target.value,
+                        });
+                      }}
+                    />
+                    <label
+                      htmlFor="Dine-In"
+                      className="radio_label dine-in-btn"
+                    >
+                      Dine In
+                    </label>
+                    <input
+                      className="radio_input d-none"
+                      type="radio"
+                      name="delivery"
+                      id="Door-Delivery"
+                      value="Door Delivery"
+                      onClick={(e) => {
+                        this.setState({
+                          delivery: e.target.value,
+                        });
+                      }}
+                    />
+                    <label
+                      htmlFor="Door-Delivery"
+                      className="radio_label dine-in-btn"
+                    >
+                      Door Delivery
+                    </label>
+                    <input
+                      className="radio_input d-none"
+                      type="radio"
+                      name="delivery"
+                      id="Pick-Up"
+                      value="Pick Up"
+                      onClick={(e) => {
+                        this.setState({
+                          delivery: e.target.value,
+                        });
+                      }}
+                    />
+                    <label
+                      htmlFor="Pick-Up"
+                      className="radio_label dine-in-btn"
+                    >
+                      Pick Up
+                    </label>
                   </div>
                   <div className="now-wrapper d-flex">
                     Now
-                    <button className="yes-btn">Yes</button>
-                    <button className="no-btn">No</button>
+                    <input
+                      className="radio_input d-none"
+                      type="radio"
+                      name="now"
+                      id="yes"
+                      value="Yes"
+                    />
+                    <label htmlFor="yes" className="radio_label yes-btn">
+                      Yes
+                    </label>
+                    <input
+                      className="radio_input d-none"
+                      type="radio"
+                      name="now"
+                      id="no"
+                      value="No"
+                    />
+                    <label htmlFor="no" className="radio_label no-btn">
+                      No
+                    </label>
                   </div>
                   <div className="set-time-wrapper">
                     Set time
@@ -144,9 +219,51 @@ class ProductDetails extends Component {
             <div className="col col-size d-flex">
               <header>Choose a size</header>
               <div className="size-btn d-flex">
-                <button className="r-btn">R</button>
-                <button className="l-btn">L</button>
-                <button className="xl-btn">XL</button>
+                <input
+                  className="radio_input d-none"
+                  type="radio"
+                  name="size"
+                  id="regular"
+                  value="Regular"
+                  onClick={(e) => {
+                    this.setState({
+                      size: e.target.value,
+                    });
+                  }}
+                />
+                <label htmlFor="regular" className="radio_label r-btn">
+                  R
+                </label>
+                <input
+                  className="radio_input d-none"
+                  type="radio"
+                  name="size"
+                  id="large"
+                  value="Large"
+                  onClick={(e) => {
+                    this.setState({
+                      size: e.target.value,
+                    });
+                  }}
+                />
+                <label htmlFor="large" className="radio_label r-btn">
+                  L
+                </label>
+                <input
+                  className="radio_input d-none"
+                  type="radio"
+                  name="size"
+                  id="extra-large"
+                  value="Extra Large"
+                  onClick={(e) => {
+                    this.setState({
+                      size: e.target.value,
+                    });
+                  }}
+                />
+                <label htmlFor="extra-large" className="radio_label r-btn">
+                  XL
+                </label>
               </div>
             </div>
             {showMiniCart ? (
