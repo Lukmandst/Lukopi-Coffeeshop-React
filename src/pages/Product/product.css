@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&family=Rubik:wght@300;400;500;600;700;900&display=swap");
 
 body {
   font-family: "Rubik", sans-serif;
@@ -22,8 +22,6 @@ a:hover {
 
 /* Product */
 
-
-
 .container .row {
   margin-top: 29px;
 }
@@ -35,7 +33,7 @@ a:hover {
   padding-left: 10px;
 }
 
-.left-panel .subpromo{
+.left-panel .subpromo {
   margin-bottom: 70px;
 }
 
@@ -57,7 +55,7 @@ a:hover {
   /* align-items: center; */
   /* text-align: center; */
 }
-.coupon-title{
+.coupon-title {
   font-weight: 700;
 }
 
@@ -65,7 +63,7 @@ a:hover {
   display: inline;
   align-items: center;
 }
-.left-panel{
+.left-panel {
   max-width: 390px;
 }
 
@@ -140,7 +138,7 @@ a:hover {
   border-left-style: solid;
 }
 
-.category-menu{
+.category-menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -152,7 +150,7 @@ a:hover {
   flex-direction: column;
 }
 
-.show-product .product-wrapper{
+.show-product .product-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -168,3 +166,37 @@ a:hover {
   padding-left: 25px;
 }
 
+.add-product-btn-admin {
+  color: #ffffff;
+  font-weight: 700;
+  width: 100%;
+  height: 64px;
+  background: #6a4029;
+  border: none;
+  border-radius: 20px;
+}
+
+.add-coupon-admin {
+  font-weight: 700;
+  color: #6a4029;
+  width: 100%;
+  height: 64px;
+  background: #ffba33;
+  border: none;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .product .container .row {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .left-panel {
+    max-width: none;
+  }
+  .category-menu{
+    padding: 0;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

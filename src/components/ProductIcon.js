@@ -1,22 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./CSS/productIcon.css";
 
 function ProductIcon({ data }) {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // // const handleGoToDetail = (id) => {
-  // //   navigate(`${id}`);
-  // // };
+  const handleGoToDetail = (id) => {
+    navigate(`${id}`);
+  };
 
   return (
-    <Link to={`${data.id}`}>
-      <button
+    // <Link to={`${data.id}`}>
+    // </Link>
+      <div
         key={data.id}
         className="product-icon"
-        // onClick={() => {
-        //   handleGoToDetail(data.id);
-        // }}
+        onClick={() => {
+          handleGoToDetail(data.id);
+        }}
       >
         <div className="disc">10%</div>
         <div className="product-image">
@@ -24,8 +25,7 @@ function ProductIcon({ data }) {
         </div>
         <p className="product-name">{data.name}</p>
         <p className="-product-price">IDR {data.price}</p>
-      </button>
-    </Link>
+      </div>
   );
 }
 

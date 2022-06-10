@@ -1,71 +1,110 @@
+.product-icon,
+.product-icon-admin {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  max-width: 156px;
+  min-height: 240px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
+  border: none;
+  border-radius: 30px;
+  margin: 15px;
+  text-align: center;
+  
+}
+
 .product-icon {
-    position: relative;
-    width: 156px;
-    height: 252.07px;
-    background: #ffffff;
-    box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
-    border: none;
-    border-radius: 30px;
-    margin: 15px;
-    text-align: center;
-    flex: 0 ;
-  }
-  .product-icon .disc {
-    position: absolute;
-    width: 64px;
-    height: 38px;
-    top: 30px;
-    right: 0px;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 800;
-    font-size: 25px;
-    line-height: 38px;
-    /* identical to box height */
-  
-    text-align: center;
-  
-    color: #000000;
-  
-    background: #ffffff;
-    border-radius: 20px;
-  }
-  .product-icon .product-image {
-    margin: auto;
-    width: 129px;
-    height: 129px;
-    border: none;
-    border-radius: 129px;
-    background-color:#ffffff;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  .product-icon .product-image >img{
-    width: 129px;
-    height: 129px;
-    border-radius: 129px;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  .product-icon .product-name {
-    font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.product-icon .disc,
+.product-icon-admin .disc {
+  position: absolute;
+  width: 64px;
+  height: 38px;
+  top: 30px;
+  right: 0px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 38px;
+  /* identical to box height */
+
+  text-align: center;
+
+  color: #000000;
+
+  background: #ffffff;
+  border-radius: 20px;
+}
+.product-icon .product-image,
+.product-icon-admin .product-image {
+  margin: auto;
+  width: 129px;
+  height: 129px;
+  border: none;
+  border-radius: 129px;
+  background-color: #ffffff;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.product-icon .product-image > img,
+.product-icon-admin .product-image > img {
+  width: 129px;
+  height: 129px;
+  border-radius: 129px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-icon .product-name,
+.product-icon-admin .product-name {
+  font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 900;
- margin-bottom: 0;
+  margin-bottom: 0;
   color: #000;
-  }
-  
-  .product-icon .-product-price {
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 17px;
-    /* margin-bottom: 30px; */
-  
-    color: #6a4029;
-  }
+}
+
+.product-icon .-product-price,
+.product-icon-admin .-product-price {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  /* margin-bottom: 30px; */
+
+  color: #6a4029;
+}
+
+.edit-icon-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-image: url(/src/assets/image/vector/edit.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #6a4029;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+.product-icon, .product-icon-admin{
+  width: none;
+  height: none;
+  max-width: none;
+  min-height: none;
+  margin: 0;
+}
+}
