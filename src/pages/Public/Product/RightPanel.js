@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DropdownButton, Dropdown } from "react-bootstrap";
+import { useSearchParams } from "react-router-dom";
+
 import Pagination from "../../../components/Pagination";
 import ProductIcon from "../../../components/ProductIcon";
 import ProductIconAdmin from "../../../components/ProductIconAdmin";
@@ -10,14 +12,13 @@ import {
   getListProducts,
   getNonCoffe,
 } from "../../../Redux/actions/productActions";
-import { useSearchParams } from "react-router-dom";
 
 function RightPanel() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
   const [sort, setSort] = useState("ASC");
-  const [_, setSearchParams] = useSearchParams();
+  const [setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
   const { getAllProductsResult, getAllProductsLoading, getAllProductsError } =
