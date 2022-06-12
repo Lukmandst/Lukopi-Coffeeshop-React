@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import{useSelector} from 'react-redux'
 
 function PrivateElement({
   children,
@@ -9,9 +10,10 @@ function PrivateElement({
   extraData = undefined,
 }) {
   // pengecekan status otentikasi
-  const { token = null } = JSON.parse(localStorage.getItem("userinfo")) || {}; // jika salah jadiin {}
   const error = localStorage.getItem("tokenExp");
-  if (!token) {
+  const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
+
+  if (!postUserLoginToken) {
     return (
       <>
         <p>{error}</p>

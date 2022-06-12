@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./CSS/navmember.css";
+import "../CSS/navmember.css";
 function NavMember() {
   return (
     <>
