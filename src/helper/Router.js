@@ -1,17 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import Profile from "../pages/Profile";
-import SignIn from "../pages/SignIn";
-import SignUp from "../pages/SignUp";
-import ForgotPass from "../pages/ForgotPass";
-import ProductDetails from "../pages/ProductDetails";
-import Payment from "../pages/Payment";
-import History from "../pages/History";
+import Home from "../pages/Public/Home";
+import Product from "../pages/Public/Product";
+import Profile from "../pages/Public/Profile";
+import SignIn from "../pages/Auth/SignIn";
+import SignUp from "../pages/Auth/SignUp";
+import ForgotPass from "../pages/Public/ForgotPass";
+import ProductDetails from "../pages/Public/ProductDetails";
+import Payment from "../pages/Public/Payment";
+import History from "../pages/Public/History";
 import NotFound from "../pages/404";
-import HistoryDetails from "../pages/HistoryDetails";
+import HistoryDetails from "../pages/Public/HistoryDetails";
 import PrivateElement from "../components/PrivateElement";
 import PrivateElementAfterLogin from "../components/PrivateElementAfterLogin";
+import AdminDashboard from '../pages/Admin/dashboard'
+import Orders from '../pages/Admin/orders'
 
 function Router() {
   return (
@@ -70,6 +72,8 @@ function Router() {
             </PrivateElement>
           }
         />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
