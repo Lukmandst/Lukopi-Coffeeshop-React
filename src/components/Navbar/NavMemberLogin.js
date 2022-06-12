@@ -1,29 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../CSS/navmemberlogin.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { getUserInfo } from "../../Redux/actions/userActions";
+import { findFoods } from "../../Redux/actions/productActions";
 
 function NavMemberLogin() {
-  // const [user, setUser] = useState([]);
-  // const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+  const [value, setValue] = useState("");
+  const [_, setSearchParams] = useSearchParams();
 
   //dispatch
   const { getUserResult } = useSelector((state) => state.UserReducer);
   const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
-
   const dispatch = useDispatch();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(findFoods(value));
+    setSearchParams({ name: value });
+  };
 
   useEffect(() => {
     dispatch(getUserInfo(postUserLoginToken));
-  }, [dispatch]);
+  }, [dispatch, postUserLoginToken]);
 
   return (
     <>
-      <form className="searchbar" action="">
+      <form className="searchbar" onSubmit={handleSearch}>
         <i className="fa fa-search"></i>
-        <input type="search" required placeholder="Search" />
+        <input
+          type="search"
+          required
+          placeholder="Search"
+          onChange={(e) => setValue(e.target.value)}
+        />
       </form>
       <Link to="#">
         <button className="chat-btn"></button>
