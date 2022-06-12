@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./payment.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar/Navbar";
+import Footer from "../../../components/Footer";
 import axios from "axios";
 
 class Payment extends Component {

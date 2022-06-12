@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Footer from "../../../components/Footer";
+import Navbar from "../../../components/Navbar/Navbar";
 import "./product.css";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 
-import withParams from "../../helper/WithParams";
+import withParams from "../../../helper/WithParams";
 import { useDispatch } from "react-redux";
-import { getListProducts } from "../Redux/actions/productActions";
+import { getListProducts } from "../../../Redux/actions/productActions";
 import LeftPanel from "./LeftPanel";
 import RightPanel from "./RightPanel";
 

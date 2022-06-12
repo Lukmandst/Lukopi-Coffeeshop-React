@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Pagination from "../../components/Pagination";
-import ProductIcon from "../../components/ProductIcon";
-import ProductIconAdmin from "../../components/ProductIconAdmin";
+import Pagination from "../../../components/Pagination";
+import ProductIcon from "../../../components/ProductIcon";
+import ProductIconAdmin from "../../../components/ProductIconAdmin";
 
 function RightPanel() {
   const [currentPage, setCurrentPage] = useState(1);

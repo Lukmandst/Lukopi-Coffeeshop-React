@@ -1,7 +1,7 @@
 import React from "react";
-import Mom from "../../assets/image/stock/mom.png";
-import Dad from "../../assets/image/stock/dad.png";
-import Pirate from "../../assets/image/stock/pirate.png";
+import Mom from "../../../assets/image/stock/mom.png";
+import Dad from "../../../assets/image/stock/dad.png";
+import Pirate from "../../../assets/image/stock/pirate.png";
 function LeftPanel() {
   return (
     <>

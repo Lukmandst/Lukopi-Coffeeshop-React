@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./profile.css";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar/Navbar";
+import Footer from "../../../components/Footer";
 import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      userData: [],
-      email: "",
-      phone_number: "",
-      display_name: "",
-      first_name: "",
-      last_name: "",
-      delivery_address: "",
-      birthdate: "",
-      gender: "",
-      photo: "",
+      email: this.props.userData.email,
+      phone_number: this.props.userData.phone_number,
+      display_name: this.props.userData.display_name,
+      first_name: this.props.userData.first_name,
+      last_name: this.props.userData.last_name,
+      delivery_address: this.props.userData.delivery_address,
+      birthdate: this.props.userData.birthdate,
+      gender: this.props.userData.gender,
+      photo: this.props.userData.photo,
       isUpdated: false,
       isloggedIn: true,
       showModalLogOut: false,
@@ -84,8 +84,8 @@ class Profile extends Component {
     axios
       .patch(url, body, config)
       .then((result) => {
-        console.log(result.data);
-        console.log(result.data.msg);
+        // console.log(result.data);
+        // console.log(result.data.msg);
         this.setState({
           isUpdated: true,
           showModalEdit: true,
@@ -96,37 +96,39 @@ class Profile extends Component {
       });
   };
 
-  async componentDidMount() {
-    const userInfo = await JSON.parse(localStorage.getItem("userinfo"));
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      };
-      const url = "http://localhost:8080/user/info/";
-      const result = await axios.get(url, config);
-      const userArray = result.data.data[0];
-      console.log(userArray);
-      this.setState({
-        userData: userArray,
-        email: userArray.email,
-        phone_number: userArray.phone_number,
-        display_name: userArray.display_name,
-        first_name: userArray.first_name,
-        last_name: userArray.last_name,
-        delivery_address: userArray.delivery_address,
-        birthdate: userArray.birthdate,
-        gender: userArray.gender,
-        photo: "",
-      });
-    } catch (error) {
-      const errorMsg = error.response.data.err.msg;
-      console.log(error.response.data.err.msg); // console error token expired
-      localStorage.setItem("tokenExp", errorMsg);
-      localStorage.removeItem("userinfo");
-    }
-  }
+  // async componentDidMount() {
+  //   const userInfo = await JSON.parse(localStorage.getItem("userinfo"));
+  //   try {
+  //     const config = {
+  //       headers: { Authorization: `Bearer ${userInfo.token}` },
+  //     };
+  //     const url = "http://localhost:8080/user/info/";
+  //     const result = await axios.get(url, config);
+  //     const userArray = result.data.data[0];
+  //     // console.log(userArray);
+  //     this.setState({
+  //       userData: userArray,
+  //       email: userArray.email,
+  //       phone_number: userArray.phone_number,
+  //       display_name: userArray.display_name,
+  //       first_name: userArray.first_name,
+  //       last_name: userArray.last_name,
+  //       delivery_address: userArray.delivery_address,
+  //       birthdate: userArray.birthdate,
+  //       gender: userArray.gender,
+  //       photo: "",
+  //     });
+  //   } catch (error) {
+  //     const errorMsg = error.response.data.err.msg;
+  //     console.log(error.response.data.err.msg); // console error token expired
+  //     localStorage.setItem("tokenExp", errorMsg);
+  //     localStorage.removeItem("userinfo");
+  //   }
+  // }
 
   render() {
+    console.log(this.props.userData);
+    const { userData } = this.props;
     const { showModalLogOut, showModalEdit, isloggedIn } = this.state;
 
     if (isloggedIn === false) {
@@ -143,12 +145,12 @@ class Profile extends Component {
               <aside className="col profile-menu">
                 <div className="profile-pict">
                   <img
-                    src={`http://localhost:8080${this.state.userData.picture}`}
+                    src={`http://localhost:8080${userData.picture}`}
                     alt="profile"
                   />
                 </div>
-                <h4 className="display-name">{this.state.display_name}</h4>
-                <p className="email-display">{this.state.email}</p>
+                <h4 className="display-name">{userData.display_name}</h4>
+                <p className="email-display">{userData.email}</p>
                 <input
                   className="d-none"
                   type="file"
@@ -234,7 +236,7 @@ class Profile extends Component {
                       <input
                         type="email"
                         id="email"
-                        defaultValue={this.state.email}
+                        defaultValue={userData.email}
                         onChange={(e) =>
                           this.setState({
                             email: e.target.value,
@@ -249,7 +251,7 @@ class Profile extends Component {
                         id="d-address"
                         rows="2"
                         cols="auto"
-                        defaultValue={this.state.delivery_address}
+                        defaultValue={userData.delivery_address}
                         onChange={(e) =>
                           this.setState({
                             delivery_address: e.target.value,
@@ -266,7 +268,7 @@ class Profile extends Component {
                       <input
                         type="tel"
                         id="pNumber"
-                        defaultValue={this.state.phone_number}
+                        defaultValue={userData.phone_number}
                         onChange={(e) =>
                           this.setState({
                             phone_number: e.target.value,
@@ -286,7 +288,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="d-name"
-                        defaultValue={this.state.display_name}
+                        defaultValue={userData.display_name}
                         onChange={(e) =>
                           this.setState({
                             display_name: e.target.value,
@@ -299,7 +301,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="f-name"
-                        defaultValue={this.state.first_name}
+                        defaultValue={userData.first_name}
                         onChange={(e) =>
                           this.setState({
                             first_name: e.target.value,
@@ -313,7 +315,7 @@ class Profile extends Component {
                       <input
                         type="text"
                         id="l-name"
-                        defaultValue={this.state.last_name}
+                        defaultValue={userData.last_name}
                         onChange={(e) =>
                           this.setState({
                             last_name: e.target.value,
@@ -325,12 +327,12 @@ class Profile extends Component {
                   </div>
                   <div className="form-right">
                     <form className="details-form">
-                      <label htmlFor="b-day">DD/MM/YYYY</label>
+                      <label htmlFor="b-day">Birthdate</label>
                       <br />
                       <input
-                        type="text"
+                        type="date"
                         id="b-day"
-                        defaultValue={this.state.birthdate}
+                        defaultValue={userData.birthdate}
                         onChange={(e) =>
                           this.setState({
                             birthdate: e.target.value,
@@ -347,9 +349,10 @@ class Profile extends Component {
                     type="radio"
                     id="male"
                     name="gender"
+                    defaultChecked={userData.gender === "Male"}
                     // defaultValue={this.state.gender}
                     value="Male"
-                    onClick={(e) => {
+                    onChange={(e) => {
                       this.setState({
                         gender: e.target.value,
                       });
@@ -361,8 +364,9 @@ class Profile extends Component {
                     id="female"
                     name="gender"
                     // defaultValue={this.state.gender}
+                    defaultChecked={userData.gender === "Female"}
                     value="Female"
-                    onClick={(e) => {
+                    onChange={(e) => {
                       this.setState({
                         gender: e.target.value,
                       });
@@ -380,4 +384,10 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.UserReducer.getUserResult,
+  };
+};
+
+export default connect(mapStateToProps)(Profile);

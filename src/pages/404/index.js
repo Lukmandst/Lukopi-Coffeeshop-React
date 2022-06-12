@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./404.css";
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 
 class NotFound extends Component {
   render() {

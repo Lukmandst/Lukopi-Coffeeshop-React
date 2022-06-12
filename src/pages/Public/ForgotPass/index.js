@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./forgotpass.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 
 class ForgotPass extends Component {
   render() {

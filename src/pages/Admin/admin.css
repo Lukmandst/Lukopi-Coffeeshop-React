@@ -1,0 +1,91 @@
+.dashboard-container {
+  padding: 25px 10px;
+}
+
+.dashboard-header {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  color: #6a4029;
+}
+
+.dashboard-container > main {
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.left-section-dashboard {
+  width: 70%;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.report-wrapper {
+  filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.4));
+  background-color: #fff;
+  border-radius: 20px;
+}
+.right-section-dashboard {
+  width: 30%;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.section-dashboard-wrapper {
+  margin: 50px 0;
+}
+
+.download-report-btn,
+.share-report-btn {
+  border: none;
+  width: 100%;
+  height: 60px;
+  color: #fff;
+  background: #6a4029;
+  box-shadow: 0px 6px 20px rgba(106, 64, 41, 0.6);
+  border-radius: 15px;
+}
+
+.monthly-award-section,
+.goals-section {
+  padding: 20px;
+  background-color: #ffff;
+  width: 100%;
+  filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.4));
+  border-radius: 20px;
+  text-align: center;
+}
+
+.monthly-award-section > header > img {
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
+  border-radius: 35px;
+}
+
+.monthly-award-section > header > div > p,
+.goals-section > header > p {
+  font-weight: 700;
+}
+
+.monthly-award-section > div > span,
+.goals-section > header > span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  color: #7c828a;
+}
+
+@media screen and (max-width: 768px){
+    .section-dashboard-wrapper{
+        flex-direction: column;
+    }
+
+    .left-section-dashboard, .right-section-dashboard{
+        width: 100%;
+    }
+    
+}

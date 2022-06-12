@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 import "./signUp.css";
 import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
-import Googleimg from "../../assets/image/stock/google-icon.png";
-import CardMember from "../../components/CardMember";
-import Logo from "../../assets/image/stock/coffee 1.png";
+import Googleimg from "../../../assets/image/stock/google-icon.png";
+import CardMember from "../../../components/CardMember";
+import Logo from "../../../assets/image/stock/coffee 1.png";
 
 class SignUp extends Component {
   state = {

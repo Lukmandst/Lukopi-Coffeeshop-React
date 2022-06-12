@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
-import "../../pages/SignIn/signIn.css";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 import "./signIn.css";
-import Googleimg from "../../assets/image/stock/google-icon.png";
-import CardMember from "../../components/CardMember";
-import Logo from "../../assets/image/stock/coffee 1.png";
+import Googleimg from "../../../assets/image/stock/google-icon.png";
+import CardMember from "../../../components/CardMember";
+import Logo from "../../../assets/image/stock/coffee 1.png";
+import { connect } from "react-redux";
+import { postUserLogin } from "../../../Redux/actions/userActions";
 
 class SignIn extends Component {
   state = {
@@ -25,7 +25,17 @@ class SignIn extends Component {
     });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("1. masuk handle submit");
+    this.props.doLogin({
+      email: this.state.email,
+      pass: this.state.pass,
+    });
+  };
+
   render() {
+    console.log(this.props);
     const { isSuccess, isError, errormsg, showModal } = this.state;
 
     if ((isSuccess === true) & (showModal === false)) {
@@ -58,7 +68,10 @@ class SignIn extends Component {
                   <div className="header text-center">
                     <h2>Login</h2>
                   </div>
-                  <form className="login-form">
+                  <form
+                    className="login-form"
+                    onSubmit={this.handleSubmit}
+                  >
                     <label htmlFor="Email" className="form-label">
                       Email address :{" "}
                     </label>
@@ -89,40 +102,40 @@ class SignIn extends Component {
                     />
                     <Link to="/forgot">Forgot password?</Link> <br />
                     <input
-                    type='submit'
-                    value='Sign In'
+                      type="submit"
+                      value="Sign In"
                       className="signin"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const { email, pass } = this.state;
-                        const body = {
-                          email,
-                          pass,
-                        };
-                        axios
-                          .post("http://localhost:8080/auth/", body)
-                          .then((result) => {
-                            console.log(result.data.data); //show email, name, token
-                            localStorage.setItem(
-                              "userinfo",
-                              JSON.stringify(result.data.data)
-                            )
-                            localStorage.removeItem('tokenExp')
-                            this.setState({
-                              showModal: true,
-                              isSuccess: true,
-                              isError: false,
-                            });
-                          })
-                          .catch((error) => {
-                            console.log(error.response.data.err.msg); //show error msg
-                            this.setState({
-                              showModal: true,
-                              isError: true,
-                              errormsg: `${error.response.data.err.msg}`,
-                            });
-                          });
-                      }}
+                      // onClick={(e) => {
+                      //   e.preventDefault();
+                      //   const { email, pass } = this.state;
+                      //   const body = {
+                      //     email,
+                      //     pass,
+                      //   };
+                      //   axios
+                      //     .post("http://localhost:8080/auth/", body)
+                      //     .then((result) => {
+                      //       console.log(result.data.data); //show email, name, token
+                      //       localStorage.setItem(
+                      //         "userinfo",
+                      //         JSON.stringify(result.data.data)
+                      //       );
+                      //       localStorage.removeItem("tokenExp");
+                      //       this.setState({
+                      //         showModal: true,
+                      //         isSuccess: true,
+                      //         isError: false,
+                      //       });
+                      //     })
+                      //     .catch((error) => {
+                      //       console.log(error.response.data.err.msg); //show error msg
+                      //       this.setState({
+                      //         showModal: true,
+                      //         isError: true,
+                      //         errormsg: `${error.response.data.err.msg}`,
+                      //       });
+                      //     });
+                      // }}
                     />
                     <button className="signin-google">
                       <img
@@ -172,4 +185,12 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    doLogin: (data) => {
+      dispatch(postUserLogin(data));
+    },
+  };
+};
+
+export default connect(null,mapDispatchToProps)(SignIn);

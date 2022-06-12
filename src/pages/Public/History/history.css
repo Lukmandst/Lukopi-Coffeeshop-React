@@ -1,0 +1,34 @@
+.history-wrapper {
+  background-image: url(/src/assets/image/stock/historybg.png);
+  background-size: cover;
+  height: 100%;
+  padding: 50px;
+}
+
+.history-title,
+.history-subtitle {
+  text-align: center;
+  color: #fff;
+}
+
+.history-header {
+  padding: 25px;
+  margin-bottom: 60px;
+}
+.clear-history{
+  color: #fff;
+  cursor: pointer;
+  text-align: right;
+  text-decoration: underline;
+  width: max-content;
+  margin-left: auto;
+}
+
+.history-section {
+  padding:25px;
+  flex-wrap: wrap;
+  flex: 1;
+  gap: 15px;
+  margin: auto;
+  justify-content: space-evenly;
+}

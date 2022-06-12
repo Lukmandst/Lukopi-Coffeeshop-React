@@ -1,26 +1,26 @@
 import React, { Component } from "react";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Footer from "../../../components/Footer";
+import Navbar from "../../../components/Navbar/Navbar";
 import "./home.css";
 // import { Link } from "react-router-dom";
-import Teamwork from "../../assets/image/stock/team-work.jpg";
-import Check from "../../assets/image/vector/check-circle.svg";
-import JamCheck from "../../assets/image/vector/jam_check.svg";
-import Map from "../../assets/image/stock/Huge-Global.png";
-import Netflix from "../../assets/image/stock/netflix.png";
-import Reddit from "../../assets/image/stock/reddit.png";
-import Amazon from "../../assets/image/stock/amazon.png";
-import Discord from "../../assets/image/stock/discord.png";
-import Spotify from "../../assets/image/stock/spotify.png";
-import Robert from "../../assets/image/stock/viezh-robert.png";
-import Star from "../../assets/image/stock/star.png";
-import Christy from "../../assets/image/stock/yessica-christy.png";
-import Kimyj from "../../assets/image/stock/kim-yj.png";
-import ArrowBack from "../../assets/image/vector/eva_arrow-back-fill.svg";
-import ArrowNext from "../../assets/image/vector/eva_arrow-forward-fill.svg";
-import Hazel from "../../assets/image/product/Hazelnutlatte.png";
-import Pinky from "../../assets/image/product/pinkypromise.png";
-import Chicken from "../../assets/image/product/chicken wings.png";
+import Teamwork from "../../../assets/image/stock/team-work.jpg";
+import Check from "../../../assets/image/vector/check-circle.svg";
+import JamCheck from "../../../assets/image/vector/jam_check.svg";
+import Map from "../../../assets/image/stock/Huge-Global.png";
+import Netflix from "../../../assets/image/stock/netflix.png";
+import Reddit from "../../../assets/image/stock/reddit.png";
+import Amazon from "../../../assets/image/stock/amazon.png";
+import Discord from "../../../assets/image/stock/discord.png";
+import Spotify from "../../../assets/image/stock/spotify.png";
+import Robert from "../../../assets/image/stock/viezh-robert.png";
+import Star from "../../../assets/image/stock/star.png";
+import Christy from "../../../assets/image/stock/yessica-christy.png";
+import Kimyj from "../../../assets/image/stock/kim-yj.png";
+import ArrowBack from "../../../assets/image/vector/eva_arrow-back-fill.svg";
+import ArrowNext from "../../../assets/image/vector/eva_arrow-forward-fill.svg";
+import Hazel from "../../../assets/image/product/Hazelnutlatte.png";
+import Pinky from "../../../assets/image/product/pinkypromise.png";
+import Chicken from "../../../assets/image/product/chicken wings.png";
 
 class Home extends Component {
   render() {

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./product-details.css";
+// import "./product-details.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/Navbar/Navbar";
+import Footer from "../../../components/Footer";
 import axios from "axios";
-import withParams from "../../helper/WithParams";
+import withParams from "../../../helper/WithParams";
 import { Link } from "react-router-dom";
 
 class ProductDetails extends Component {
@@ -13,11 +13,7 @@ class ProductDetails extends Component {
     this.state = {
       products: [],
       quantity: 1,
-      cart: [],
-      delivery: "Dine In",
       size: "Regular",
-      productid: this.props.params.id,
-      showMiniCart: false,
     };
   }
   handlePlus = () => {
@@ -33,28 +29,8 @@ class ProductDetails extends Component {
     }
   };
 
-  handleAddtoCart = (e) => {
-    const { delivery, size, quantity, productid } = this.state;
-    e.preventDefault();
-    localStorage.setItem(
-      "usercart",
-      JSON.stringify({
-        id: productid,
-        quantity: quantity,
-        size: size,
-        delivery: delivery,
-      })
-    );
-    this.setState({
-      showMiniCart: true,
-    });
-    const carti = JSON.parse(localStorage.getItem("usercart"));
-    console.log(carti);
-  };
-
   async componentDidMount() {
     const { params } = this.props;
-
     const url = `http://localhost:8080/product?id=${params.id}`;
     try {
       const result = await axios.get(url);
@@ -69,7 +45,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { products, showMiniCart } = this.state;
+    const { products } = this.state;
     const { params } = this.props;
     return (
       <div>
@@ -266,33 +242,7 @@ class ProductDetails extends Component {
                 </label>
               </div>
             </div>
-            {showMiniCart ? (
-              <div className="col col-checkout d-flex">
-                <div className="product-img-checkout">
-                  <img
-                    src={`http://localhost:8080${products.image}`}
-                    alt="product-icon"
-                  />
-                </div>
-                <div className="product-details-checkout">
-                  <header>{products.name}</header>
-                  <p className="size-item-details">
-                    <span className="amount-item-details">
-                      x{this.state.quantity}
-                    </span>
-                    ({this.state.size})
-                  </p>
-                </div>
-                <div className="checkout-section d-flex">
-                  <p>checkout</p>
-                  <Link to="/yourcart">
-                    <button className="checkout-btn"></button>
-                  </Link>
-                </div>
-              </div>
-            ) : (
-              <></>
-            )}
+            
           </div>
         </div>
 
