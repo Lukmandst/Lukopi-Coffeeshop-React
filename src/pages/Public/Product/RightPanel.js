@@ -21,8 +21,8 @@ function RightPanel() {
   const [setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const { getAllProductsResult, getAllProductsLoading, getAllProductsError } =
-    useSelector((state) => state.ProductReducer);
+  const { getAllProductsResult } = useSelector((state) => state.ProductReducer);
+  const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
 
   // Get current product
   const indexOfLastPost = currentPage * postsPerPage;
@@ -42,7 +42,6 @@ function RightPanel() {
               <li className="menu-item-home">
                 <div
                   className="active"
-                  to="/products"
                   onClick={(e) => {
                     e.preventDefault();
                     dispatch(getListProducts(sort));
@@ -54,7 +53,6 @@ function RightPanel() {
               </li>
               <li className="menu-item">
                 <div
-                  // to="?category=07e88ba9-1a54-46ab-bf2c-3dc8831090a4"
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -67,7 +65,6 @@ function RightPanel() {
               </li>
               <li className="menu-item">
                 <div
-                  to="?category=30b95dde-a820-41dd-b474-902026e3e755"
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -80,7 +77,6 @@ function RightPanel() {
               </li>
               <li className="menu-item">
                 <div
-                  to="?category=ea71bfcd-f1f1-4976-ae1e-9ff0f2c70d0e"
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
@@ -119,35 +115,15 @@ function RightPanel() {
           </div>
           <div className="show-product">
             <div className=" product-wrapper d-flex">
-              {currentPosts ? (
-                currentPosts.map((product) => (
-                  <ProductIcon key={product.id} data={product} />
-                ))
-              ) : getAllProductsLoading ? (
-                <p>Loading....</p>
-              ) : (
-                <p>
-                  {getAllProductsError
-                    ? getAllProductsError
-                    : "Product Not Found :("}
-                </p>
-              )}
-              {Array.isArray(currentPosts) ? (
-                currentPosts.map((product) => (
-                  <ProductIconAdmin key={product.id} data={product} />
-                ))
-              ) : getAllProductsLoading ? (
-                <p>Loading....</p>
-              ) : (
-                <p>
-                  {getAllProductsError
-                    ? getAllProductsError
-                    : "Product Not Found :("}
-                </p>
-              )}
+              {postUserLoginRole === "admin" && currentPosts
+                ? currentPosts.map((product) => (
+                    <ProductIconAdmin key={product.id} data={product} />
+                  ))
+                : currentPosts.map((product) => (
+                    <ProductIcon key={product.id} data={product} />
+                  ))}
             </div>
           </div>
-          {/* <p>{searchParams.get("category")}</p> */}
           <p className="notes">
             *the price has been cutted by discount appears
           </p>
@@ -157,7 +133,11 @@ function RightPanel() {
             paginate={paginate}
           />
           <br />
-          <button className="add-product-btn-admin">Add New Product</button>
+          {postUserLoginRole === "admin" ? (
+            <button className="add-product-btn-admin">Add New Product</button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

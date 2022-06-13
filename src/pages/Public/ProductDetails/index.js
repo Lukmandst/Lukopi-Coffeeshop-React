@@ -1,35 +1,40 @@
 import React, { Component } from "react";
-import "./product-details.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { connect } from "react-redux/es/exports";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer";
-import axios from "axios";
+
 import withParams from "../../../helper/WithParams";
-import { Link } from "react-router-dom";
+
 import LeftDetails from "./LeftDetails";
 import RightDetails from "./RightDetails";
+
+import { addIdSizeToCart } from "../../../Redux/actions/transactionActions";
+
+import "./product-details.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class ProductDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       products: [],
-      quantity: 1,
-      cart: [],
-      delivery: "Dine In",
       size: "Regular",
       productid: this.props.params.id,
-      showMiniCart: false,
     };
   }
-  
 
-  
+  handleSizeId = () => {
+    const { productid, size } = this.state;
+    this.props.addIdSize({ productid, size });
+  };
 
   async componentDidMount() {
     const { params } = this.props;
 
-    const url = `http://localhost:8080/product?id=${params.id}`;
+    const url = `${process.env.REACT_APP_HOST_API}/product?id=${params.id}`;
     try {
       const result = await axios.get(url);
       const productsArray = result.data.data;
@@ -41,9 +46,14 @@ class ProductDetails extends Component {
       console.error(error);
     }
   }
+  componentDidUpdate() {
+    if (this.state.size) {
+      this.handleSizeId();
+    }
+  }
 
   render() {
-    const { products, showMiniCart } = this.state;
+    const { products } = this.state;
     const { params } = this.props;
     return (
       <div>
@@ -54,9 +64,8 @@ class ProductDetails extends Component {
               <Link to="/products">Product</Link>
               <Link to={`/products/${params.id}`}> / {products.name}</Link>
             </header>
-            <LeftDetails products={products}/>
-
-            <RightDetails products={products}/>
+            <LeftDetails products={products} />
+            <RightDetails products={products} />
           </div>
           <div className="row checkout-row ">
             <div className="col col-size d-flex">
@@ -109,11 +118,11 @@ class ProductDetails extends Component {
                 </label>
               </div>
             </div>
-            {showMiniCart ? (
+            {this.props.showMiniCart ? (
               <div className="col col-checkout d-flex">
                 <div className="product-img-checkout">
                   <img
-                    src={`http://localhost:8080${products.image}`}
+                    src={`${process.env.REACT_APP_HOST_API}/${products.image}`}
                     alt="product-icon"
                   />
                 </div>
@@ -121,9 +130,9 @@ class ProductDetails extends Component {
                   <header>{products.name}</header>
                   <p className="size-item-details">
                     <span className="amount-item-details">
-                      x{this.state.quantity}
+                      x{this.props.quantity}
                     </span>
-                    ({this.state.size})
+                    ({this.props.size})
                   </p>
                 </div>
                 <div className="checkout-section d-flex">
@@ -145,4 +154,23 @@ class ProductDetails extends Component {
   }
 }
 
-export default withParams(ProductDetails);
+const mapStateToProps = (state) => {
+  return {
+    showMiniCart: state.TransactionsReducer.showMiniCart,
+    quantity: state.TransactionsReducer.quantity,
+    size: state.TransactionsReducer.size,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addIdSize: (data) => {
+      dispatch(addIdSizeToCart(data));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withParams(ProductDetails));
