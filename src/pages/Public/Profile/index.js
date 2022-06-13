@@ -9,6 +9,7 @@ import Footer from "../../../components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./profile.css";
+import { logOut } from "../../../Redux/actions/userActions";
 
 class Profile extends Component {
   constructor(props) {
@@ -181,7 +182,7 @@ class Profile extends Component {
                     <Button
                       variant="primary"
                       onClick={() => {
-                        localStorage.removeItem("userinfo");
+                        this.props.logOut();
                         this.setState({
                           isloggedIn: false,
                           showModalLogOut: false,
@@ -357,8 +358,16 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.UserReducer.getUserResult,
-    token :state.SignInReducer.postUserLoginToken
+    token: state.SignInReducer.postUserLoginToken,
   };
 };
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => {
+      dispatch(logOut());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

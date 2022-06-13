@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
 import CardMember from "../../../components/CardMember";
@@ -9,8 +9,7 @@ import Footer from "../../../components/Footer";
 import Googleimg from "../../../assets/image/stock/google-icon.png";
 import Logo from "../../../assets/image/stock/coffee 1.png";
 
-import { postUserLogin } from "../../../Redux/actions/userActions";
-
+import { closeModal, postUserLogin } from "../../../Redux/actions/userActions";
 
 import "./signIn.css";
 
@@ -18,21 +17,14 @@ class SignIn extends Component {
   state = {
     email: "",
     pass: "",
-    isSuccess: false,
-    isError: false,
-    errormsg: "",
-    showModal: false,
   };
 
   handleClose = () => {
-    this.setState({
-      showModal: false,
-    });
+    this.props.closeModal();
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("1. masuk handle submit");
+  handleSubmit = (e) => {
+    e.preventDefault();
     this.props.doLogin({
       email: this.state.email,
       pass: this.state.pass,
@@ -40,11 +32,7 @@ class SignIn extends Component {
   };
 
   render() {
-    const { isSuccess, isError, errormsg, showModal } = this.state;
-
-    if ((isSuccess === true) & (showModal === false)) {
-      return <Navigate to="/" />;
-    }
+    const { isSuccess, isError, errormsg, showModal } = this.props;
 
     return (
       <div>
@@ -72,10 +60,7 @@ class SignIn extends Component {
                   <div className="header text-center">
                     <h2>Login</h2>
                   </div>
-                  <form
-                    className="login-form"
-                    onSubmit={this.handleSubmit}
-                  >
+                  <form className="login-form" onSubmit={this.handleSubmit}>
                     <label htmlFor="Email" className="form-label">
                       Email address :{" "}
                     </label>
@@ -105,42 +90,7 @@ class SignIn extends Component {
                       }}
                     />
                     <Link to="/forgot">Forgot password?</Link> <br />
-                    <input
-                      type="submit"
-                      value="Sign In"
-                      className="signin"
-                      // onClick={(e) => {
-                      //   e.preventDefault();
-                      //   const { email, pass } = this.state;
-                      //   const body = {
-                      //     email,
-                      //     pass,
-                      //   };
-                      //   axios
-                      //     .post("http://localhost:8080/auth/", body)
-                      //     .then((result) => {
-                      //       console.log(result.data.data); //show email, name, token
-                      //       localStorage.setItem(
-                      //         "userinfo",
-                      //         JSON.stringify(result.data.data)
-                      //       );
-                      //       localStorage.removeItem("tokenExp");
-                      //       this.setState({
-                      //         showModal: true,
-                      //         isSuccess: true,
-                      //         isError: false,
-                      //       });
-                      //     })
-                      //     .catch((error) => {
-                      //       console.log(error.response.data.err.msg); //show error msg
-                      //       this.setState({
-                      //         showModal: true,
-                      //         isError: true,
-                      //         errormsg: `${error.response.data.err.msg}`,
-                      //       });
-                      //     });
-                      // }}
-                    />
+                    <input type="submit" value="Sign In" className="signin" />
                     <button className="signin-google">
                       <img
                         src={Googleimg}
@@ -189,12 +139,24 @@ class SignIn extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    isSuccess: state.SignInReducer.isSuccess,
+    isError: state.SignInReducer.isError,
+    errormsg: state.SignInReducer.errormsg,
+    showModal: state.SignInReducer.showModal,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     doLogin: (data) => {
       dispatch(postUserLogin(data));
     },
+    closeModal: () => {
+      dispatch(closeModal());
+    },
   };
 };
 
-export default connect(null,mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

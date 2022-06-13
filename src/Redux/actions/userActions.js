@@ -35,7 +35,7 @@ export const getUserInfo = (token) => {
         });
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         //failed get api
         dispatch({
           type: GET_USER_INFO,
@@ -59,6 +59,8 @@ export const postUserLogin = (data) => {
         loading: true,
         data: [],
         errorMessage: false,
+        isSuccess: false,
+        showModal: false,
       },
     });
     axios({
@@ -76,6 +78,9 @@ export const postUserLogin = (data) => {
             loading: false,
             data: result.data.data,
             errorMessage: false,
+            isSuccess: true,
+            isError: false,
+            showModal: true,
           },
         });
       })
@@ -88,9 +93,41 @@ export const postUserLogin = (data) => {
           payload: {
             loading: true,
             data: [],
-            errorMessage: error.response,
+            errorMessage: error.response.data.err.msg,
+            showModal: true,
+            isError: true,
           },
         });
       });
+  };
+};
+
+export const closeModal = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "CLOSE_MODAL",
+      payload: {
+        showModal: false,
+      },
+    });
+  };
+};
+
+export const logOut = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "SIGN_OUT",
+      payload: {
+        data: [],
+        token: false,
+        role: false,
+        loading: false,
+        errorMessage: false,
+        isSuccess: false,
+        isError: false,
+        errormsg: false,
+        showModal: false,
+      },
+    });
   };
 };
