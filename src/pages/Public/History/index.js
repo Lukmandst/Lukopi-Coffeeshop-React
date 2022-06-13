@@ -22,24 +22,23 @@ function History() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const deleteHandler = () => {
-    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
     const config = {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
+      headers: { Authorization: `Bearer ${postUserLoginToken}` },
     };
     axios
       .delete(`${process.env.REACT_APP_HOST_API}/transaction`, config)
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
+      setHistoryData([])
   };
 
   const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
-
 
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${postUserLoginToken}` },
     };
-    const url = "http://localhost:8080/transaction/history/";
+    const url = `${process.env.REACT_APP_HOST_API}/transaction/history/`;
     const axiosGet = async () => {
       const result = await axios.get(url, config);
       console.log(result.data.data);
@@ -74,7 +73,7 @@ function History() {
                 <></>
               )}
               {currentPosts.length === 0 ? (
-                <div>You haven't purchase any product yet :(</div>
+                <div style={{color: '#fff'}}>You haven't purchase any product yet :(</div>
               ) : (
                 <></>
               )}

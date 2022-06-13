@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux/es/exports";
 import axios from "axios";
 
 import Navbar from "../../../components/Navbar/Navbar";
@@ -6,6 +7,7 @@ import Footer from "../../../components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./payment.css";
+import { createNewTransaction } from "../../../Redux/actions/transactionActions";
 
 class Payment extends Component {
   state = {
@@ -20,62 +22,51 @@ class Payment extends Component {
 
   handlerCreateTransaction = (e) => {
     e.preventDefault();
-    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-    const { cartProduct } = this.state;
 
-    let product_id = cartProduct.id;
-    let quantity = cartProduct.quantity;
-    let product_size = cartProduct.size;
+    this.props.createOrder({
+      product_id: this.props.itemData.product_id,
+      product_size: this.props.itemData.size,
+      quantity: this.props.itemData.quantity,
+      delivery: this.props.itemData.delivery,
+      token: this.props.token,
+    });
+    // const userInfo = JSON.parse(localStorage.getItem("userinfo"));
+    // const { cartProduct } = this.state;
 
-    let body = { product_id, quantity, product_size };
-    const config = {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    };
-    const url = "http://localhost:8080/transaction";
-    axios
-      .post(url, body, config)
-      .then((result) => {
-        console.log(result);
-        localStorage.removeItem("usercart");
-        this.setState({
-          isSuccess: true,
-        });
-      })
-      .catch((error) => console.error(error));
+    // let product_id = cartProduct.id;
+    // let quantity = cartProduct.quantity;
+    // let product_size = cartProduct.size;
+
+    // let body = { product_id, quantity, product_size };
+    // const config = {
+    //   headers: { Authorization: `Bearer ${userInfo.token}` },
+    // };
+    // const url = "http://localhost:8080/transaction";
+    // axios
+    //   .post(url, body, config)
+    //   .then((result) => {
+    //     console.log(result);
+    //     localStorage.removeItem("usercart");
+    //     this.setState({
+    //       isSuccess: true,
+    //     });
+    //   })
+    //   .catch((error) => console.error(error));
   };
 
   async componentDidMount() {
-    console.log(JSON.parse(localStorage.getItem("usercart")));
-
     try {
-      const { token } = JSON.parse(localStorage.getItem("userinfo"));
-      const config = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      const userResult = await axios.get(
-        "http://localhost:8080/user/info",
-        config
-      );
-      let product_id = this.state.cartProduct.id
-        ? this.state.cartProduct.id
-        : 0;
-      const url = `http://localhost:8080/product?id=${product_id}`;
+      const url = `http://localhost:8080/product?id=${this.props.itemData.product_id}`;
       const result = await axios.get(url);
       const productsArray = result.data.data;
-      console.log(productsArray[0]);
-
-      console.log(userResult.data.data[0]);
       this.setState({
         products: productsArray[0],
-        userAddress: userResult.data.data[0].delivery_address,
-        userphone: userResult.data.data[0].phone_number,
       });
     } catch (error) {
       console.error(error);
     }
     let tax = parseInt(this.state.products.price) * 0.1;
     let Bill = tax + parseInt(this.state.products.price);
-    console.log(Bill);
     this.setState({
       tax: tax,
       Bill: Bill,
@@ -83,7 +74,9 @@ class Payment extends Component {
   }
 
   render() {
-    const { products, Bill, tax, userAddress, userphone } = this.state;
+    const { products, Bill, tax } = this.state;
+    const { UserData, itemData,token } = this.props;
+    console.log(token)
     return (
       <div>
         <Navbar />
@@ -96,11 +89,11 @@ class Payment extends Component {
               <div className="order-wrapper">
                 <h3>Order Summary</h3>
                 <br />
-                {this.state.cartProduct && (
+                {itemData.product_id && (
                   <div className="product-wrapper d-flex">
                     <div className="img-prdct">
                       <img
-                        src={`http://localhost:8080${products.image}`}
+                        src={`${process.env.REACT_APP_HOST_API}${products.image}`}
                         alt="product-icon"
                       />
                     </div>
@@ -109,12 +102,12 @@ class Payment extends Component {
                       <p className="size-item-payment">
                         <span className="amount-item-payment">
                           x
-                          {this.state.cartProduct.quantity
-                            ? this.state.cartProduct.quantity
+                          {this.props.itemData.quantity
+                            ? this.props.itemData.quantity
                             : 0}
                           <br />
                         </span>
-                        ({this.state.cartProduct.size})
+                        ({this.props.itemData.size})
                       </p>
                     </div>
                     <div className="payment-prdct-price">
@@ -127,15 +120,17 @@ class Payment extends Component {
                 <div className="fee-wrapper">
                   <div className="subtotal d-flex">
                     <p>SUBTOTAL</p>
-                    <p className="fee">IDR {products.price?products.price:0}</p>
+                    <p className="fee">
+                      IDR {products.price ? products.price : 0}
+                    </p>
                   </div>
                   <div className="taxandfee d-flex">
                     <p>TAX & FEE</p>
-                    <p className="fee">IDR {tax?tax:0}</p>
+                    <p className="fee">IDR {tax ? tax : 0}</p>
                   </div>
                   <div className="shipping d-flex">
                     <p>SHIPPING</p>
-                    <p className="fee">IDR 10000</p>
+                    <p className="fee">IDR {itemData ? 10000 : 0}</p>
                   </div>
                   <div className="total d-flex">
                     <p>TOTAL</p>
@@ -155,8 +150,8 @@ class Payment extends Component {
                     {" "}
                     <span>Delivery</span> to
                   </p>
-                  <p className="address-details">{userAddress}</p>
-                  <p className="phone-number">{userphone}</p>
+                  <p className="address-details">{UserData.delivery_address}</p>
+                  <p className="phone-number">{UserData.phone_number}</p>
                 </section>
               </div>{" "}
               <br />
@@ -198,4 +193,20 @@ class Payment extends Component {
   }
 }
 
-export default Payment;
+const mapStateToProps = (state) => {
+  return {
+    itemData: state.TransactionsReducer,
+    UserData: state.UserReducer.getUserResult,
+    token: state.SignInReducer.postUserLoginToken,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createOrder: (data) => {
+      dispatch(createNewTransaction(data));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);

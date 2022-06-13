@@ -1,6 +1,7 @@
 import {
   ADD_ID_SIZE_TO_CART,
   ADD_TO_CART,
+  CREATE_TRANSACTION,
 } from "../actions/transactionActions";
 
 const initialState = {
@@ -9,6 +10,9 @@ const initialState = {
   size: false,
   delivery: false,
   showMiniCart: false,
+  isSuccess: false,
+  errorMessage: false,
+  data: false,
 };
 
 const TransactionsReducer = (prevState = initialState, action) => {
@@ -19,6 +23,7 @@ const TransactionsReducer = (prevState = initialState, action) => {
         quantity: action.payload.quantity,
         delivery: action.payload.delivery,
         showMiniCart: action.payload.showMiniCart,
+        errorMessage: action.payload.errorMessage
       };
 
     case ADD_ID_SIZE_TO_CART:
@@ -26,6 +31,20 @@ const TransactionsReducer = (prevState = initialState, action) => {
         ...prevState,
         product_id: action.payload.productid,
         size: action.payload.size,
+        errorMessage: action.payload.errorMessage,
+      };
+
+    case CREATE_TRANSACTION:
+      return {
+        loading: action.payload.loading,
+        errorMessage: action.payload.errorMessage,
+        isSuccess: action.payload.isSuccess,
+        product_id: action.payload.productid,
+        quantity: action.payload.quantity,
+        size: action.payload.size,
+        delivery: action.payload.delivery,
+        showMiniCart: action.payload.showMiniCart,
+        data: action.payload.data,
       };
 
     default:
