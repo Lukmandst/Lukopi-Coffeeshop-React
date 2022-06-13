@@ -1,11 +1,12 @@
 import React from "react";
+import { Link, useSearchParams } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CSS/pagination.css";
-import { Link, useSearchParams } from "react-router-dom";
+
 export default function Pagination({ postsPerPage, totalPosts, paginate }) {
   const pageNumbers = [];
-  const [searchParams, setSearchParams] = useSearchParams();
-  // const showPage = searchParams.get('page') === 'number'
+  const [setSearchParams] = useSearchParams();
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
@@ -20,7 +21,7 @@ export default function Pagination({ postsPerPage, totalPosts, paginate }) {
               onClick={(e) => {
                 e.preventDefault();
                 paginate(number);
-                setSearchParams({page: number})
+                setSearchParams({ page: number });
               }}
               to={number}
               className="page-link"

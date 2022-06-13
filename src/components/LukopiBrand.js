@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import LukopiLogo from "../assets/image/stock/coffee 1.png";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export class LukopiBrand extends Component {
   render() {

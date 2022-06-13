@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./profile.css";
+import { connect } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer";
-import axios from "axios";
-import { Modal, Button } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
-import { connect } from "react-redux";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -72,15 +74,14 @@ class Profile extends Component {
       gender,
       photo,
     };
-    const userInfo = JSON.parse(localStorage.getItem("userinfo"));
     const config = {
       headers: {
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${this.props.token}`,
         "Content-Type": "multipart/form-data",
       },
     };
 
-    const url = "http://localhost:8080/user/edit";
+    const url = `${process.env.REACT_APP_HOST_API}/user/edit`;
     axios
       .patch(url, body, config)
       .then((result) => {
@@ -96,38 +97,7 @@ class Profile extends Component {
       });
   };
 
-  // async componentDidMount() {
-  //   const userInfo = await JSON.parse(localStorage.getItem("userinfo"));
-  //   try {
-  //     const config = {
-  //       headers: { Authorization: `Bearer ${userInfo.token}` },
-  //     };
-  //     const url = "http://localhost:8080/user/info/";
-  //     const result = await axios.get(url, config);
-  //     const userArray = result.data.data[0];
-  //     // console.log(userArray);
-  //     this.setState({
-  //       userData: userArray,
-  //       email: userArray.email,
-  //       phone_number: userArray.phone_number,
-  //       display_name: userArray.display_name,
-  //       first_name: userArray.first_name,
-  //       last_name: userArray.last_name,
-  //       delivery_address: userArray.delivery_address,
-  //       birthdate: userArray.birthdate,
-  //       gender: userArray.gender,
-  //       photo: "",
-  //     });
-  //   } catch (error) {
-  //     const errorMsg = error.response.data.err.msg;
-  //     console.log(error.response.data.err.msg); // console error token expired
-  //     localStorage.setItem("tokenExp", errorMsg);
-  //     localStorage.removeItem("userinfo");
-  //   }
-  // }
-
   render() {
-    console.log(this.props.userData);
     const { userData } = this.props;
     const { showModalLogOut, showModalEdit, isloggedIn } = this.state;
 
@@ -145,7 +115,7 @@ class Profile extends Component {
               <aside className="col profile-menu">
                 <div className="profile-pict">
                   <img
-                    src={`http://localhost:8080${userData.picture}`}
+                    src={`${process.env.REACT_APP_HOST_API}${userData.picture}`}
                     alt="profile"
                   />
                 </div>
@@ -387,6 +357,7 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     userData: state.UserReducer.getUserResult,
+    token :state.SignInReducer.postUserLoginToken
   };
 };
 

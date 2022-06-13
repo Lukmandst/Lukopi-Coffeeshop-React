@@ -10,22 +10,23 @@ function ProductIcon({ data }) {
   };
 
   return (
-    // <Link to={`${data.id}`}>
-    // </Link>
-      <div
-        key={data.id}
-        className="product-icon"
-        onClick={() => {
-          handleGoToDetail(data.id);
-        }}
-      >
-        <div className="disc">10%</div>
-        <div className="product-image">
-          <img src={`http://localhost:8080${data.image}`} alt="product-img" />
-        </div>
-        <p className="product-name">{data.name}</p>
-        <p className="-product-price">IDR {data.price}</p>
+    <div
+      key={data.id}
+      className="product-icon"
+      onClick={() => {
+        handleGoToDetail(data.id);
+      }}
+    >
+      <div className="disc">10%</div>
+      <div className="product-image">
+        <img
+          src={`${process.env.REACT_APP_HOST_API}${data.image}`}
+          alt="product-img"
+        />
       </div>
+      <p className="product-name">{data.name}</p>
+      <p className="-product-price">IDR {data.price}</p>
+    </div>
   );
 }
 

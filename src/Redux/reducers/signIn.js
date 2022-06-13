@@ -3,6 +3,7 @@ import {  POST_USER_LOGIN } from "../actions/userActions";
 const initialState = {
   postUserLoginResult: [],
   postUserLoginToken: false,
+  postUserLoginRole: false,
   postUserLoginLoading: false,
   postUserLoginError: false,
 };
@@ -10,12 +11,11 @@ const initialState = {
 const SignInReducer = (prevState = initialState, action) => {
   switch (action.type) {
     case POST_USER_LOGIN:
-      // console.log("4. masuk reducer", action);
-      console.log(typeof action.payload.data.token)
       return {
         ...prevState,
         postUserLoginResult: action.payload.data,
         postUserLoginToken: action.payload.data.token,
+        postUserLoginRole: action.payload.data.role,
         postUserLoginLoading: action.payload.loading,
         postUserLoginError: action.payload.errorMessage,
       };

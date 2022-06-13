@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import "./payment.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer";
-import axios from "axios";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./payment.css";
 
 class Payment extends Component {
   state = {

@@ -13,7 +13,7 @@ function LeftDetails({products}) {
         <div className="product-desc">
           <header className="product-title">{products.name}</header>
           <p className="product-details">{products.details}</p>
-          <div className="delivery-time-product">Delivery only on</div>
+          <div className="delivery-time-product">Delivery only on Monday - Friday</div>
           <div className="amount-price-wrapper d-flex"></div>
         </div>
       </section>

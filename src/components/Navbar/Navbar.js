@@ -1,26 +1,17 @@
-import "../CSS/navbar.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-import LukopiBrand from "../LukopiBrand";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../CSS/navbar.css";
+
+import LukopiBrand from "../LukopiBrand";
 import NavMember from "./NavMember";
 import NavMemberLogin from "./NavMemberLogin";
 import NavbarMenu from "./NavbarMenu";
 import NavbarMenuAdmin from "./NavbarMenuAdmin";
 
 class Navbar extends Component {
-  // state = {
-  //   token: localStorage.getItem("userinfo"),
-  // };
-
-  // componentDidMount() {
-  //   this.setState({
-  //     isLoggedin: this.props.login,
-  //   });
-  // }
-
   render() {
     return (
       <nav className="navbar navbar-expand-sm">
@@ -40,12 +31,15 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="collapsibleNavbar">
             <ul className="navbar-nav mx-auto">
               <div className="menu-wrapper">
-                {/* <NavbarMenu/> */}
-                <NavbarMenuAdmin/>
+                {this.props.role === "admin" ? (
+                  <NavbarMenuAdmin />
+                ) : (
+                  <NavbarMenu />
+                )}
               </div>
             </ul>
             <div className="nav-member">
-              {this.props.userPersist ? <NavMemberLogin /> : <NavMember />}
+              {this.props.token ? <NavMemberLogin /> : <NavMember />}
             </div>
           </div>
         </div>
@@ -56,8 +50,9 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userPersist: state.SignInReducer.postUserLoginToken,
+    token: state.SignInReducer.postUserLoginToken,
+    role: state.SignInReducer.postUserLoginRole,
   };
 };
 
-export default connect(mapStateToProps)(Navbar) ;
+export default connect(mapStateToProps)(Navbar);

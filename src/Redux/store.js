@@ -5,22 +5,21 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import reducers from "./reducers";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
+import reducers from "./reducers";
 
 const persistConfig = {
   key: "user",
   storage,
-  whitelist: ["SignInReducer"],
+  whitelist: ["SignInReducer", "TransactionsReducer"],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = createStore(
   persistedReducer,
-  compose(
-    applyMiddleware(thunk, logger),
-  )
+  compose(applyMiddleware(thunk, logger))
 );
 export const persistor = persistStore(store);

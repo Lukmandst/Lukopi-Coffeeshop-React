@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import "./forgotpass.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import Footer from "../../../components/Footer";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./forgotpass.css";
 
 class ForgotPass extends Component {
   render() {
     return (
-      <div>
+      <>
         <section className="container-fluid">
           <div className="row forgot-row">
             <div className="col forgot-wrapper d-flex">
@@ -15,7 +17,10 @@ class ForgotPass extends Component {
                 <p className="sub-forgot"> Don't worry, we got your back!</p>
               </header>
               <form className="send-email-form d-flex">
-                <input type="email" placeholder="Enter your email adress to get link"></input>
+                <input
+                  type="email"
+                  placeholder="Enter your email adress to get link"
+                ></input>
                 <button className="send-btn">Send</button>
               </form>
               <section>
@@ -29,7 +34,7 @@ class ForgotPass extends Component {
           </div>
         </section>
         <Footer />
-      </div>
+      </>
     );
   }
 }

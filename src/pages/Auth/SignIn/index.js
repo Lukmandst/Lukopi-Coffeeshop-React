@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
-import Footer from "../../../components/Footer";
-import "./signIn.css";
-import Googleimg from "../../../assets/image/stock/google-icon.png";
+
 import CardMember from "../../../components/CardMember";
+import Footer from "../../../components/Footer";
+
+import Googleimg from "../../../assets/image/stock/google-icon.png";
 import Logo from "../../../assets/image/stock/coffee 1.png";
-import { connect } from "react-redux";
+
 import { postUserLogin } from "../../../Redux/actions/userActions";
+
+
+import "./signIn.css";
 
 class SignIn extends Component {
   state = {
@@ -35,7 +40,6 @@ class SignIn extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { isSuccess, isError, errormsg, showModal } = this.state;
 
     if ((isSuccess === true) & (showModal === false)) {

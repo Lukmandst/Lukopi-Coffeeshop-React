@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_COFFEE_PRODUCTS = "GET_COFFEE_PRODUCTS";
 export const GET_NONCOFFEE_PRODUCTS = "GET_NONCOFFEE_PRODUCTS";
@@ -20,7 +21,7 @@ export const getListProducts = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:8080/product/all",
+      url: `${process.env.REACT_APP_HOST_API}/product/all`,
       timeout: 3000,
     })
       .then((result) => {
@@ -63,7 +64,7 @@ export const getCoffee = (sort) => {
     //get API
     axios({
       method: "GET",
-      url: `http://localhost:8080/product?category=07e88ba9-1a54-46ab-bf2c-3dc8831090a4&sort=${sort}`,
+      url: `${process.env.REACT_APP_HOST_API}/product?category=07e88ba9-1a54-46ab-bf2c-3dc8831090a4&sort=${sort}`,
       timeout: 3000,
     })
       .then((result) => {
@@ -105,7 +106,7 @@ export const getNonCoffe = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:8080/product?category=30b95dde-a820-41dd-b474-902026e3e755",
+      url: `${process.env.REACT_APP_HOST_API}/product?category=30b95dde-a820-41dd-b474-902026e3e755`,
       timeout: 3000,
     })
       .then((result) => {
@@ -147,7 +148,7 @@ export const getFoods = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:8080/product?category=ea71bfcd-f1f1-4976-ae1e-9ff0f2c70d0e",
+      url: `${process.env.REACT_APP_HOST_API}/product?category=ea71bfcd-f1f1-4976-ae1e-9ff0f2c70d0e`,
       timeout: 3000,
     })
       .then((result) => {
@@ -189,7 +190,7 @@ export const findFoods = (data) => {
     //get API
     axios({
       method: "GET",
-      url: `http://localhost:8080/product?name=${data}`,
+      url: `${process.env.REACT_APP_HOST_API}/product?name=${data}`,
       timeout: 3000,
     })
       .then((result) => {

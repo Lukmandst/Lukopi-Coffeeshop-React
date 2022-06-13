@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { useSelector as UseSelector} from "react-redux";
 
 export const GET_USER_INFO = "GET_USER_INFO";
 export const POST_USER_LOGIN = "POST_USER_LOGIN";
@@ -18,7 +17,7 @@ export const getUserInfo = (token) => {
     //get api
     axios({
       method: "GET",
-      url: "http://localhost:8080/user/info/",
+      url: `${process.env.REACT_APP_HOST_API}/user/info/`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -64,7 +63,7 @@ export const postUserLogin = (data) => {
     });
     axios({
       method: "POST",
-      url: "http://localhost:8080/auth/",
+      url: `${process.env.REACT_APP_HOST_API}/auth/`,
       timeout: 3000,
       data: data,
     })

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+
 import { getUserInfo } from "../../Redux/actions/userActions";
 import { findFoods } from "../../Redux/actions/productActions";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../CSS/navmemberlogin.css";
 
@@ -24,6 +25,8 @@ function NavMemberLogin() {
 
   useEffect(() => {
     dispatch(getUserInfo(postUserLoginToken));
+
+    
   }, [dispatch, postUserLoginToken]);
 
   return (
@@ -43,7 +46,7 @@ function NavMemberLogin() {
       <Link to="/profile">
         <button className="profile-btn">
           <img
-            src={`http://localhost:8080${getUserResult.picture}`}
+            src={`${process.env.REACT_APP_HOST_API}${getUserResult.picture}`}
             alt="img"
           />
         </button>

@@ -4,11 +4,13 @@ import { getListProducts } from "../../../Redux/actions/productActions";
 
 import Footer from "../../../components/Footer";
 import Navbar from "../../../components/Navbar/Navbar";
-import withParams from "../../../helper/WithParams";
-import RightPanel from "./RightPanel";
-import LeftPanel from "./LeftPanel";
-import "./product.css";
 
+import withParams from "../../../helper/WithParams";
+
+import LeftPanel from "./LeftPanel";
+import RightPanel from "./RightPanel";
+
+import "./product.css";
 
 function Product() {
   //dispatch

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import "./history.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "../../../components/Navbar/Navbar";
+import axios from "axios";
+
 import Footer from "../../../components/Footer";
 import HistoryIcon from "../../../components/HistoryIcon";
-import axios from "axios";
+import Navbar from "../../../components/Navbar/Navbar";
 import Pagination from "../../../components/Pagination";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./history.css";
 
 function History() {
   const [historyData, setHistoryData] = useState([]);
@@ -25,7 +27,7 @@ function History() {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     };
     axios
-      .delete("http://localhost:8080/transaction", config)
+      .delete(`${process.env.REACT_APP_HOST_API}/transaction`, config)
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
   };
@@ -44,7 +46,7 @@ function History() {
       setHistoryData(result.data.data);
     };
     axiosGet().catch(console.error);
-  }, []);
+  }, [postUserLoginToken]);
 
   return (
     <div>

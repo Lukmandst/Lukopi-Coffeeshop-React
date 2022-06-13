@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-// import "./product-details.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
+import withParams from "../../../helper/WithParams";
+
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer";
-import axios from "axios";
-import withParams from "../../../helper/WithParams";
-import { Link } from "react-router-dom";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "./product-details.css";
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -31,7 +34,7 @@ class ProductDetails extends Component {
 
   async componentDidMount() {
     const { params } = this.props;
-    const url = `http://localhost:8080/product?id=${params.id}`;
+    const url = `${process.env.REACT_APP_HOST_API}/product?id=${params.id}`;
     try {
       const result = await axios.get(url);
       const productsArray = result.data.data;
@@ -242,7 +245,6 @@ class ProductDetails extends Component {
                 </label>
               </div>
             </div>
-            
           </div>
         </div>
 

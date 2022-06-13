@@ -1,13 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addItemToCart } from "../../../Redux/actions/transactionActions";
 
 class RightDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       quantity: 1,
-      cart: [],
       delivery: "Dine In",
-      size: "Regular",
       showMiniCart: false,
     };
   }
@@ -26,24 +26,30 @@ class RightDetails extends Component {
   };
 
   handleAddtoCart = (e) => {
-    const { delivery, size, quantity, productid } = this.state;
+    const { delivery, quantity } = this.state;
     e.preventDefault();
-    localStorage.setItem(
-      "usercart",
-      JSON.stringify({
-        id: productid,
-        quantity: quantity,
-        size: size,
-        delivery: delivery,
-      })
-    );
-    this.setState({
+    this.props.addToCart({
+      quantity: quantity,
+      delivery: delivery,
       showMiniCart: true,
     });
-    const carti = JSON.parse(localStorage.getItem("usercart"));
-    console.log(carti);
+    // localStorage.setItem(
+    //   "usercart",
+    //   JSON.stringify({
+    //     id: productid,
+    //     quantity: quantity,
+    //     size: size,
+    //     delivery: delivery,
+    //   })
+    // );
+    // this.setState({
+    //   showMiniCart: true,
+    // });
+    // const carti = JSON.parse(localStorage.getItem("usercart"));
+    // console.log(carti);
   };
   render() {
+    // console.log(this.props.addToCart)
     return (
       <>
         <section className="right-col-details ">
@@ -163,4 +169,12 @@ class RightDetails extends Component {
   }
 }
 
-export default RightDetails;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (data) => {
+      dispatch(addItemToCart(data));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(RightDetails);

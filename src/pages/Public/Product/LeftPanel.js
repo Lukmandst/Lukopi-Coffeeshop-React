@@ -1,8 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import Mom from "../../../assets/image/stock/mom.png";
 import Dad from "../../../assets/image/stock/dad.png";
 import Pirate from "../../../assets/image/stock/pirate.png";
+
 function LeftPanel() {
+  const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
+
   return (
     <>
       <div className="col left-panel">
@@ -53,7 +58,11 @@ function LeftPanel() {
           <li>3. Buy 1 get 1 only for new user</li>
           <li>4. Should make member card to apply coupon</li>
         </ul>
-        <button className="add-coupon-admin">Add New Promo</button>
+        {postUserLoginRole === "admin" ? (
+          <button className="add-coupon-admin">Add New Promo</button>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
