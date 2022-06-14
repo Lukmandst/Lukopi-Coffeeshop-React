@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Navigate } from "react-router-dom";
 import { connect } from "react-redux/es/exports";
 import axios from "axios";
 
@@ -12,18 +13,14 @@ import { CurrencyFormatter } from "../../../helper/CurrencyFormatter";
 
 class Payment extends Component {
   state = {
-    cartProduct: JSON.parse(localStorage.getItem("usercart")),
     isSuccess: false,
     products: [],
     tax: 0,
     Bill: 0,
-    userAddress: "",
-    userphone: "",
   };
 
   handlerCreateTransaction = (e) => {
     e.preventDefault();
-
     this.props.createOrder({
       product_id: this.props.itemData.product_id,
       product_size: this.props.itemData.size,
@@ -31,28 +28,9 @@ class Payment extends Component {
       delivery: this.props.itemData.delivery,
       token: this.props.token,
     });
-    // const userInfo = JSON.parse(localStorage.getItem("userinfo"));
-    // const { cartProduct } = this.state;
-
-    // let product_id = cartProduct.id;
-    // let quantity = cartProduct.quantity;
-    // let product_size = cartProduct.size;
-
-    // let body = { product_id, quantity, product_size };
-    // const config = {
-    //   headers: { Authorization: `Bearer ${userInfo.token}` },
-    // };
-    // const url = "http://localhost:8080/transaction";
-    // axios
-    //   .post(url, body, config)
-    //   .then((result) => {
-    //     console.log(result);
-    //     localStorage.removeItem("usercart");
-    //     this.setState({
-    //       isSuccess: true,
-    //     });
-    //   })
-    //   .catch((error) => console.error(error));
+    this.setState({
+      isSuccess: true,
+    });
   };
 
   async componentDidMount() {
@@ -76,122 +54,150 @@ class Payment extends Component {
 
   render() {
     const { products, Bill, tax } = this.state;
-    const { UserData, itemData, token } = this.props;
-    console.log(token);
+    const { UserData, itemData } = this.props;
+
+    if (this.state.isSuccess) {
+      return <Navigate to="/products" />;
+    }
+
     return (
-      <div>
+      <>
         <Navbar />
+
         <section className="container-fluid payment-container">
-          <div className="row">
-            <div className="col payment-left">
-              <header>
-                <h1>Checkout your item now!</h1>
-              </header>
-              <div className="order-wrapper">
-                <h3>Order Summary</h3>
-                <br />
-                {itemData.product_id && (
-                  <div className="product-wrapper d-flex">
-                    <div className="img-prdct">
-                      <img
-                        src={`${process.env.REACT_APP_HOST_API}${products.image}`}
-                        alt="product-icon"
-                      />
+          {itemData.product_id ? (
+            <div className="row">
+              <div className="col payment-left">
+                <header>
+                  <h1>Checkout your item now!</h1>
+                </header>
+                <div className="order-wrapper">
+                  <h3>Order Summary</h3>
+                  <br />
+                  {itemData.product_id && (
+                    <div className="product-wrapper d-flex">
+                      <div className="img-prdct">
+                        <img
+                          src={`${process.env.REACT_APP_HOST_API}${products.image}`}
+                          alt="product-icon"
+                        />
+                      </div>
+                      <div className="product-details-payment">
+                        <header>{products.name}</header>
+                        <p className="size-item-payment">
+                          <span className="amount-item-payment">
+                            x
+                            {this.props.itemData.quantity
+                              ? this.props.itemData.quantity
+                              : 0}
+                            <br />
+                          </span>
+                          ({this.props.itemData.size})
+                        </p>
+                      </div>
+                      <div className="payment-prdct-price">
+                        {CurrencyFormatter.format(products.price)}
+                      </div>
                     </div>
-                    <div className="product-details-payment">
-                      <header>{products.name}</header>
-                      <p className="size-item-payment">
-                        <span className="amount-item-payment">
-                          x
-                          {this.props.itemData.quantity
-                            ? this.props.itemData.quantity
-                            : 0}
-                          <br />
-                        </span>
-                        ({this.props.itemData.size})
+                  )}
+
+                  <br />
+                  <div className="fee-wrapper">
+                    <div className="subtotal d-flex">
+                      <p>SUBTOTAL</p>
+                      <p className="fee">
+                        {products.price
+                          ? CurrencyFormatter.format(products.price)
+                          : 0}
                       </p>
                     </div>
-                    <div className="payment-prdct-price">
-                    {CurrencyFormatter.format(products.price)}
+                    <div className="taxandfee d-flex">
+                      <p>TAX & FEE</p>
+                      <p className="fee">
+                        {tax ? CurrencyFormatter.format(tax) : 0}
+                      </p>
                     </div>
-                  </div>
-                )}
-
-                <br />
-                <div className="fee-wrapper">
-                  <div className="subtotal d-flex">
-                    <p>SUBTOTAL</p>
-                    <p className="fee">
-                      {products.price
-                        ? CurrencyFormatter.format(products.price)
-                        : 0}
-                    </p>
-                  </div>
-                  <div className="taxandfee d-flex">
-                    <p>TAX & FEE</p>
-                    <p className="fee">{tax ? CurrencyFormatter.format(tax) : 0}</p>
-                  </div>
-                  <div className="shipping d-flex">
-                    <p>SHIPPING</p>
-                    <p className="fee"> {itemData.delivery ? CurrencyFormatter.format(10000) : 0}</p>
-                  </div>
-                  <div className="total d-flex">
-                    <p>TOTAL</p>
-                    <p className="fee">{CurrencyFormatter.format(Bill+10000)}</p>
+                    <div className="shipping d-flex">
+                      <p>SHIPPING</p>
+                      <p className="fee">
+                        {" "}
+                        {itemData.delivery !== "Dine In"
+                          ? CurrencyFormatter.format(10000)
+                          : 0}
+                      </p>
+                    </div>
+                    <div className="total d-flex">
+                      <p>TOTAL</p>
+                      <p className="fee">
+                        {CurrencyFormatter.format(Bill + 10000)}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="col payment-right">
+                <div className="address-wrapper">
+                  <header className="d-flex">
+                    <h4>Address Details</h4>
+                    <p>edit</p>
+                  </header>
+                  <section className="address-section">
+                    <p className="delivery-address">
+                      {" "}
+                      <span>Delivery</span> to
+                    </p>
+                    <p className="address-details">
+                      {UserData.delivery_address}
+                    </p>
+                    <p className="phone-number">{UserData.phone_number}</p>
+                  </section>
+                </div>{" "}
+                <br />
+                <div className="payment-wrapper d-flex">
+                  <h4>Payment method</h4>
+                  <form className="payment-form">
+                    <div className="input-form d-flex">
+                      <input
+                        type="radio"
+                        id="creditcard"
+                        name="payment"
+                      ></input>
+                      <div className="label-icon creditcard"></div>
+                      <label htmlFor="creditcard">Card</label>
+                    </div>
+                    <br />
+                    <div className="input-form d-flex">
+                      <input type="radio" id="bank-acc" name="payment"></input>
+                      <div className="label-icon bank"></div>
+                      <label htmlFor="bank-acc">Bank Account</label>
+                    </div>
+                    <br />
+                    <div className="input-form d-flex">
+                      <input type="radio" id="cod" name="payment"></input>
+                      <div className="label-icon cod"></div>
+                      <label htmlFor="cod">Cash On Delivery</label>
+                    </div>
+                  </form>
+                </div>{" "}
+                <br />
+                <button
+                  className="confirmandpay"
+                  onClick={this.handlerCreateTransaction}
+                >
+                  Confirm and Pay
+                </button>
+              </div>
             </div>
-            <div className="col payment-right">
-              <div className="address-wrapper">
-                <header className="d-flex">
-                  <h4>Address Details</h4>
-                  <p>edit</p>
-                </header>
-                <section className="address-section">
-                  <p className="delivery-address">
-                    {" "}
-                    <span>Delivery</span> to
-                  </p>
-                  <p className="address-details">{UserData.delivery_address}</p>
-                  <p className="phone-number">{UserData.phone_number}</p>
-                </section>
-              </div>{" "}
-              <br />
-              <div className="payment-wrapper d-flex">
-                <h4>Payment method</h4>
-                <form className="payment-form">
-                  <div className="input-form d-flex">
-                    <input type="radio" id="creditcard" name="payment"></input>
-                    <div className="label-icon creditcard"></div>
-                    <label htmlFor="creditcard">Card</label>
-                  </div>
-                  <br />
-                  <div className="input-form d-flex">
-                    <input type="radio" id="bank-acc" name="payment"></input>
-                    <div className="label-icon bank"></div>
-                    <label htmlFor="bank-acc">Bank Account</label>
-                  </div>
-                  <br />
-                  <div className="input-form d-flex">
-                    <input type="radio" id="cod" name="payment"></input>
-                    <div className="label-icon cod"></div>
-                    <label htmlFor="cod">Cash On Delivery</label>
-                  </div>
-                </form>
-              </div>{" "}
-              <br />
-              <button
-                className="confirmandpay"
-                onClick={this.handlerCreateTransaction}
-              >
-                Confirm and Pay
-              </button>
-            </div>
-          </div>
+          ) : (
+            <section className="col d-flex notfound payment-empty">
+              <header>Oops!</header>
+              <h1>You haven't added anything into your cart :(</h1>
+            </section>
+          )}
         </section>
+
         <Footer />
-      </div>
+      </>
     );
   }
 }
