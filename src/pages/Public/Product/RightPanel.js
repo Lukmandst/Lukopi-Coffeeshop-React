@@ -11,6 +11,8 @@ import {
   getFoods,
   getListProducts,
   getNonCoffe,
+  // setSortASC,
+  // setSortDESC,
 } from "../../../Redux/actions/productActions";
 
 function RightPanel() {
@@ -19,12 +21,14 @@ function RightPanel() {
 
   const [sort, setSort] = useState("ASC");
   // eslint-disable-next-line no-unused-vars
-  const [_,setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const { getAllProductsResult } = useSelector((state) => state.ProductReducer);
+  const { getAllProductsResult, sortState } = useSelector(
+    (state) => state.ProductReducer
+  );
   const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
-
+console.log('ini',sortState)
   // Get current product
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -43,11 +47,12 @@ function RightPanel() {
             <ul className="category-menu mx-auto">
               <li className="menu-item-home">
                 <div
-                  className="active"
+                  className="menu-link active"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getListProducts({sort:sort}));
+                    dispatch(getListProducts({ sort: sort }));
                     setSearchParams();
+                    Window.scrollTo(0,0)
                   }}
                 >
                   All Menu
@@ -58,8 +63,9 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getCoffee({sort:sort}));
+                    dispatch(getCoffee({ sort: sort }));
                     setSearchParams({ category: "Coffee" });
+                    Window.scrollTo(0,0)
                   }}
                 >
                   Coffee
@@ -70,8 +76,9 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getNonCoffe({sort:sort}));
+                    dispatch(getNonCoffe({ sort: sort }));
                     setSearchParams({ category: "NonCoffee" });
+                    Window.scrollTo(0,0)
                   }}
                 >
                   Non Coffee
@@ -82,8 +89,9 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getFoods({sort:sort}));
+                    dispatch(getFoods({ sort: sort }));
                     setSearchParams({ category: "Foods" });
+                    Window.scrollTo(0,0)
                   }}
                 >
                   Foods
@@ -99,6 +107,8 @@ function RightPanel() {
                     onClick={(e) => {
                       e.preventDefault();
                       setSort("ASC");
+                      Window.scrollTo(0,0)
+                      // dispatch(setSortASC());
                     }}
                   >
                     A-Z
@@ -107,6 +117,8 @@ function RightPanel() {
                     onClick={(e) => {
                       e.preventDefault();
                       setSort("DESC");
+                      Window.scrollTo(0,0)
+                      // dispatch(setSortDESC());
                     }}
                   >
                     Z-A

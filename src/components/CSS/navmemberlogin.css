@@ -24,6 +24,7 @@
 
 
 .searchbar > input {
+  padding: 20px;
   transform: translate(-10%, -0%);
   transition: all 1s;
   width: 178px;

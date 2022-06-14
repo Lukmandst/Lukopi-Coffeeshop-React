@@ -166,6 +166,10 @@ a:hover {
   padding-left: 25px;
 }
 
+.menu-link{
+  cursor: pointer;
+}
+
 .add-product-btn-admin {
   color: #ffffff;
   font-weight: 700;

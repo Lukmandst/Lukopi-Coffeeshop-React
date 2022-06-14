@@ -19,6 +19,7 @@
 .payment-right {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .payment-left > header {
@@ -72,7 +73,6 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
-
 
 .payment-right {
   margin-top: 140px;
@@ -162,7 +162,7 @@
 }
 
 @media screen and (max-width: 600px) {
- .product-wrapper{
-   flex-direction: column;
- } 
+  .product-wrapper {
+    flex-direction: column;
+  }
 }
