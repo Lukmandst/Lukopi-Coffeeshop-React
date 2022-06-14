@@ -13,7 +13,7 @@ import "./history.css";
 function History() {
   const [historyData, setHistoryData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(4);
+  const [postsPerPage] = useState(6);
   // Get current history
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
