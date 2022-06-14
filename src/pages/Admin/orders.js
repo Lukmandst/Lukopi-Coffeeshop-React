@@ -1,11 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar/Navbar";
 
- class orders extends Component {
+class orders extends Component {
   render() {
     return (
-      <div>orders</div>
-    )
+      <>
+        <Navbar />
+        <div className="container">orders</div>
+        <Footer />
+      </>
+    );
   }
 }
 
-export default orders
+export default orders;
