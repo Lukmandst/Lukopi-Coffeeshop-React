@@ -5,7 +5,7 @@
   background-size: cover;
   color: #fff;
   height: 100%;
-  min-height: 900px;
+  /* min-height: 900px; */
   padding: 60px;
   font-family: "Poppins", sans-serif;
 }
@@ -38,10 +38,10 @@
 
 .product-wrapper {
   justify-content: space-between;
+  align-items: center;
 }
 .img-prdct > img {
-  width: 82px;
-  height: 90px;
+  width: 90px;
   border-radius: 20px;
 }
 
@@ -159,6 +159,12 @@
   background-size: 25px;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.payment-empty{
+  color: rgb(0, 0, 0);
+  background: #fff;
+  border-radius: 20px;
 }
 
 @media screen and (max-width: 600px) {
