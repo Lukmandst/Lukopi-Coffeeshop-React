@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getListProducts } from "../../../Redux/actions/productActions";
 
@@ -13,13 +13,14 @@ import RightPanel from "./RightPanel";
 import "./product.css";
 
 function Product() {
+  const [sort] = useState("ASC");
   //dispatch
   const dispatch = useDispatch();
 
   useEffect(() => {
     //call action getListProduct
-    dispatch(getListProducts());
-  }, [dispatch]);
+    dispatch(getListProducts({ sort: sort }));
+  }, [dispatch, sort]);
   return (
     <div>
       <Navbar />

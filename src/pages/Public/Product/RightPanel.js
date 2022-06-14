@@ -18,7 +18,8 @@ function RightPanel() {
   const [postsPerPage] = useState(5);
 
   const [sort, setSort] = useState("ASC");
-  const [setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_,setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
   const { getAllProductsResult } = useSelector((state) => state.ProductReducer);
@@ -33,6 +34,7 @@ function RightPanel() {
   );
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  console.log(sort);
   return (
     <>
       <div className="col right-panel">
@@ -44,7 +46,7 @@ function RightPanel() {
                   className="active"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getListProducts(sort));
+                    dispatch(getListProducts({sort:sort}));
                     setSearchParams();
                   }}
                 >
@@ -56,7 +58,7 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getCoffee(sort));
+                    dispatch(getCoffee({sort:sort}));
                     setSearchParams({ category: "Coffee" });
                   }}
                 >
@@ -68,7 +70,7 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getNonCoffe(sort));
+                    dispatch(getNonCoffe({sort:sort}));
                     setSearchParams({ category: "NonCoffee" });
                   }}
                 >
@@ -80,7 +82,7 @@ function RightPanel() {
                   className="menu-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(getFoods(sort));
+                    dispatch(getFoods({sort:sort}));
                     setSearchParams({ category: "Foods" });
                   }}
                 >
@@ -102,7 +104,7 @@ function RightPanel() {
                     A-Z
                   </Dropdown.Item>
                   <Dropdown.Item
-                    onChange={(e) => {
+                    onClick={(e) => {
                       e.preventDefault();
                       setSort("DESC");
                     }}

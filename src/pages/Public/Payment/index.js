@@ -8,6 +8,7 @@ import Footer from "../../../components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./payment.css";
 import { createNewTransaction } from "../../../Redux/actions/transactionActions";
+import { CurrencyFormatter } from "../../../helper/CurrencyFormatter";
 
 class Payment extends Component {
   state = {
@@ -75,8 +76,8 @@ class Payment extends Component {
 
   render() {
     const { products, Bill, tax } = this.state;
-    const { UserData, itemData,token } = this.props;
-    console.log(token)
+    const { UserData, itemData, token } = this.props;
+    console.log(token);
     return (
       <div>
         <Navbar />
@@ -111,7 +112,7 @@ class Payment extends Component {
                       </p>
                     </div>
                     <div className="payment-prdct-price">
-                      IDR {products.price}
+                    {CurrencyFormatter.format(products.price)}
                     </div>
                   </div>
                 )}
@@ -121,20 +122,22 @@ class Payment extends Component {
                   <div className="subtotal d-flex">
                     <p>SUBTOTAL</p>
                     <p className="fee">
-                      IDR {products.price ? products.price : 0}
+                      {products.price
+                        ? CurrencyFormatter.format(products.price)
+                        : 0}
                     </p>
                   </div>
                   <div className="taxandfee d-flex">
                     <p>TAX & FEE</p>
-                    <p className="fee">IDR {tax ? tax : 0}</p>
+                    <p className="fee">{tax ? CurrencyFormatter.format(tax) : 0}</p>
                   </div>
                   <div className="shipping d-flex">
                     <p>SHIPPING</p>
-                    <p className="fee">IDR {itemData ? 10000 : 0}</p>
+                    <p className="fee"> {itemData.delivery ? CurrencyFormatter.format(10000) : 0}</p>
                   </div>
                   <div className="total d-flex">
                     <p>TOTAL</p>
-                    <p className="fee">IDR {Bill + 10000}</p>
+                    <p className="fee">{CurrencyFormatter.format(Bill+10000)}</p>
                   </div>
                 </div>
               </div>

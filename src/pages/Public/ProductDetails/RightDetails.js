@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { CurrencyFormatter } from "../../../helper/CurrencyFormatter";
 import { addItemToCart } from "../../../Redux/actions/transactionActions";
 
 class RightDetails extends Component {
@@ -155,7 +156,7 @@ class RightDetails extends Component {
                 </button>
               </div>
               <div className="product-price">
-                IDR {this.props.products.price}
+                {CurrencyFormatter.format(this.props.products.price)}
               </div>
             </div>
             <button className="add-to-cart-btn" onClick={this.handleAddtoCart}>
