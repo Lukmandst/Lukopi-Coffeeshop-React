@@ -55,7 +55,7 @@ function History() {
           <div className="col history-col">
             <header className="history-header">
               <h1 className="history-title">Let's see what you have bought!</h1>
-              <p className="history-subtitle">Long press to delete item</p>
+              {/* <p className="history-subtitle">Long press to delete item</p> */}
               <div className="clear-history" onClick={deleteHandler}>
                 Clear History
               </div>
