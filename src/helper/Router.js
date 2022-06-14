@@ -17,6 +17,7 @@ import SignUp from "../pages/Auth/SignUp";
 
 import PrivateElement from "../components/PrivateElement";
 import PrivateElementAfterLogin from "../components/PrivateElementAfterLogin";
+import PrivateElementAfterLoginAdmin from "../components/PrivateElementAfterLoginAdmin";
 
 function Router() {
   return (
@@ -75,8 +76,22 @@ function Router() {
             </PrivateElement>
           }
         />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/orders"
+          element={
+            <PrivateElementAfterLoginAdmin>
+              <Orders />
+            </PrivateElementAfterLoginAdmin>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateElementAfterLoginAdmin>
+              <AdminDashboard />
+            </PrivateElementAfterLoginAdmin>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
