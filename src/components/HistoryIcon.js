@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./CSS/historyicon.css";
+import { CurrencyFormatter } from "../helper/CurrencyFormatter";
 
 function HistoryFunc({ data, date }) {
   const [products, setProducts] = useState([]);
@@ -37,7 +38,9 @@ function HistoryFunc({ data, date }) {
         </div>
         <div className="history-product-details">
           <p className="history-product-name">{products.name}</p>
-          <p className="history-product-price">{products.price}</p>
+          <p className="history-product-price">
+            {CurrencyFormatter.format(products.price)}
+          </p>
           <p className="history-product-status">{date}</p>
         </div>
         <input type="checkbox" value={data.products_id} />

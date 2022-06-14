@@ -10,7 +10,8 @@ import "../CSS/navmemberlogin.css";
 
 function NavMemberLogin() {
   const [value, setValue] = useState("");
-  const [setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_,setSearchParams] = useSearchParams();
 
   //dispatch
   const { getUserResult } = useSelector((state) => state.UserReducer);

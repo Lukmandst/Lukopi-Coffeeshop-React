@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-function PrivateElementAfterLogin({
+function PrivateElementAfterLoginAdmin({
   children,
   allowedRole,
   redirectTo = "/",
@@ -10,9 +10,9 @@ function PrivateElementAfterLogin({
   extraData = undefined,
 }) {
   // pengecekan status otentikasi
-  const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
+  const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
 
-  if (postUserLoginToken) {
+  if (postUserLoginRole !== "admin") {
     return (
       <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
     );
@@ -22,4 +22,4 @@ function PrivateElementAfterLogin({
   return children;
 }
 
-export default PrivateElementAfterLogin;
+export default PrivateElementAfterLoginAdmin;

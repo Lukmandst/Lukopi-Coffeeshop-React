@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { CurrencyFormatter } from "../helper/CurrencyFormatter";
 import "./CSS/productIcon.css";
 
 function ProductIcon({ data }) {
@@ -25,7 +26,10 @@ function ProductIcon({ data }) {
         />
       </div>
       <p className="product-name">{data.name}</p>
-      <p className="-product-price">IDR {data.price}</p>
+      <p className="-product-price">
+        {CurrencyFormatter.format(
+        data.price)}
+      </p>
     </div>
   );
 }

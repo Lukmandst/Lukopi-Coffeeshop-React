@@ -6,7 +6,8 @@ import "./CSS/pagination.css";
 
 export default function Pagination({ postsPerPage, totalPosts, paginate }) {
   const pageNumbers = [];
-  const [setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_,setSearchParams] = useSearchParams();
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);

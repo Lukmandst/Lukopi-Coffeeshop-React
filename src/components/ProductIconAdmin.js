@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CurrencyFormatter } from "../helper/CurrencyFormatter";
 import "./CSS/productIcon.css";
 
 function ProductIconAdmin({ data }) {
@@ -13,7 +14,8 @@ function ProductIconAdmin({ data }) {
         />
       </div>
       <p className="product-name">{data.name}</p>
-      <p className="-product-price">IDR {data.price}</p>
+      <p className="-product-price">{CurrencyFormatter.format(
+        data.price)}</p>
       <Link to={`${data.id}`}>
         <div className="edit-icon-btn"> </div>
       </Link>

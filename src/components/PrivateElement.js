@@ -1,5 +1,5 @@
 import React from "react";
-import{useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 function PrivateElement({
@@ -10,15 +10,11 @@ function PrivateElement({
   extraData = undefined,
 }) {
   // pengecekan status otentikasi
-  const error = localStorage.getItem("tokenExp");
   const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
 
   if (!postUserLoginToken) {
     return (
-      <>
-        <p>{error}</p>
-        <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
-      </>
+      <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
     );
   }
 
