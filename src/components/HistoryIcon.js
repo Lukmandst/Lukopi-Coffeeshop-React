@@ -30,9 +30,9 @@ function HistoryFunc({ data, date }) {
         className="history-icon d-flex"
         onClick={() => handleGoToDetail(data.products_id)}
       >
-        <div className="product-icon">
+        <div className="history-product-icon">
           <img
-            src={`http://localhost:8080${products.image}`}
+            src={`process.env.REACT_APP_HOST_API${products.image}`}
             alt="product-img"
           />
         </div>
@@ -43,7 +43,7 @@ function HistoryFunc({ data, date }) {
           </p>
           <p className="history-product-status">{date}</p>
         </div>
-        <input type="checkbox" value={data.products_id} />
+        {/* <input type="checkbox" value={data.products_id} /> */}
       </button>
     </>
   );

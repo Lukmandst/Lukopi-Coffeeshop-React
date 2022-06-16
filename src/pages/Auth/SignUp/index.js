@@ -149,7 +149,10 @@ class SignUp extends Component {
                           phone,
                         };
                         axios
-                          .post("http://localhost:8080/auth/signup", body)
+                          .post(
+                            `${process.env.REACT_APP_HOST_API}/auth/signup`,
+                            body
+                          )
                           .then((result) => {
                             console.log(result.data);
                             this.setState({

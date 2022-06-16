@@ -35,7 +35,7 @@ class Payment extends Component {
 
   async componentDidMount() {
     try {
-      const url = `http://localhost:8080/product?id=${this.props.itemData.product_id}`;
+      const url = `${process.env.REACT_APP_HOST_API}/product?id=${this.props.itemData.product_id}`;
       const result = await axios.get(url);
       const productsArray = result.data.data;
       this.setState({

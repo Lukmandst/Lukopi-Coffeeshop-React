@@ -28,7 +28,7 @@ function Product() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    const url = "http://localhost:8080/product/all";
+    const url = `${process.env.REACT_APP_HOST_API}/product/all`;
     const axiosGet = async () => {
       const result = await axios.get(url);
       setProduct(result.data.data);
@@ -40,9 +40,8 @@ function Product() {
     e.preventDefault();
     searchParams.get({ category: "coffee" });
     const parameter = "?category=07e88ba9-1a54-46ab-bf2c-3dc8831090a4";
-    const url = `http://localhost:8080/product${parameter}`;
-    if(searchParams.get('category')==='Coffee'){
-      
+    const url = `process.env.REACT_APP_HOST_API/product${parameter}`;
+    if (searchParams.get("category") === "Coffee") {
     }
     axios
       .get(url)
@@ -57,7 +56,7 @@ function Product() {
   };
   const handleForNonCoffee = () => {
     const parameter = "?category=30b95dde-a820-41dd-b474-902026e3e755";
-    const url = `http://localhost:8080/product${parameter}`;
+    const url = `process.env.REACT_APP_HOST_API/product${parameter}`;
     axios
       .get(url)
       .then((result) => {
@@ -71,7 +70,7 @@ function Product() {
 
   const handleForFoods = () => {
     const parameter = "?category=ea71bfcd-f1f1-4976-ae1e-9ff0f2c70d0e";
-    const url = `http://localhost:8080/product${parameter}`;
+    const url = `process.env.REACT_APP_HOST_API/product${parameter}`;
     axios
       .get(url)
       .then((result) => {
@@ -83,7 +82,7 @@ function Product() {
       .catch((error) => console.error(error));
   };
   const handleForAllMenu = () => {
-    const url = `http://localhost:8080/product/all`;
+    const url = `process.env.REACT_APP_HOST_API/product/all`;
     axios
       .get(url)
       .then((result) => {

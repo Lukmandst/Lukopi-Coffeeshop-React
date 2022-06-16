@@ -62,7 +62,7 @@ class ProductDetails extends Component {
             <section className="left-col-details">
               <div className="details-product-image">
                 <img
-                  src={`http://localhost:8080${products.image}`}
+                  src={`${process.env.REACT_APP_HOST_API}${products.image}`}
                   alt="product-img"
                 />
               </div>

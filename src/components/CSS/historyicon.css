@@ -6,9 +6,10 @@
   border: none;
   align-items: center;
   padding: 10px;
+  justify-content: space-around;
 }
 
-.history-icon .product-icon {
+.history-product-icon {
   max-width: 75px;
   height: 75px;
   border-radius: 75px;
@@ -16,7 +17,7 @@
   background:#fff
 }
 
-.product-icon > img {
+.history-product-icon > img {
   width: 75px;
   height: 75px;
   border-radius: 75px;
