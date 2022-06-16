@@ -1,21 +1,17 @@
-.p-details-row {
-  /* border-top: 2px solid grey; */
-  padding: 10px 40px;
-}
-
 .left-col-details,
-.right-col-details {
+.right-col-details,
+.checkout-details {
   display: flex;
   text-align: center;
-  padding: 30px;
+  padding: 10px 30px;
+  gap: 30px;
   /* height: 100%;
   min-height: 600px; */
 }
 
 .product-desc {
   width: 100%;
-  max-width: 700px;
-  padding: 5px 25px;
+  padding: 10px;
 }
 .product-price {
   font-family: "Poppins";
@@ -49,11 +45,8 @@
 
 .delivery-wrapper {
   display: flex;
-  margin: auto;
   text-align: left;
   width: 100%;
-  max-width: 500px;
-  height: 300px;
   background-color: #fff;
   filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.35));
   border-radius: 20px;
@@ -62,11 +55,11 @@
   justify-content: space-around;
 }
 
-.delivery-time-section {
+/* .delivery-time-section {
   width: 100%;
-}
+} */
 
-.delivery-time-section > header {
+.delivery-wrapper > header {
   font-family: "Poppins";
   font-weight: 700;
   /* font-size: 25px; */
@@ -99,10 +92,9 @@
 .now-wrapper > label:hover {
   background: #6a4029;
   color: #fff;
-  font-weight: 700;
 }
 
-.radio_input:checked +.radio_label{
+.radio_input:checked + .radio_label {
   background: #6a4029;
   color: #fff;
   font-weight: 700;
@@ -113,12 +105,7 @@
   border: 1px solid rgba(186, 186, 186, 0.35);
   border-radius: 10px;
   padding: 10px;
-  max-width: 250px;
   width: 100%;
-}
-
-.right-col-details {
-  gap: 15px;
 }
 
 .product-title {
@@ -138,7 +125,7 @@
 }
 
 .delivery-time-product {
-  max-width: 430px;
+  /* max-width: 430px; */
   text-align: left;
   font-family: "Poppins";
   font-weight: 400;
@@ -152,7 +139,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: inherit;
+  gap: 15px;
 }
 .counter-and-price {
   justify-content: space-between;
@@ -165,7 +152,7 @@
   font-size: 25px;
   border-radius: 20px;
   width: 100%;
-  height: 85px;
+  height: 80px;
   border: none;
 }
 
@@ -179,37 +166,32 @@
   color: #6a4029;
 }
 
-.checkout-row {
-  padding: 10px 65px;
-  gap: 30px;
+.size-wrapper {
+  text-align: center;
+  width: 35%;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.col-size,
+.size-wrapper,
 .col-checkout {
   padding: 15px;
   background-color: #fff;
   filter: drop-shadow(0px 6px 20px rgba(0, 0, 0, 0.35));
   border-radius: 20px;
 }
-.col-size {
+/* .col-size {
   text-align: center;
   width: 100%;
   max-width: 300px;
   flex-direction: column;
   gap: 10px;
-}
+} */
 
-.col-size > header {
+.size-wrapper > header {
   font-family: "Poppins";
   font-weight: 700;
   font-size: 25px;
-}
-
-.input-menu {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: inherit;
 }
 
 .input-menu .counter {
@@ -237,29 +219,32 @@
 .size-btn {
   justify-content: space-around;
 }
+
 .size-btn > label {
   font-weight: 700;
   font-size: 30px;
   width: 70px;
   height: 70px;
-  background: #ffba33;
-  border: none;
+  background: #fff;
+  filter: drop-shadow(0px 2px 10px rgba(0, 0, 0, 0.15));
   border-radius: 70px;
   color: black;
   padding: 13px;
   cursor: pointer;
 }
 .size-btn > label:hover {
-  color: #fff;
+  background-color: #ffba33;
+  transition: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.radio_input:checked +.r-btn{
+.radio_input:checked + .r-btn {
   background: #6a4029;
   color: #fff;
-  font-weight: 700;
+  /* font-weight: 700; */
 }
 
 .col-checkout {
+  width: 70%;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
@@ -303,8 +288,8 @@
   margin: auto;
 }
 .checkout-btn {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 100px;
   background-color: #ffba33;
   border: none;
@@ -315,25 +300,50 @@
 
 @media screen and (max-width: 768px) {
   .left-col-details,
-  .right-col-details {
-    flex-direction: column;
+  .right-col-details,
+  .checkout-details {
+    padding: 15px;
   }
 
+  .left-col-details,
+  .checkout-details {
+    flex-direction: column;
+  }
+  .right-col-details {
+    flex-direction: column-reverse;
+  }
+  .delivery-wrapper {
+    gap: 10px;
+  }
   .delivery-time-section {
     width: 100%;
   }
   .counter-and-price {
-    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 15px;
     justify-content: space-between;
   }
-  .product-title{
+  .product-title {
     font-size: 35px;
   }
-  .details-product-image{
-    height:unset;
+  .details-product-image {
+    height: unset;
   }
-  .details-product-image >img{
+  .details-product-image > img {
     height: 240px;
     width: 240px;
+  }
+
+  .input-menu .counter {
+    height: 40px;
+  }
+
+  .size-wrapper,
+  .col-checkout {
+    width: 100%;
+  }
+  .add-to-cart-btn,
+  .ask-a-staff-btn {
+    height: 60px;
   }
 }

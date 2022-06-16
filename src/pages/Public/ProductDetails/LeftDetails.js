@@ -16,7 +16,6 @@ function LeftDetails({ products }) {
           <div className="delivery-time-product">
             Delivery only on Monday - Friday
           </div>
-          <div className="amount-price-wrapper d-flex"></div>
         </div>
       </section>
     </>

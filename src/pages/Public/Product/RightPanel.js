@@ -28,7 +28,7 @@ function RightPanel() {
     (state) => state.ProductReducer
   );
   const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
-console.log('ini',sortState)
+  console.log("ini", sortState);
   // Get current product
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -43,62 +43,91 @@ console.log('ini',sortState)
     <>
       <div className="col right-panel">
         <div className="container">
-          <div className="category-wrapper">
-            <ul className="category-menu mx-auto">
-              <li className="menu-item-home">
-                <div
-                  className="menu-link active"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(getListProducts({ sort: sort }));
-                    setSearchParams();
-                    Window.scrollTo(0,0)
-                  }}
-                >
-                  All Menu
-                </div>
-              </li>
-              <li className="menu-item">
-                <div
-                  className="menu-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(getCoffee({ sort: sort }));
-                    setSearchParams({ category: "Coffee" });
-                    Window.scrollTo(0,0)
-                  }}
-                >
-                  Coffee
-                </div>
-              </li>
-              <li className="menu-item">
-                <div
-                  className="menu-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(getNonCoffe({ sort: sort }));
-                    setSearchParams({ category: "NonCoffee" });
-                    Window.scrollTo(0,0)
-                  }}
-                >
-                  Non Coffee
-                </div>
-              </li>
-              <li className="menu-item">
-                <div
-                  className="menu-link"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(getFoods({ sort: sort }));
-                    setSearchParams({ category: "Foods" });
-                    Window.scrollTo(0,0)
-                  }}
-                >
-                  Foods
-                </div>
-              </li>
-              <li className="menu-item">
-                <DropdownButton
+          <div className="category-wrapper d-flex">
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="Favourite"
+              value="Favourite"
+              onClick={(e) => {}}
+            />
+            <label htmlFor="Favourite" className="radio_label_category category-btn">
+              Favourite
+            </label>
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="All-Menu"
+              value="All-Menu"
+              onClick={() => {
+                dispatch(getListProducts({ sort: sort }));
+                setSearchParams();
+                Window.scrollTo(0, 0);
+              }}
+            />
+            <label htmlFor="All-Menu" className="radio_label_category category-btn">
+              All Menu
+            </label>
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="Coffee"
+              value="Coffee"
+              onClick={() => {
+               
+                dispatch(getCoffee({ sort: sort }));
+                setSearchParams({ category: "Coffee" });
+                Window.scrollTo(0, 0);
+              }}
+            />
+            <label htmlFor="Coffee" className="radio_label_category category-btn">
+              Coffee
+            </label>
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="Non-Coffee"
+              value="NonCoffee"
+              onClick={() => {
+                
+                dispatch(getNonCoffe({ sort: sort }));
+                setSearchParams({ category: "NonCoffee" });
+                Window.scrollTo(0, 0);
+              }}
+            />
+            <label htmlFor="Non-Coffee" className="radio_label_category category-btn">
+              Non Coffee
+            </label>
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="Foods"
+              value="Foods"
+              onClick={() => {
+              
+                dispatch(getFoods({ sort: sort }));
+                setSearchParams({ category: "Foods" });
+                Window.scrollTo(0, 0);
+              }}
+            />
+            <label htmlFor="Foods" className="radio_label_category category-btn">
+              Foods
+            </label>
+            <input
+              className="radio_input_category d-none"
+              type="radio"
+              name="category"
+              id="sort"
+              value="Sort"
+              onClick={(e) => {}}
+            />
+            <label htmlFor="sort" className="radio_label_category category-btn">
+            <DropdownButton
                   id="dropdown-basic-button"
                   variant="Secondary"
                   title="Sort"
@@ -107,7 +136,7 @@ console.log('ini',sortState)
                     onClick={(e) => {
                       e.preventDefault();
                       setSort("ASC");
-                      Window.scrollTo(0,0)
+                      Window.scrollTo(0, 0);
                       // dispatch(setSortASC());
                     }}
                   >
@@ -117,16 +146,16 @@ console.log('ini',sortState)
                     onClick={(e) => {
                       e.preventDefault();
                       setSort("DESC");
-                      Window.scrollTo(0,0)
+                      Window.scrollTo(0, 0);
                       // dispatch(setSortDESC());
                     }}
                   >
                     Z-A
                   </Dropdown.Item>
                 </DropdownButton>
-              </li>
-            </ul>
+            </label>
           </div>
+
           <div className="show-product">
             <div className=" product-wrapper d-flex">
               {postUserLoginRole === "admin" && currentPosts

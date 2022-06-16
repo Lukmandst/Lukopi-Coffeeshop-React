@@ -54,7 +54,8 @@ class RightDetails extends Component {
     return (
       <>
         <section className="right-col-details ">
-          <div className="delivery-time-section">
+          {/* <div className="delivery-time-section">
+          </div> */}
             <div className="delivery-wrapper">
               <header>Delivery and Time</header>
               <div className="delivery-category d-flex">
@@ -139,7 +140,6 @@ class RightDetails extends Component {
                 ></input>
               </div>
             </div>
-          </div>
           <div className="input-menu">
             <div className="counter-and-price d-flex">
               <div className="counter">
