@@ -18,6 +18,7 @@ function NavbarMenu({ page }) {
             navigate("/");
           }}
           checked={page === "home" ? true : false}
+          readOnly={true}
         />
         <label htmlFor="home" className="radio_label_nav">
           home
@@ -32,6 +33,7 @@ function NavbarMenu({ page }) {
             navigate("/products");
           }}
           checked={page === "product" ? true : false}
+          readOnly={true}
         />
         <label htmlFor="product" className="radio_label_nav">
           product
@@ -46,6 +48,7 @@ function NavbarMenu({ page }) {
             navigate("/yourcart");
           }}
           checked={page === "yourcart" ? true : false}
+          readOnly={true}
         />
         <label htmlFor="yourcart" className="radio_label_nav">
           your Cart
@@ -60,6 +63,7 @@ function NavbarMenu({ page }) {
             navigate("/history");
           }}
           checked={page === "history" ? true : false}
+          readOnly={true}
         />
         <label htmlFor="history" className="radio_label_nav">
           history
