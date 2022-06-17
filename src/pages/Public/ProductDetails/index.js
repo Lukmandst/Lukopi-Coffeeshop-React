@@ -11,8 +11,6 @@ import withParams from "../../../helper/WithParams";
 import LeftDetails from "./LeftDetails";
 import RightDetails from "./RightDetails";
 
-import { addIdSizeToCart } from "../../../Redux/actions/transactionActions";
-
 import "./product-details.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -55,7 +53,11 @@ class ProductDetails extends Component {
               <Link to={`/products/${params.id}`}> / {products.name}</Link>
             </header>
             <LeftDetails products={products} />
-            <RightDetails products={products} productid={productid} size={size}/>
+            <RightDetails
+              products={products}
+              productid={productid}
+              size={size}
+            />
             <section className="checkout-details ">
               <div className="size-wrapper">
                 <header>Choose a size</header>
@@ -154,15 +156,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addIdSize: (data) => {
-      dispatch(addIdSizeToCart(data));
-    },
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withParams(ProductDetails));
+export default connect(mapStateToProps)(withParams(ProductDetails));
