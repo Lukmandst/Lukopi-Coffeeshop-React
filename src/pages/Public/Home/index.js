@@ -28,7 +28,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar page='home'/>
         <header className="hero-image d-flex">
           <div className="container container-hero d-flex">
             <div className="col-hero d-flex d-none d-md-block">

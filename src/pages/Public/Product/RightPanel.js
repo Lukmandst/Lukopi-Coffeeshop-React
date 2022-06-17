@@ -4,8 +4,8 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 
 import Pagination from "../../../components/Pagination";
-import ProductIcon from "../../../components/ProductIcon";
-import ProductIconAdmin from "../../../components/ProductIconAdmin";
+import ProductIcon from "../../../components/ProductIcon/ProductIcon";
+import ProductIconAdmin from "../../../components/ProductIcon/ProductIconAdmin";
 import {
   getCoffee,
   getFoods,

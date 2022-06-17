@@ -49,7 +49,7 @@ function History() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar page='history'/>
       <section className="container-fluid history-wrapper">
         <div className="row">
           <div className="col history-col">

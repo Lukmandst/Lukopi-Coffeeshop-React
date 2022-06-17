@@ -32,9 +32,9 @@ class Navbar extends Component {
             <ul className="navbar-nav mx-auto">
               <div className="menu-wrapper">
                 {this.props.role === "admin" ? (
-                  <NavbarMenuAdmin />
+                  <NavbarMenuAdmin page={this.props.page} />
                 ) : (
-                  <NavbarMenu />
+                  <NavbarMenu page={this.props.page} />
                 )}
               </div>
             </ul>

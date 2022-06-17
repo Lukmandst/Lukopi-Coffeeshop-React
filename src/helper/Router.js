@@ -15,9 +15,9 @@ import Profile from "../pages/Public/Profile";
 import SignIn from "../pages/Auth/SignIn";
 import SignUp from "../pages/Auth/SignUp";
 
-import PrivateElement from "../components/PrivateElement";
-import PrivateElementAfterLogin from "../components/PrivateElementAfterLogin";
-import PrivateElementAfterLoginAdmin from "../components/PrivateElementAfterLoginAdmin";
+import PrivateElement from "../components/PrivateElement/PrivateElement";
+import PrivateElementAfterLogin from "../components/PrivateElement/PrivateElementAfterLogin";
+import PrivateElementAfterLoginAdmin from "../components/PrivateElement/PrivateElementAfterLoginAdmin";
 
 function Router() {
   return (

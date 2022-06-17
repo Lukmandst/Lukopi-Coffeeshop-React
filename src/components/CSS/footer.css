@@ -1,145 +1,135 @@
-.footer-clean {
-    height: 416px;
-    color: #4f5665;
-    /* background-color: yellowgreen; */
-    margin-top: 65px;
-    justify-content: space-between;
+footer {
+  background-color: #f8f8f8;
+}
+
+.logo .brand-name {
+  color: black;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.desc-footer {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 30px;
+  text-decoration: solid;
+}
+
+.footer-wrapper {
+  justify-content: space-between;
+  min-height: 300px;
+  align-items: center;
+}
+
+.footer-section-wrapper {
+  width: 45%;
+  justify-content: space-between;
+}
+
+.footer-profile,
+.footer-product,
+.footer-engage {
+  padding: 10px;
+}
+
+.footer-profile {
+  width: 30%;
+}
+
+.footer-product > ul,
+.footer-engage > ul {
+  padding: 0;
+}
+.socmed-wrap {
+  gap: 10px;
+}
+
+.socmed-wrap .circle {
+  background-color: #6a4029;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  row-gap: 20px;
+}
+.socmed-wrap .fb {
+  background-image: url(/src/assets/image/vector/fb.svg);
+  background-position: center;
+}
+
+.socmed-wrap .twt {
+  background-image: url(/src/assets/image/vector/twitter.svg);
+  background-position: center;
+}
+
+.socmed-wrap .ig {
+  background-image: url(/src/assets/image/vector/ig.svg);
+  background-position: center;
+}
+
+/* card */
+
+.card {
+  width: 75%;
+  height: 233px;
+  /* background: #ffffff; */
+  border-radius: 10px;
+  display: block;
+  margin: auto;
+  top: 50%;
+  border: none;
+  box-shadow: 0px 0.06px 10px #0d1025;
+  position: static;
+}
+
+.card-wrapper {
+  position: relative;
+  left: 0%;
+  right: 15%;
+}
+.card-body > ul {
+  width: 410px;
+  height: 116px;
+}
+
+.card .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+}
+.card-body .card-title {
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 45px;
+  /* or 129% */
+}
+
+.card .btn-create {
+  width: 250px;
+  height: 60px;
+  background: #ffba33;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6a4029;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-wrapper {
+    flex-direction: column;
   }
-  .socmed-wrap .circle {
-    background-color: #6a4029;
-    height: 30px;
-    width: 30px;
-    border-radius: 30px;
-    row-gap: 20px;
+  .footer-section-wrapper {
+    width: 100%;
   }
-  .socmed-wrap .fb {
-    background-image: url(/src/assets/image/vector/fb.svg);
-    background-position: center;
+  .footer-profile,
+  .footer-product,
+  .footer-engage {
+    width: 100%;
   }
-  
-  .socmed-wrap .twt {
-    background-image: url(/src/assets/image/vector/twitter.svg);
-    background-position: center;
-  }
-  
-  .socmed-wrap .ig {
-    background-image: url(/src/assets/image/vector/ig.svg);
-    background-position: center;
-  }
-  
-  /* card */
-  
-  .card {
-    width: 75%;
-    height: 233px;
-    /* background: #ffffff; */
-    border-radius: 10px;
-    display: block;
-    margin: auto;
-    top: 50%;
-    border: none;
-    box-shadow: 0px 0.06px 10px #0d1025;
-    position: static;
-  }
-  
-  .card-wrapper {
-    position: relative;
-    left: 0%;
-    right: 15%;
-  }
-  .card-body > ul {
-    width: 410px;
-    height: 116px;
-  }
-  
-  .card .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
-  }
-  .card-body .card-title {
-    font-weight: 500;
-    font-size: 35px;
-    line-height: 45px;
-    /* or 129% */
-  }
-  
-  .card .btn-create {
-    width: 250px;
-    height: 60px;
-    background: #ffba33;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* text-align: center; */
-    /* identical to box height, or 156% */
-  
-    color: #6a4029;
-  }
-  
-  footer {
-    background-color: #f8f8f8;
-  }
-  .f-wrapper {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 30px;
-  }
-  .logo .brand-name {
-    color: black;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-  }
-  
-  .desc-footer {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 30px;
-    text-decoration: solid;
-  }
-  .item {
-    margin-top: 10%;
-    /* background-color: #6a4029; */
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .f-wrapper .side .wrapper {
-    position: relative;
-    left: 200px;
-    width: 37%;
-    /* text-align: right; */
-    /* left: 50px; */
-    /* background-color: #6a4029; */
-  }
-  
-  .item .wrapper > ul > li {
-    font-weight: 400;
-    font-size: 16px;
-  }
-  .item > h4 {
-    margin-right: 25px;
-    color: black;
-    font-weight: 500;
-    font-size: 18px;
-  }
-  
-  .f-wrapper .main {
-    gap: 20px;
-    /* background-color: #ffba33; */
-  }
-  
-  .f-wrapper .side .one {
-    left: 300px;
-  }
-  
-  .f-wrapper .side .two {
-    left: 300px;
-  }
+}

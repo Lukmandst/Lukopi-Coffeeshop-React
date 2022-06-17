@@ -6,7 +6,7 @@ class orders extends Component {
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar page="orders" />
         <div className="container">orders</div>
         <Footer />
       </>

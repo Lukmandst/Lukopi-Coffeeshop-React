@@ -9,7 +9,7 @@ class dashboard extends Component {
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar page="dashboard" />
         <div className="container dashboard-container">
           <header className="dashboard-header">
             See how your store progress so far
@@ -36,7 +36,9 @@ class dashboard extends Component {
               <div className="goals-section">
                 <header>
                   <p>Goals</p>
-                  <span>Your goals is still on 76%. Keep up the good work!</span>
+                  <span>
+                    Your goals is still on 76%. Keep up the good work!
+                  </span>
                 </header>
               </div>
               <button className="share-report-btn">Share Report</button>

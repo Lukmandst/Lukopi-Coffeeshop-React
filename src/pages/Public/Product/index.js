@@ -23,7 +23,7 @@ function Product() {
   }, [dispatch, sort]);
   return (
     <div>
-      <Navbar />
+      <Navbar page="product" />
       <section className="product">
         <div className="container">
           <div className="row">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CurrencyFormatter } from "../helper/CurrencyFormatter";
-import "./CSS/productIcon.css";
+import { CurrencyFormatter } from "../../helper/CurrencyFormatter";
+import "../CSS/productIcon.css";
 
 function ProductIcon({ data }) {
   const navigate = useNavigate();

@@ -3,13 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../CSS/navbar.css";
 import { useNavigate } from "react-router-dom";
 
-function NavbarMenu() {
+function NavbarMenu({ page }) {
   const navigate = useNavigate();
   return (
     <>
       <div className="menu mx-auto">
         <input
-          className="radio_input_nav d-none"
+          className={`radio_input_nav d-none`}
           type="radio"
           name="menu"
           id="home"
@@ -17,6 +17,7 @@ function NavbarMenu() {
             e.preventDefault();
             navigate("/");
           }}
+          checked={page === "home" ? true : false}
         />
         <label htmlFor="home" className="radio_label_nav">
           home
@@ -30,6 +31,7 @@ function NavbarMenu() {
             e.preventDefault();
             navigate("/products");
           }}
+          checked={page === "product" ? true : false}
         />
         <label htmlFor="product" className="radio_label_nav">
           product
@@ -43,6 +45,7 @@ function NavbarMenu() {
             e.preventDefault();
             navigate("/yourcart");
           }}
+          checked={page === "yourcart" ? true : false}
         />
         <label htmlFor="yourcart" className="radio_label_nav">
           your Cart
@@ -56,6 +59,7 @@ function NavbarMenu() {
             e.preventDefault();
             navigate("/history");
           }}
+          checked={page === "history" ? true : false}
         />
         <label htmlFor="history" className="radio_label_nav">
           history

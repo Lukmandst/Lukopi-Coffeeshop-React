@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CurrencyFormatter } from "../helper/CurrencyFormatter";
-import "./CSS/productIcon.css";
+import { CurrencyFormatter } from "../../helper/CurrencyFormatter";
+import "../CSS/productIcon.css";
 
 function ProductIconAdmin({ data }) {
   return (

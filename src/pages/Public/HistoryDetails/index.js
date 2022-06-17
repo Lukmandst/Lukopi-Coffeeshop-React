@@ -52,7 +52,7 @@ class ProductDetails extends Component {
     const { params } = this.props;
     return (
       <div>
-        <Navbar />
+        <Navbar page="history" />
         <div className="container details-container">
           <div className="row p-details-row">
             <header>
