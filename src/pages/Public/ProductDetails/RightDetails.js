@@ -28,118 +28,107 @@ class RightDetails extends Component {
 
   handleAddtoCart = (e) => {
     const { delivery, quantity } = this.state;
+    const { productid, size } = this.props;
     e.preventDefault();
     this.props.addToCart({
       quantity: quantity,
       delivery: delivery,
       showMiniCart: true,
+      productid: productid,
+      size: size,
     });
-    // localStorage.setItem(
-    //   "usercart",
-    //   JSON.stringify({
-    //     id: productid,
-    //     quantity: quantity,
-    //     size: size,
-    //     delivery: delivery,
-    //   })
-    // );
-    // this.setState({
-    //   showMiniCart: true,
-    // });
-    // const carti = JSON.parse(localStorage.getItem("usercart"));
-    // console.log(carti);
   };
   render() {
-    // console.log(this.props.addToCart)
+
     return (
       <>
         <section className="right-col-details ">
           {/* <div className="delivery-time-section">
           </div> */}
-            <div className="delivery-wrapper">
-              <header>Delivery and Time</header>
-              <div className="delivery-category d-flex">
-                <input
-                  className="radio_input d-none"
-                  type="radio"
-                  name="delivery"
-                  id="Dine-In"
-                  value="Dine In"
-                  onClick={(e) => {
-                    this.setState({
-                      delivery: e.target.value,
-                    });
-                  }}
-                />
-                <label htmlFor="Dine-In" className="radio_label dine-in-btn">
-                  Dine In
-                </label>
-                <input
-                  className="radio_input d-none"
-                  type="radio"
-                  name="delivery"
-                  id="Door-Delivery"
-                  value="Door Delivery"
-                  onClick={(e) => {
-                    this.setState({
-                      delivery: e.target.value,
-                    });
-                  }}
-                />
-                <label
-                  htmlFor="Door-Delivery"
-                  className="radio_label dine-in-btn"
-                >
-                  Door Delivery
-                </label>
-                <input
-                  className="radio_input d-none"
-                  type="radio"
-                  name="delivery"
-                  id="Pick-Up"
-                  value="Pick Up"
-                  onClick={(e) => {
-                    this.setState({
-                      delivery: e.target.value,
-                    });
-                  }}
-                />
-                <label htmlFor="Pick-Up" className="radio_label dine-in-btn">
-                  Pick Up
-                </label>
-              </div>
-              <div className="now-wrapper d-flex">
-                Now
-                <input
-                  className="radio_input d-none"
-                  type="radio"
-                  name="now"
-                  id="yes"
-                  value="Yes"
-                />
-                <label htmlFor="yes" className="radio_label yes-btn">
-                  Yes
-                </label>
-                <input
-                  className="radio_input d-none"
-                  type="radio"
-                  name="now"
-                  id="no"
-                  value="No"
-                />
-                <label htmlFor="no" className="radio_label no-btn">
-                  No
-                </label>
-              </div>
-              <div className="set-time-wrapper">
-                Set time
-                <input
-                  name="time"
-                  placeholder="Enter time for reservation"
-                  type="text"
-                ></input>
-              </div>
+          <div className="delivery-wrapper">
+            <header>Delivery and Time</header>
+            <div className="delivery-category d-flex">
+              <input
+                className="radio_input d-none"
+                type="radio"
+                name="delivery"
+                id="Dine-In"
+                value="Dine In"
+                onClick={(e) => {
+                  this.setState({
+                    delivery: e.target.value,
+                  });
+                }}
+              />
+              <label htmlFor="Dine-In" className="radio_label dine-in-btn">
+                Dine In
+              </label>
+              <input
+                className="radio_input d-none"
+                type="radio"
+                name="delivery"
+                id="Door-Delivery"
+                value="Door Delivery"
+                onClick={(e) => {
+                  this.setState({
+                    delivery: e.target.value,
+                  });
+                }}
+              />
+              <label
+                htmlFor="Door-Delivery"
+                className="radio_label dine-in-btn"
+              >
+                Door Delivery
+              </label>
+              <input
+                className="radio_input d-none"
+                type="radio"
+                name="delivery"
+                id="Pick-Up"
+                value="Pick Up"
+                onClick={(e) => {
+                  this.setState({
+                    delivery: e.target.value,
+                  });
+                }}
+              />
+              <label htmlFor="Pick-Up" className="radio_label dine-in-btn">
+                Pick Up
+              </label>
             </div>
+            <div className="now-wrapper d-flex">
+              Now
+              <input
+                className="radio_input d-none"
+                type="radio"
+                name="now"
+                id="yes"
+                value="Yes"
+              />
+              <label htmlFor="yes" className="radio_label yes-btn">
+                Yes
+              </label>
+              <input
+                className="radio_input d-none"
+                type="radio"
+                name="now"
+                id="no"
+                value="No"
+              />
+              <label htmlFor="no" className="radio_label no-btn">
+                No
+              </label>
+            </div>
+            <div className="set-time-wrapper">
+              Set time
+              <input
+                name="time"
+                placeholder="Enter time for reservation"
+                type="text"
+              ></input>
+            </div>
+          </div>
           <div className="input-menu">
             <div className="counter-and-price d-flex">
               <div className="counter">

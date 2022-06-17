@@ -15,8 +15,10 @@ class Payment extends Component {
   state = {
     isSuccess: false,
     products: [],
+    subtotal: 0,
     tax: 0,
-    Bill: 0,
+    ship: 0,
+    bill: 0,
   };
 
   handlerCreateTransaction = (e) => {
@@ -27,6 +29,7 @@ class Payment extends Component {
       quantity: this.props.itemData.quantity,
       delivery: this.props.itemData.delivery,
       token: this.props.token,
+      total_price: this.state.bill,
     });
     this.setState({
       isSuccess: true,
@@ -44,30 +47,36 @@ class Payment extends Component {
     } catch (error) {
       console.error(error);
     }
-    let tax = parseInt(this.state.products.price) * 0.1;
-    let Bill = tax + parseInt(this.state.products.price);
+    const { products } = this.state;
+    const { itemData } = this.props;
+    let subtotal = products.price * itemData.quantity;
+    let tax = subtotal * 0.1;
+    let ship = itemData.delivery !== "Dine In" ? 10000 : 0;
+    let bill = subtotal + tax + ship;
     this.setState({
+      bill: bill,
+      subtotal: subtotal,
       tax: tax,
-      Bill: Bill,
+      ship: ship,
     });
   }
 
   render() {
-    const { products, Bill, tax } = this.state;
+    const { products, tax, ship, bill, subtotal } = this.state;
     const { UserData, itemData } = this.props;
-
+    console.log(itemData);
     if (this.state.isSuccess) {
       return <Navigate to="/products" />;
     }
+    // console.log(subtotal, tax, bill);
 
     return (
       <>
-        <Navbar />
-
-        <section className="container-fluid payment-container">
+        <Navbar page="yourcart" />
+        <main className="container-fluid payment-container">
           {itemData.product_id ? (
-            <div className="row">
-              <div className="col payment-left">
+            <div className="payment-main-section container d-flex">
+              <div className="payment-left">
                 <header>
                   <h1>Checkout your item now!</h1>
                 </header>
@@ -106,36 +115,25 @@ class Payment extends Component {
                     <div className="subtotal d-flex">
                       <p>SUBTOTAL</p>
                       <p className="fee">
-                        {products.price
-                          ? CurrencyFormatter.format(products.price)
-                          : 0}
+                        {CurrencyFormatter.format(subtotal)}
                       </p>
                     </div>
                     <div className="taxandfee d-flex">
                       <p>TAX & FEE</p>
-                      <p className="fee">
-                        {tax ? CurrencyFormatter.format(tax) : 0}
-                      </p>
+                      <p className="fee">{CurrencyFormatter.format(tax)}</p>
                     </div>
                     <div className="shipping d-flex">
                       <p>SHIPPING</p>
-                      <p className="fee">
-                        {" "}
-                        {itemData.delivery !== "Dine In"
-                          ? CurrencyFormatter.format(10000)
-                          : 0}
-                      </p>
+                      <p className="fee">{CurrencyFormatter.format(ship)}</p>
                     </div>
                     <div className="total d-flex">
                       <p>TOTAL</p>
-                      <p className="fee">
-                        {CurrencyFormatter.format(Bill + 10000)}
-                      </p>
+                      <p className="fee">{CurrencyFormatter.format(bill)}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col payment-right">
+              <div className="payment-right">
                 <div className="address-wrapper">
                   <header className="d-flex">
                     <h4>Address Details</h4>
@@ -189,12 +187,12 @@ class Payment extends Component {
               </div>
             </div>
           ) : (
-            <section className="col d-flex notfound payment-empty">
+            <section className="d-flex notfound payment-empty">
               <header>Oops!</header>
               <h1>You haven't added anything into your cart :(</h1>
             </section>
           )}
-        </section>
+        </main>
 
         <Footer />
       </>

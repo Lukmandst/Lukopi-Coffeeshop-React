@@ -26,11 +26,6 @@ class ProductDetails extends Component {
     };
   }
 
-  handleSizeId = () => {
-    const { productid, size } = this.state;
-    this.props.addIdSize({ productid, size });
-  };
-
   async componentDidMount() {
     const { params } = this.props;
 
@@ -46,18 +41,13 @@ class ProductDetails extends Component {
       console.error(error);
     }
   }
-  componentDidUpdate() {
-    if (this.state.size) {
-      this.handleSizeId();
-    }
-  }
 
   render() {
-    const { products } = this.state;
+    const { products, productid, size } = this.state;
     const { params } = this.props;
     return (
       <div>
-        <Navbar />
+        <Navbar page="product" />
         <div className="container details-container">
           <div className="row p-details-row">
             <header className="p-details-header">
@@ -65,86 +55,86 @@ class ProductDetails extends Component {
               <Link to={`/products/${params.id}`}> / {products.name}</Link>
             </header>
             <LeftDetails products={products} />
-            <RightDetails products={products} />
+            <RightDetails products={products} productid={productid} size={size}/>
             <section className="checkout-details ">
-                <div className="size-wrapper">
-                  <header>Choose a size</header>
-                  <div className="size-btn d-flex">
-                    <input
-                      className="radio_input d-none"
-                      type="radio"
-                      name="size"
-                      id="regular"
-                      value="Regular"
-                      onClick={(e) => {
-                        this.setState({
-                          size: e.target.value,
-                        });
-                      }}
+              <div className="size-wrapper">
+                <header>Choose a size</header>
+                <div className="size-btn d-flex">
+                  <input
+                    className="radio_input d-none"
+                    type="radio"
+                    name="size"
+                    id="regular"
+                    value="Regular"
+                    onClick={(e) => {
+                      this.setState({
+                        size: e.target.value,
+                      });
+                    }}
+                  />
+                  <label htmlFor="regular" className="radio_label r-btn">
+                    R
+                  </label>
+                  <input
+                    className="radio_input d-none"
+                    type="radio"
+                    name="size"
+                    id="large"
+                    value="Large"
+                    onClick={(e) => {
+                      this.setState({
+                        size: e.target.value,
+                      });
+                    }}
+                  />
+                  <label htmlFor="large" className="radio_label r-btn">
+                    L
+                  </label>
+                  <input
+                    className="radio_input d-none"
+                    type="radio"
+                    name="size"
+                    id="extra-large"
+                    value="Extra Large"
+                    onClick={(e) => {
+                      this.setState({
+                        size: e.target.value,
+                      });
+                    }}
+                  />
+                  <label htmlFor="extra-large" className="radio_label r-btn">
+                    XL
+                  </label>
+                </div>
+              </div>
+
+              {this.props.showMiniCart ? (
+                <div className="col-checkout d-flex">
+                  <div className="product-img-checkout">
+                    <img
+                      src={`${process.env.REACT_APP_HOST_API}/${products.image}`}
+                      alt="product-icon"
                     />
-                    <label htmlFor="regular" className="radio_label r-btn">
-                      R
-                    </label>
-                    <input
-                      className="radio_input d-none"
-                      type="radio"
-                      name="size"
-                      id="large"
-                      value="Large"
-                      onClick={(e) => {
-                        this.setState({
-                          size: e.target.value,
-                        });
-                      }}
-                    />
-                    <label htmlFor="large" className="radio_label r-btn">
-                      L
-                    </label>
-                    <input
-                      className="radio_input d-none"
-                      type="radio"
-                      name="size"
-                      id="extra-large"
-                      value="Extra Large"
-                      onClick={(e) => {
-                        this.setState({
-                          size: e.target.value,
-                        });
-                      }}
-                    />
-                    <label htmlFor="extra-large" className="radio_label r-btn">
-                      XL
-                    </label>
+                  </div>
+                  <div className="product-details-checkout">
+                    <header>{products.name}</header>
+                    <p className="size-item-details">
+                      <span className="amount-item-details">
+                        x{this.props.quantity}
+                      </span>
+                      ({this.props.size})
+                    </p>
+                  </div>
+                  <div className="checkout-section d-flex">
+                    <p>checkout</p>
+                    <Link to="/yourcart">
+                      <button className="checkout-btn"></button>
+                    </Link>
                   </div>
                 </div>
-
-                {this.props.showMiniCart ? (
-                  <div className="col-checkout d-flex">
-                    <div className="product-img-checkout">
-                      <img
-                        src={`${process.env.REACT_APP_HOST_API}/${products.image}`}
-                        alt="product-icon"
-                      />
-                    </div>
-                    <div className="product-details-checkout">
-                      <header>{products.name}</header>
-                      <p className="size-item-details">
-                        <span className="amount-item-details">
-                          x{this.props.quantity}
-                        </span>
-                        ({this.props.size})
-                      </p>
-                    </div>
-                    <div className="checkout-section d-flex">
-                      <p>checkout</p>
-                      <Link to="/yourcart">
-                        <button className="checkout-btn"></button>
-                      </Link>
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
+              ) : (
+                <></>
+              )}
             </section>
           </div>
         </div>
@@ -157,6 +147,7 @@ class ProductDetails extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    itemData: state.TransactionsReducer,
     showMiniCart: state.TransactionsReducer.showMiniCart,
     quantity: state.TransactionsReducer.quantity,
     size: state.TransactionsReducer.size,

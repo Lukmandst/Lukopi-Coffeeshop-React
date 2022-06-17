@@ -10,13 +10,21 @@
   font-family: "Poppins", sans-serif;
 }
 
+.payment-main-section {
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.payment-left,
+.payment-right {
+  width: 50%;
+}
 .payment-left {
   text-align: center;
-  padding-left: 30px;
-  padding-right: 60px;
 }
 
 .payment-right {
+  margin-top: 140px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -72,10 +80,6 @@
   padding: 15px;
   padding-top: 50px;
   padding-bottom: 50px;
-}
-
-.payment-right {
-  margin-top: 140px;
 }
 
 .address-wrapper > header {
@@ -161,14 +165,26 @@
   background-position: center;
 }
 
-.payment-empty{
+.payment-empty {
   color: rgb(0, 0, 0);
   background: #fff;
   border-radius: 20px;
 }
 
-@media screen and (max-width: 600px) {
-  .product-wrapper {
+@media screen and (max-width: 768px) {
+  .payment-container {
+    padding: 15px 5px;
+  }
+
+  .payment-left,
+  .payment-right {
+    width: 100%;
+  }
+  .payment-right {
+    margin-top: 0;
+  }
+
+  .payment-main-section {
     flex-direction: column;
   }
 }
