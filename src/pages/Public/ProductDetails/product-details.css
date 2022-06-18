@@ -252,6 +252,10 @@
   text-align: center;
 }
 
+.checkout-product-wrapper{
+  gap: 15px;
+}
+
 .product-img-checkout {
   height: 100px;
   width: 100px;
@@ -268,6 +272,10 @@
   border-radius: 100px;
 }
 
+.product-details-checkout{
+  margin: auto;
+}
+
 .product-details-checkout > header {
   font-weight: 900;
   text-transform: uppercase;
@@ -275,6 +283,17 @@
 
 .product-details-checkout > p {
   font-weight: 400;
+}
+
+.product-delete-btn{
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: #6a4029;
+  background-image: url('/src/assets/image/vector/delete.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
 
 .checkout-section {

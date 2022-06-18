@@ -13,6 +13,7 @@ import RightDetails from "./RightDetails";
 
 import "./product-details.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { resetTransactionState } from "../../../Redux/actions/transactionActions";
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class ProductDetails extends Component {
 
   render() {
     const { products, productid, size } = this.state;
-    const { params } = this.props;
+    const { params, emptyCart } = this.props;
     return (
       <div>
         <Navbar page="product" />
@@ -112,20 +113,28 @@ class ProductDetails extends Component {
 
               {this.props.showMiniCart ? (
                 <div className="col-checkout d-flex">
-                  <div className="product-img-checkout">
-                    <img
-                      src={`${process.env.REACT_APP_HOST_API}/${products.image}`}
-                      alt="product-icon"
-                    />
-                  </div>
-                  <div className="product-details-checkout">
-                    <header>{products.name}</header>
-                    <p className="size-item-details">
-                      <span className="amount-item-details">
-                        x{this.props.quantity}
-                      </span>
-                      ({this.props.size})
-                    </p>
+                  <div className="checkout-product-wrapper d-flex">
+                    <div className="product-img-checkout">
+                      <img
+                        src={`${process.env.REACT_APP_HOST_API}/${products.image}`}
+                        alt="product-icon"
+                      />
+                    </div>
+                    <div className="product-details-checkout">
+                      <header>{products.name}</header>
+                      <p className="size-item-details">
+                        <span className="amount-item-details">
+                          x{this.props.quantity}
+                        </span>
+                        ({this.props.size})
+                      </p>
+                    </div>
+                    <div
+                      className="product-delete-btn"
+                      onClick={() => {
+                        emptyCart();
+                      }}
+                    ></div>
                   </div>
                   <div className="checkout-section d-flex">
                     <p>checkout</p>
@@ -135,7 +144,9 @@ class ProductDetails extends Component {
                   </div>
                 </div>
               ) : (
-                <></>
+                <div className="col-checkout">
+                  <h1 style={{ margin: "25px" }}>Check your item here!</h1>
+                </div>
               )}
             </section>
           </div>
@@ -156,4 +167,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withParams(ProductDetails));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    emptyCart: () => {
+      dispatch(resetTransactionState());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withParams(ProductDetails));

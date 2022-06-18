@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux/es/exports";
 import axios from "axios";
 
@@ -8,7 +8,10 @@ import Footer from "../../../components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./payment.css";
-import { createNewTransaction } from "../../../Redux/actions/transactionActions";
+import {
+  createNewTransaction,
+  resetTransactionState,
+} from "../../../Redux/actions/transactionActions";
 import { CurrencyFormatter } from "../../../helper/CurrencyFormatter";
 
 class Payment extends Component {
@@ -37,6 +40,7 @@ class Payment extends Component {
   };
 
   async componentDidMount() {
+    document.title = "Lukopi - Your Cart";
     try {
       const url = `${process.env.REACT_APP_HOST_API}/product?id=${this.props.itemData.product_id}`;
       const result = await axios.get(url);
@@ -63,7 +67,7 @@ class Payment extends Component {
 
   render() {
     const { products, tax, ship, bill, subtotal } = this.state;
-    const { UserData, itemData } = this.props;
+    const { UserData, itemData, emptyCart } = this.props;
     console.log(itemData);
     if (this.state.isSuccess) {
       return <Navigate to="/products" />;
@@ -106,6 +110,25 @@ class Payment extends Component {
                       </div>
                       <div className="payment-prdct-price">
                         {CurrencyFormatter.format(products.price)}
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                          display: "flex",
+                          gap: "10px",
+                        }}
+                      >
+                        <div
+                          className="product-delete-btn"
+                          onClick={() => {
+                            emptyCart();
+                          }}
+                        ></div>
+                        <Link to={`/products/${itemData.product_id}`}>
+                          <div className="product-edit-btn"></div>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -212,6 +235,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createOrder: (data) => {
       dispatch(createNewTransaction(data));
+    },
+    emptyCart: () => {
+      dispatch(resetTransactionState());
     },
   };
 };
