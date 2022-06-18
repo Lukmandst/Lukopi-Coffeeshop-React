@@ -97,7 +97,9 @@ class Profile extends Component {
         console.log(error);
       });
   };
-
+componentDidMount(){
+  document.title = "Lukopi - Profile";
+}
   render() {
     const { userData } = this.props;
     const { showModalLogOut, showModalEdit, isloggedIn } = this.state;

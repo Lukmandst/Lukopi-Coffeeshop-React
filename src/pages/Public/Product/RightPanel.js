@@ -24,11 +24,11 @@ function RightPanel() {
   const [_, setSearchParams] = useSearchParams();
 
   const dispatch = useDispatch();
-  const { getAllProductsResult, sortState } = useSelector(
+  const { getAllProductsResult } = useSelector(
     (state) => state.ProductReducer
   );
   const { postUserLoginRole } = useSelector((state) => state.SignInReducer);
-  console.log("ini", sortState);
+  
   // Get current product
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -38,7 +38,7 @@ function RightPanel() {
   );
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(sort);
+  
   return (
     <>
       <div className="col right-panel">
@@ -50,7 +50,10 @@ function RightPanel() {
               name="category"
               id="Favourite"
               value="Favourite"
-              onClick={(e) => {}}
+              onClick={(e) => {
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+              }}
+              defaultChecked
             />
             <label htmlFor="Favourite" className="radio_label_category category-btn">
               Favourite
@@ -64,7 +67,7 @@ function RightPanel() {
               onClick={() => {
                 dispatch(getListProducts({ sort: sort }));
                 setSearchParams();
-                Window.scrollTo(0, 0);
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
               }}
             />
             <label htmlFor="All-Menu" className="radio_label_category category-btn">
@@ -80,7 +83,7 @@ function RightPanel() {
                
                 dispatch(getCoffee({ sort: sort }));
                 setSearchParams({ category: "Coffee" });
-                Window.scrollTo(0, 0);
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
               }}
             />
             <label htmlFor="Coffee" className="radio_label_category category-btn">
@@ -96,7 +99,7 @@ function RightPanel() {
                 
                 dispatch(getNonCoffe({ sort: sort }));
                 setSearchParams({ category: "NonCoffee" });
-                Window.scrollTo(0, 0);
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
               }}
             />
             <label htmlFor="Non-Coffee" className="radio_label_category category-btn">
@@ -112,7 +115,7 @@ function RightPanel() {
               
                 dispatch(getFoods({ sort: sort }));
                 setSearchParams({ category: "Foods" });
-                Window.scrollTo(0, 0);
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
               }}
             />
             <label htmlFor="Foods" className="radio_label_category category-btn">

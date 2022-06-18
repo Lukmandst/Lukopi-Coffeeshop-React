@@ -6,6 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./forgotpass.css";
 
 class ForgotPass extends Component {
+  componentDidMount(){
+    document.title = "Lukopi - Forgot Password";
+  }
   render() {
     return (
       <>

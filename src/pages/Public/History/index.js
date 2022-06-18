@@ -29,12 +29,13 @@ function History() {
       .delete(`${process.env.REACT_APP_HOST_API}/transaction`, config)
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
-      setHistoryData([])
+    setHistoryData([]);
   };
 
   const { postUserLoginToken } = useSelector((state) => state.SignInReducer);
 
   useEffect(() => {
+    document.title = "Lukopi - History";
     const config = {
       headers: { Authorization: `Bearer ${postUserLoginToken}` },
     };
@@ -49,7 +50,7 @@ function History() {
 
   return (
     <div>
-      <Navbar page='history'/>
+      <Navbar page="history" />
       <section className="container-fluid history-wrapper">
         <div className="row">
           <div className="col history-col">
@@ -73,7 +74,9 @@ function History() {
                 <></>
               )}
               {currentPosts.length === 0 ? (
-                <div style={{color: '#fff'}}>You haven't purchase any product yet :(</div>
+                <div style={{ color: "#fff" }}>
+                  You haven't purchase any product yet :(
+                </div>
               ) : (
                 <></>
               )}

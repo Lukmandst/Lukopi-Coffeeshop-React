@@ -31,6 +31,10 @@ class SignIn extends Component {
     });
   };
 
+  componentDidMount(){
+    document.title = "Sign In";
+  }
+
   render() {
     const { isSuccess, isError, errormsg, showModal } = this.props;
 

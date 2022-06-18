@@ -30,6 +30,9 @@ class SignUp extends Component {
       showModal: false,
     });
   };
+  componentDidMount(){
+    document.title = "Sign Up";
+  }
 
   render() {
     const { isSuccess, isError, succesmsg, errormsg, showModal } = this.state;

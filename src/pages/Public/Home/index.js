@@ -25,6 +25,9 @@ import Teamwork from "../../../assets/image/stock/team-work.jpg";
 import "./home.css";
 
 class Home extends Component {
+  componentDidMount(){
+    document.title = "Lukopi - Coffee Shop";
+  }
   render() {
     return (
       <div>

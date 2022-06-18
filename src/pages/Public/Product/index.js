@@ -18,6 +18,7 @@ function Product() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    document.title = "Lukopi - Product";
     //call action getListProduct
     dispatch(getListProducts({ sort: sort }));
   }, [dispatch, sort]);

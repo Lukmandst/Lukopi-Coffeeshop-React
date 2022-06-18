@@ -6,6 +6,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./admin.css";
 
 class dashboard extends Component {
+  componentDidMount(){
+    document.title = "Lukopi - Dashboard";
+  }
   render() {
     return (
       <>

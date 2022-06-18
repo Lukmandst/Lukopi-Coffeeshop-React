@@ -33,6 +33,7 @@ class ProductDetails extends Component {
   };
 
   async componentDidMount() {
+    document.title = "Lukopi - History Details";
     const { params } = this.props;
     const url = `${process.env.REACT_APP_HOST_API}/product?id=${params.id}`;
     try {
