@@ -49,7 +49,7 @@ function NavbarMenuAdmin({page}) {
           readOnly={true}
         />
         <label htmlFor="Orders" className="radio_label_nav">
-          your Cart
+          Orders
         </label>
         <input
           className="radio_input_nav d-none"

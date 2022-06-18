@@ -23,6 +23,7 @@ export default function Pagination({ postsPerPage, totalPosts, paginate }) {
                 e.preventDefault();
                 paginate(number);
                 setSearchParams({ page: number });
+                window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
               }}
               to={number}
               className="page-link"
