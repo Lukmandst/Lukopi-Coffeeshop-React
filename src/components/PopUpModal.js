@@ -5,8 +5,6 @@ import { closeModal } from "../Redux/actions/userActions";
 import "./CSS/popUpModal.css";
 
 function PopUpModal({
-  show = true,
-  close,
   title = "Lukopi",
   body = "Input Body Message",
   btnMsg1 = "No",
