@@ -1,4 +1,8 @@
-# Lukopi Coffee Shop Website
+# <h1 align="center">Lukopi Coffee Shop Website</h1>
+<div align="center">
+<img src='/src/assets/image/stock/coffee 1.png' margin="auto"/>
+</div>
+
 
 
 Lukopi Coffee Shop is an E-commerce website, specified for buy and manage products. Can be used for both customer and owner. This project was bootstrapped with React App. 
@@ -30,7 +34,7 @@ Lukopi Coffee Shop is an E-commerce website, specified for buy and manage produc
 
 ## Preview
 
-<div style='display:flex;flex-direction:column;row-gap:10px;align-items:center'>
+<div display=flex flex-direction=column row-gap=10px align="center" height="500px">
 <img src="/src/assets/screenshot/Homepage.png"  alt="home" />
 <img src="/src/assets/screenshot/Login-page.png"  alt="login" />
 <img src="/src/assets/screenshot/Product-page.png"  alt="product" />
@@ -38,7 +42,9 @@ Lukopi Coffee Shop is an E-commerce website, specified for buy and manage produc
 
 ## Deployment
 
-[Lukopi - Coffee Shop](https://lukopi-coffeeshop.netlify.app/)
+[Lukopi - Coffee Shop](https://lukopi-coffeeshop.netlify.app/) 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/540034e6-3e45-4ac0-873f-b3bb48af82b3/deploy-status)](https://app.netlify.com/sites/lukopi-coffeeshop/deploys)
 
 ## Related Project
 
