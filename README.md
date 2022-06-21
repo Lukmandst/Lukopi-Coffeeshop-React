@@ -1,6 +1,7 @@
-# Getting Started with Lukopi Website
+# Lukopi Coffee Shop Website
 
-This project was bootstrapped with React App
+
+Lukopi Coffee Shop is an E-commerce website, specified for buy and manage products. Can be used for both customer and owner. This project was bootstrapped with React App. 
 
 ## Built With
 
@@ -16,9 +17,16 @@ This project was bootstrapped with React App
    $ git clone https://github.com/Lukmandst/Lukopi-CoffeeShop-React
    ```
 2. Open [VS Code](https://code.visualstudio.com/)
-3. Install [Live Server Extension for VS Code](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-4. Install [React Create App](https://reactjs.org/docs/create-a-new-react-app.html)
-5. Run npm start
+3. Start the apps in development mode, and it will run by default at localhost:3000
+   ```
+   $ npm start
+   ```
+   
+4. Build the apps for optimized performance after development mode
+   ```
+   $ npm run build
+   ```
+5. You can deploy the `build` folder into your private server. Or just simply use the [Netlify](https://netlify.app) if you want to test the app before the real deployment
 
 ## Preview
 
@@ -27,6 +35,10 @@ This project was bootstrapped with React App
 <img src="/src/assets/screenshot/Login-page.png"  alt="login" />
 <img src="/src/assets/screenshot/Product-page.png"  alt="product" />
 </div>
+
+## Deployment
+
+[Lukopi - Coffee Shop](https://lukopi-coffeeshop.netlify.app/)
 
 ## Related Project
 
